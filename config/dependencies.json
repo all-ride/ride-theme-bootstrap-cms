@@ -1,0 +1,37 @@
+{
+    "dependencies": [
+        {
+            "interfaces": ["pallo\\library\\template\\theme\\Theme", "pallo\\library\\cms\\theme\\Theme"],
+            "class": "pallo\\web\\cms\\theme\\BootstrapTheme",
+            "id": "bootstrap"
+        },    
+        {
+            "interfaces": "pallo\\web\\cms\\node\\NodeTreeGenerator",
+            "class": "pallo\\web\\cms\\node\\BootstrapNodeTreeGenerator",
+            "id": "bootstrap",
+            "calls": [
+                {
+                    "method": "__construct",
+                    "arguments": [
+                        {
+                            "name": "translator",
+                            "type": "call",
+                            "properties": {
+                                "interface": "pallo\\library\\i18n\\I18n",
+                                "method": "getTranslator"
+                            }
+                        },
+                        {
+                            "name": "actions",
+                            "type": "call",
+                            "properties": {
+                                "interface": "pallo\\web\\cms\\controller\\backend\\action\\node\\NodeActionManager",
+                                "method": "getNodeActions"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
