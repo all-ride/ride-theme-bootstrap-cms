@@ -5,15 +5,25 @@
                 {image src=$widget->getIcon() default="img/widget.png"}
             </a>
             <ul class="dropdown-menu">
-            {if $widget->getPropertiesCallback()}
-                <li><a href="{$baseAction}/widget/{$widgetId}/properties" class="properties">{translate key="button.properties"}</a></li>
-            {/if}
-                <li><a href="{$baseAction}/widget/{$widgetId}/cache" class="cache">{translate key="button.cache"}</a></li>
-            {if $widget->getTemplates()}
-                <li><a href="{$baseAction}/widget/{$widgetId}/templates" class="templates">{translate key="button.templates"}</a></li>
-            {/if}
+            {$actionsAvailable = false}
+            {foreach $actions as $actionName => $action}
+                {if $action->isAvailableForWidget($node, $widget)}
+                    {$actionsAvailable = true}
+                    <li>
+                        <a href="{url id=$action->getRoute() parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}">
+                            {translate key="label.widget.action.`$actionName`"}
+                        </a>
+                    </li>
+                {/if}
+            {/foreach}
+            {if $actionsAvailable}
                 <li class="divider"></li>
-                <li><a href="{$baseAction}/widget/{$widgetId}/delete" class="delete">{translate key="button.delete"}</a></li>
+            {/if}
+                <li>
+                    <a class="delete" href="{url id="cms.node.layout.widget.delete" parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}">
+                        {translate key="button.delete"}
+                    </a>
+                </li>
             </ul>
         </div>
         
@@ -24,15 +34,15 @@
     <div class="widget-info clearfix">
     {$name = $widget->getName()}
     {if $widget->getPropertiesCallback()}
-        <a class="name" href="{$baseAction}/widget/{$widgetId}/properties">{translate key="widget.`$name`"}</a>
+        <a class="name" href="{url id="cms.widget.properties" parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}">
+            {translate key="widget.`$name`"}
+        </a>
     {else}
         <span class="name">{translate key="widget.`$name`"}</span>
     {/if}
 
-    {if $widget->getPropertiesCallback()}
-    <div class="preview">
-        {$widget->getPropertiesPreview()}
-    </div>
-    {/if}
+        <div class="preview">
+            {$widget->getPropertiesPreview()}
+        </div>
     </div>
 </div>
