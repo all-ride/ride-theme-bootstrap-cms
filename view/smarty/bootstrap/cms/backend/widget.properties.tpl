@@ -3,7 +3,7 @@
 {block name="head_title" prepend}{translate key="title.widget.properties" widget=$widget->getName()|ucfirst} - {$node->getName($locale)} - {/block}
 
 {block name="taskbar_panels" append}
-    {url id="cms.node.layout.widget.properties" parameters=["locale" => "%locale%", "site" => $site->getId(), "node" => $node->getId(), "region" => $region, "widget" => $widgetId] var="url"}
+    {url id="cms.widget.properties" parameters=["locale" => "%locale%", "site" => $site->getId(), "node" => $node->getId(), "region" => $region, "widget" => $widgetId] var="url"}
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
