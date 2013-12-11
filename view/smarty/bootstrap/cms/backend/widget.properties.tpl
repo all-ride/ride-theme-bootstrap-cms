@@ -1,6 +1,6 @@
 {extends file="cms/backend/index"}
 
-{block name="head_title" prepend}{translate key="title.widget.properties" widget=$widget->getName()|ucfirst} - {$node->getName($locale)} - {/block}
+{block name="head_title" prepend}{translate key="title.widget.properties" widget=$widgetName} - {$node->getName($locale)} - {/block}
 
 {block name="taskbar_panels" append}
     {url id="cms.widget.properties" parameters=["locale" => "%locale%", "site" => $site->getId(), "node" => $node->getId(), "region" => $region, "widget" => $widgetId] var="url"}
@@ -8,8 +8,8 @@
 {/block}
 
 {block name="content_title"}
-    <div class="page-header">
-        <h1>{$node->getName($locale)} <small>{translate key="title.widget.properties" widget=$widget->getName()|ucfirst} ({$region})</small></h1>
+    <div class="page-header">    
+        <h1>{$node->getName($locale)} <small>{translate key="title.widget.properties" widget=$widgetName} ({$region})</small></h1>
     </div>
 {/block}
 
