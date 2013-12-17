@@ -14,5 +14,5 @@
 {/block}
 
 {block name="content_body" append}
-    {include file=$propertiesTemplate}
+    {include file=$propertiesTemplate inline}
 {/block}
