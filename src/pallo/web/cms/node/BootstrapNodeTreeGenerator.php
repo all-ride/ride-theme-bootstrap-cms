@@ -125,7 +125,7 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
         $truncatedName = new String($name);
         $truncatedName = $truncatedName->truncate($truncateSize, '...', true, true);
 
-        $html .= $this->getAnchorHtml($this->web->getUrl('cms.node.default', $urlVars), $truncatedName, false, 'name', null, $name);
+        $html .= $this->getAnchorHtml($this->web->getUrl('cms.node.default', $urlVars) . '?referer=' . $this->referer, $truncatedName, false, 'name', null, $name);
         //         $html .= $this->getAnchorHtml('#', ' ', false, 'action-menu-node', 'node-actions-' . $id);
         $html .= $this->getAnchorHtml('#', '&nbsp;', false, 'dropdown-toggle', 'node-actions-' . $id);
         $html .= '<ul class="dropdown-menu" id="node-actions-' . $id . '-menu" role="menu">';
@@ -141,7 +141,7 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
         }
 
         $html .= '<li class="divider"></li>';
-        $html .= '<li>' . $this->getAnchorHtml($this->web->getUrl($nodeType->getRouteEdit(), $urlVars), 'button.edit', true, 'edit') . '</li>';
+        $html .= '<li>' . $this->getAnchorHtml($this->web->getUrl($nodeType->getRouteEdit(), $urlVars) . '?referer=' . $this->referer, 'button.edit', true, 'edit') . '</li>';
         $html .= '<li>' . $this->getAnchorHtml($this->web->getUrl($nodeType->getRouteClone(), $urlVars) . '?referer=' . $this->referer, 'button.clone', true, 'clone method-post') . '</li>';
         $html .= '<li>' . $this->getAnchorHtml($this->web->getUrl($nodeType->getRouteDelete(), $urlVars) . '?referer=' . $this->referer, 'button.delete', true, 'delete method-post use-confirm') . '</li>';
         $html .= '</ul>';
