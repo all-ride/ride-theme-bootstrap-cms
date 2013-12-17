@@ -13,7 +13,7 @@
     </div>
 {/block}
 
-{block name="content" append}
+{block name="content_body" append}
     {include file="base/form.prototype"}
 
 <form class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
@@ -21,13 +21,13 @@
     <div class="tabbable">
         <ul class="nav nav-tabs">
         {foreach $templates as $file => $content}
-            <li{if $content@first} class="active"{/if}><a href="#{$file}" data-toggle="tab">{$file}</a></li>
+            <li{if $content@first} class="active"{/if}><a href="#{$file|replace:".":"-"}" data-toggle="tab">{$file}</a></li>
         {/foreach}
         </ul>
         
         <div class="tab-content">
         {foreach $templates as $file => $content}
-            <div id="{$file}" class="tab-pane clearfix{if $content@first} active{/if}">
+            <div id="{$file|replace:".":"-"}" class="tab-pane clearfix{if $content@first} active{/if}">
                 <br />
                 {call formWidget form=$form row="content" part=$file}
                 <br />

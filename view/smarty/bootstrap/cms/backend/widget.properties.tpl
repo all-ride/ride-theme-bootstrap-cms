@@ -13,6 +13,6 @@
     </div>
 {/block}
 
-{block name="content" append}
+{block name="content_body" append}
     {include file=$propertiesTemplate}
 {/block}

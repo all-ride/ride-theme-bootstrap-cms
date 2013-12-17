@@ -13,7 +13,7 @@
     </div>
 {/block}
 
-{block name="content" append}
+{block name="content_body" append}
     <p>{translate key="label.node.action.visibility.intro"}</p>
     {include file="base/form.prototype"}
 

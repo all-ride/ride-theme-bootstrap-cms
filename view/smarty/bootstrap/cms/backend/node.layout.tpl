@@ -13,7 +13,7 @@
     </div>
 {/block}
 
-{block name="content" append}
+{block name="content_body" append}
     {include file="base/form.prototype"}
 
     <form id="{$form->getId()}" action="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId()]}" method="POST" class="form-inline" role="form">
