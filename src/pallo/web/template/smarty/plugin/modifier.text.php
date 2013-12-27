@@ -2,28 +2,30 @@
 
 use pallo\library\cms\content\TextParser;
 
-function smarty_modifier_text($string) {
-    static $textParser;
+if (!function_exists('smarty_modifier_text')) {
+    function smarty_modifier_text($string) {
+        static $textParser;
 
-    if (!$textParser) {
-        global $system;
+        if (!$textParser) {
+            global $system;
 
-        $dependencyInjector = $system->getDependencyInjector();
+            $dependencyInjector = $system->getDependencyInjector();
 
-        $smartyEngine = $dependencyInjector->get('pallo\\library\\template\\engine\\Engine', 'smarty');
-        $smartyEngine = $smartyEngine->getSmarty();
+            $smartyEngine = $dependencyInjector->get('pallo\\library\\template\\engine\\Engine', 'smarty');
+            $smartyEngine = $smartyEngine->getSmarty();
 
-        $app = $smartyEngine->getTemplateVars('app');
+            $app = $smartyEngine->getTemplateVars('app');
 
-        $locale = 'en';
-        if (isset($app['locale'])) {
-            $locale = $app['locale'];
+            $locale = 'en';
+            if (isset($app['locale'])) {
+                $locale = $app['locale'];
+            }
+
+            $nodeModel = $dependencyInjector->get('pallo\\library\\cms\\node\\NodeModel');
+
+            $textParser = new TextParser($nodeModel, $app['cms']['node'], $locale, $app['url']['script']);
         }
 
-        $nodeModel = $dependencyInjector->get('pallo\\library\\cms\\node\\NodeModel');
-
-        $textParser = new TextParser($nodeModel, $app['cms']['node'], $locale, $app['url']['script']);
+        return $textParser->parseText($string);
     }
-
-    return $textParser->parseText($string);
 }
