@@ -25,6 +25,9 @@
         
             <div class="form-group">
                 <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
+                {if $referer}
+                    <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
+                {/if}                
             </div>
         </fieldset>
     </form>    
