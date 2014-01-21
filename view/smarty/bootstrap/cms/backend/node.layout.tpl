@@ -16,9 +16,11 @@
 {block name="content_body" append}
     {include file="base/form.prototype"}
 
+    {if count($form->getRow('region')->getWidget()->getOptions()) > 1}
     <form id="{$form->getId()}" action="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId()]}" method="POST" class="form-inline" role="form">
         <p>{translate key="label.region.select"} {call formWidget form=$form row="region"}</p>
     </form>    
+    {/if}
     
     <div class="row">
         <div id="region" class="col-md-6 clearfix">

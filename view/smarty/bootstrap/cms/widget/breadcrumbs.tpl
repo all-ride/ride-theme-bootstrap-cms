@@ -1,5 +1,5 @@
 <ol class="breadcrumb">
-{foreach $app.cms.breadcrumbs as $url => $label}
+{foreach $app.cms.context.breadcrumbs as $url => $label}
     {if $label@last}
         <li class="active">{$label}</li>
     {else}
