@@ -6,16 +6,18 @@ use pallo\library\cms\node\Node;
 use pallo\library\cms\node\NodeModel;
 use pallo\library\cms\node\SiteNode;
 use pallo\library\i18n\translator\Translator;
+use pallo\library\security\SecurityManager;
 use pallo\library\String;
 
 use pallo\web\WebApplication;
 
 class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
 
-    public function __construct(WebApplication $web, NodeModel $nodeModel, Translator $translator, array $actions) {
+    public function __construct(WebApplication $web, NodeModel $nodeModel, SecurityManager $securityManager, Translator $translator, array $actions) {
         $this->web = $web;
         $this->nodeModel = $nodeModel;
         $this->nodeTypeManager = $this->nodeModel->getNodeTypeManager();
+        $this->securityManager = $securityManager;
         $this->translator = $translator;
         $this->actions = $actions;
     }
@@ -135,8 +137,13 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
                 continue;
             }
 
+            $actionUrl = $this->web->getUrl($action->getRoute(), $urlVars) . $this->referer;
+            if (!$this->securityManager->isUrlAllowed($actionUrl)) {
+                continue;
+            }
+
             $html .= '<li>';
-            $html .= $this->getAnchorHtml($this->web->getUrl($action->getRoute(), $urlVars) . $this->referer, 'label.node.action.' . $actionName, true, $actionName);
+            $html .= $this->getAnchorHtml($actionUrl, 'label.node.action.' . $actionName, true, $actionName);
             $html .= '</li>';
         }
 
