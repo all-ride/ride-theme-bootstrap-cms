@@ -8,23 +8,30 @@
             {$actionsAvailable = false}
             {foreach $actions as $actionName => $action}
                 {if $action->isAvailableForWidget($node, $widget)}
-                    {$actionsAvailable = true}
-                    <li>
-                        <a href="{url id=$action->getRoute() parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}">
-                            {translate key="label.widget.action.`$actionName`"}
-                        </a>
-                    </li>
+                    {url var="actionUrl" id=$action->getRoute() parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}
+                    {isGranted url=$actionUrl}
+                        {$actionsAvailable = true}
+                        <li>
+                            <a href="{$actionUrl}">
+                                {translate key="label.widget.action.`$actionName`"}
+                            </a>
+                        </li>
+                    {/isGranted}
                 {/if}
             {/foreach}
-            {if $actionsAvailable}
-                <li class="divider"></li>
-            {/if}
-                <li>
-                    <a class="delete" href="{url id="cms.node.layout.widget.delete" parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}">
-                        {translate key="button.delete"}
-                    </a>
-                </li>
-            </ul>
+
+            {url var="actionUrl" id="cms.node.layout.widget.delete" parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}
+            {isGranted url=$actionUrl}
+                {if $actionsAvailable}
+                    <li class="divider"></li>
+                {/if}
+                    <li>
+                        <a class="delete" href="{$actionUrl}">
+                            {translate key="button.delete"}
+                        </a>
+                    </li>
+                </ul>
+            {/isGranted}
         </div>
         
         <div class="handle">

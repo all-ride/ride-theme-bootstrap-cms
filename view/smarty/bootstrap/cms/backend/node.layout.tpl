@@ -57,7 +57,7 @@
                 $('#form-region-select').submit();
             });
             
-            joppaInitializeLayout('{$baseAction}', '{translate key="label.confirm.widget.delete"}'); 
+            joppaInitializeLayout('{$baseAction}', '{translate key="label.confirm.widget.delete"}');
         });
     </script>
 {/block}
