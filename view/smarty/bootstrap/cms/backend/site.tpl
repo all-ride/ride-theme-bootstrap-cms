@@ -9,14 +9,17 @@
 {/block}
 
 {block name="sidebar" append}
+    {url var="actionUrl" id="cms.site.add" parameters=["locale" => $locale]}
+    {isGranted url=$actionUrl}
     <div class="btn-group">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         {translate key="button.create"} <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu">
-        <li><a href="{url id="cms.site.add" parameters=["locale" => $locale]}">{translate key="label.node.type.site"}</a></li>
+        <li><a href="{$actionUrl}">{translate key="label.node.type.site"}</a></li>
     </ul>
     </div>
+    {/isGranted}
 {/block}
 
 {block name="content_body" append}
