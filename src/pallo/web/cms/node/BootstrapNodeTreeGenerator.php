@@ -80,6 +80,7 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
 
         // generate the node css class
         $nodeClass = 'node';
+        $nodeClass .= ' node-' . $type;
         if ($isNodeSelected) {
             $nodeClass .= ' selected';
         }
@@ -147,10 +148,30 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
             $html .= '</li>';
         }
 
-        $html .= '<li class="divider"></li>';
-        $html .= '<li>' . $this->getAnchorHtml($this->web->getUrl($nodeType->getRouteEdit(), $urlVars) . $this->referer, 'button.edit', true, 'edit') . '</li>';
-        $html .= '<li>' . $this->getAnchorHtml($this->web->getUrl($nodeType->getRouteClone(), $urlVars) . $this->referer, 'button.clone', true, 'clone method-post') . '</li>';
-        $html .= '<li>' . $this->getAnchorHtml($this->web->getUrl($nodeType->getRouteDelete(), $urlVars) . $this->referer, 'button.delete', true, 'delete method-post use-confirm') . '</li>';
+        $actions = array();
+
+        $actionUrl = $this->web->getUrl($nodeType->getRouteEdit(), $urlVars) . $this->referer;
+        if ($this->securityManager->isUrlAllowed($actionUrl)) {
+            $actions[] = $this->getAnchorHtml($actionUrl, 'button.edit', true, 'edit');
+        }
+
+        $actionUrl = $this->web->getUrl($nodeType->getRouteClone(), $urlVars) . $this->referer;
+        if ($this->securityManager->isUrlAllowed($actionUrl)) {
+            $actions[] = $this->getAnchorHtml($actionUrl, 'button.clone', true, 'clone method-post');
+        }
+
+        $actionUrl = $this->web->getUrl($nodeType->getRouteDelete(), $urlVars) . $this->referer;
+        if ($this->securityManager->isUrlAllowed($actionUrl)) {
+            $actions[] = $this->getAnchorHtml($actionUrl, 'button.delete', true, 'delete method-post use-confirm');
+        }
+
+        if ($actions) {
+            $html .= '<li class="divider"></li>';
+            foreach ($actions as $action) {
+                $html .= '<li>' . $action . '</li>';
+            }
+        }
+
         $html .= '</ul>';
         $html .= '</div>';
 

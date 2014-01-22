@@ -96,3 +96,25 @@
 #node-tree li.node div.menu {
     display: inline;
 }
+
+.node .icon {
+	display: block;
+	width: 16px;
+	height: 16px;
+}
+
+.node-site .icon {
+	background: url(../../img/cms/site.png) no-repeat;
+}
+
+.node-page .icon {
+	background: url(../../img/cms/page.png) no-repeat;
+}
+
+.node-folder .icon {
+	background: url(../../img/cms/folder.png) no-repeat;
+}
+
+.node-redirect .icon {
+	background: url(../../img/cms/redirect.png) no-repeat;
+}

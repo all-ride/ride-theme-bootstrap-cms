@@ -17,9 +17,7 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
 	$('#region .droppable').droppable({
 		helper: 'clone',
 		drop: function (event, ui) {
-			console.log('dropped');
 			id = ui.draggable.data('widget');
-			console.log(id);
 			if (id) {
 				$.post(baseUrl + '/widget/' + id, function(data) {
 				      var droppable = $('.droppable');
