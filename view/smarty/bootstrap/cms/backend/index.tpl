@@ -5,7 +5,7 @@
 {/block}
 
 {block name="sidebar"}
-    {if $nodeCreateActions}
+    {if isset($nodeCreateActions)}
     <div class="btn-group">
       <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
         {translate key="button.create"} <span class="caret"></span>
