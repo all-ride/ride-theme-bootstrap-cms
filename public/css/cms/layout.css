@@ -52,6 +52,14 @@
 	background: transparent url(../../img/cms/widget.inherited.png) no-repeat scroll right 7px;
 }
 
+#region .widget-info ul {
+	padding: 0 0 0 15px;
+}
+
+#region .widget-info ul {
+	overflow: hidden;
+}
+
 #region .droppable .widget-info .name {
 	display: block;
 	margin-bottom: 7px;
