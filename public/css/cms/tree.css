@@ -98,23 +98,23 @@
 }
 
 .node .icon {
-	display: block;
-	width: 16px;
-	height: 16px;
+  display: block;
+  width: 16px;
+  height: 16px;
 }
 
-.node-site .icon {
-	background: url(../../img/cms/site.png) no-repeat;
+.site .icon {
+  background: url(../../img/cms/site.png) no-repeat;
 }
-
-.node-page .icon {
-	background: url(../../img/cms/page.png) no-repeat;
+.page .icon {
+  background: url(../../img/cms/page.png) no-repeat;
 }
-
-.node-folder .icon {
-	background: url(../../img/cms/folder.png) no-repeat;
+.page-default .icon {
+  background: url(../../img/cms/page.default.png) no-repeat;
 }
-
-.node-redirect .icon {
-	background: url(../../img/cms/redirect.png) no-repeat;
+.folder .icon {
+  background: url(../../img/cms/folder.png) no-repeat;
+}
+.redirect .icon {
+  background: url(../../img/cms/redirect.png) no-repeat;
 }
