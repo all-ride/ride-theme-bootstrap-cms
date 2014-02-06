@@ -16,12 +16,3 @@
 {block name="content_body" append}
     {include file=$propertiesTemplate inline}
 {/block}
-
-{block name="scripts" append}
-    <script src="{$app.url.base}/js/form.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('form[role=form]').formCollection();
-        });
-    </script>
-{/block}
