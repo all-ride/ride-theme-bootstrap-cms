@@ -2,16 +2,6 @@
 
 {block name="head_title"}{$app.cms.context.title.node} - {$app.cms.context.title.site}{/block}
 
-{block name="styles" append}
-    {foreach $app.cms.context.styles as $style}
-        {if substr($style, 0, 7) == 'http://' || substr(style, 0, 8) == 'https://' || substr($style, 0, 2) == '//'}
-            <script src="{$style}"></script>
-        {else}
-            <script src="{$app.url.base}/{$style}"></script>
-        {/if}
-    {/foreach}
-{/block}
-
 {block name="container"}
 <div class="container">
     <div class="row">
@@ -56,14 +46,4 @@
     {/foreach}
     </div>
 </div>
-{/block}
-
-{block name="scripts" append}
-    {foreach $app.cms.context.scripts as $script}
-        {if substr($script, 0, 7) == 'http://' || substr(script, 0, 8) == 'https://' || substr($script, 0, 2) == '//'}
-            <script src="{$script}"></script>
-        {else}
-            <script src="{$app.url.base}/{$script}"></script>
-        {/if}
-    {/foreach}
 {/block}
