@@ -2,7 +2,7 @@
     "name": "pallo/theme-bootstrap-cms",
     "description": "Bootstrap theme for the CMS application of the Pallo framework",
     "license": "MIT",
-    "version": "0.3.8",
+    "version": "0.3.9",
     "authors": [
         {
             "name": "Joris Vandeweerd",
