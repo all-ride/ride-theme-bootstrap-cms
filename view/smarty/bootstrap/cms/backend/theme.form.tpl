@@ -34,9 +34,4 @@
 
 {block name="scripts" append}
     <script src="{$app.url.base}/js/form.js"></script>
-    <script type="text/javascript">
-        $(function() {
-            $('#{$form->getId()} .row-regions').formCollection(); 
-        });
-    </script>
 {/block}
