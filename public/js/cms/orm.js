@@ -3,8 +3,11 @@ function joppaContentInitializeDetailProperties(selectFieldsAction, uniqueFields
 		joppaContentUpdateFields(selectFieldsAction);
 		joppaContentUpdateIdFields(uniqueFieldsAction);
 	});
-	joppaContentUpdateFields(selectFieldsAction);
-	joppaContentUpdateIdFields(uniqueFieldsAction);
+	
+	if ($('#form-content-properties-fields option').length == 0) {
+		joppaContentUpdateFields(selectFieldsAction);
+		joppaContentUpdateIdFields(uniqueFieldsAction);
+	}
 }	
 
 function joppaContentInitializeOverviewProperties(fieldsAction, orderFieldsAction) {
