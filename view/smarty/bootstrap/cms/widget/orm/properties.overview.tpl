@@ -56,21 +56,21 @@
                             <label class="radio">
                                 {call formWidget form=$form row="parameters-type" part="numeric"}
                                 {translate key="label.parameters.numeric"}
-                                <span class="help-block">{translate key="label.parameters.numeric.description"}</span>
                             </label>
-                            {call formRow form=$form row="parameters-number"}
+                            <span class="help-block">{translate key="label.parameters.numeric.description"}</span>
+                            {call formRow form=$form row="parameters-number" class="parameters-enable parameters-numeric"}
                         </div>
                         <div class="clearfix">
                             <label class="radio">
                                 {call formWidget form=$form row="parameters-type" part="named"}
                                 {translate key="label.parameters.named"}
-                                <span class="help-block">{translate key="label.parameters.named.description"}</span>
                             </label>
-                            {call formRow form=$form row="parameters-name"}
+                            <span class="help-block">{translate key="label.parameters.named.description"}</span>
+                            {call formRow form=$form row="parameters-name" class="parameters-enable parameters-named"}
                         </div>
                     </div>
                 </div>
-                {call formRow form=$form row="parameters-none"}
+                {call formRow form=$form row="parameters-none" class="parameters-enable"}
             </div> 
                 
             <div id="tabView" class="tab-pane">           

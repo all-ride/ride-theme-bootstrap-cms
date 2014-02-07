@@ -13,13 +13,12 @@
             <div id="tabQuery" class="tab-pane active">
                 {call formRow form=$form row="model"}
                 {call formRow form=$form row="fields"}
+                {call formRow form=$form row="field-id"}
                 {call formRow form=$form row="recursive-depth"}
                 {call formRow form=$form row="include-unlocalized"}
             </div>       
             
             <div id="tabParameters" class="tab-pane">
-                <p>{translate key="label.parameters.description"}</p>
-                {call formRow form=$form row="parameter-id"}
                 {call formRow form=$form row="parameters-none"}
             </div> 
                 
