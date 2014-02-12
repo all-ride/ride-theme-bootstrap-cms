@@ -1,3 +1,5 @@
+var filterFields;
+
 function joppaContentInitializeDetailProperties(selectFieldsAction, uniqueFieldsAction) {
 	$("#form-content-properties-model").change(function() {
 		joppaContentUpdateFields(selectFieldsAction);
@@ -10,18 +12,38 @@ function joppaContentInitializeDetailProperties(selectFieldsAction, uniqueFields
 	}
 }	
 
-function joppaContentInitializeOverviewProperties(fieldsAction, orderFieldsAction) {
+function joppaContentInitializeOverviewProperties(fieldsAction, orderFieldsAction, filterFieldsAction) {
 	$("#form-content-properties-model").change(function() {
 		joppaContentUpdateFields(fieldsAction);
 		joppaContentUpdateOrderFields(orderFieldsAction);
+		joppaContentUpdateFilterFields(filterFieldsAction);
 		$("#form-content-properties-condition-expression").val('');
 		$("#form-content-properties-order-expression").val('');
+		$('.row-filters .collection-control').remove();
 	});
 	joppaContentUpdateFields(fieldsAction);
 	joppaContentUpdateOrderFields(orderFieldsAction);
 	
 	$("#form-content-properties-recursive-depth").change(function() {
 		joppaContentUpdateOrderFields(orderFieldsAction);
+	});
+	
+	$('.row-filters .prototype-add').click(function() {
+		if (filterFields) {
+			setTimeout(function() {
+				$('.row-filters .row-field select').each(function() {
+					var select = $(this);
+					
+					select.empty();
+					for (var key in filterFields) {
+						if (filterFields.hasOwnProperty(key)) {
+							select.append('<option value="' + key + '">' + filterFields[key] + '</option>');
+						}
+					}
+					select.val('');
+				});
+			}, 10);
+		}
 	});
 	
 	$("#form-content-properties-order-add").click(function() {
@@ -160,6 +182,14 @@ function joppaContentUpdateOrderFields(action) {
 		}
 		select.val('');
 		$("#form-content-properties .order-direction:visible").first().slideToggle('fast');
+	});	
+}
+
+function joppaContentUpdateFilterFields(action) {
+	var model = $("#form-content-properties-model").val();
+	
+	$.getJSON(action.replace('%25model%25', model), function(data) {
+		filterFields = data.fields;
 	});	
 }
 
