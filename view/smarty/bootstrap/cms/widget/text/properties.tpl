@@ -2,6 +2,11 @@
 
 <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
     <fieldset>
+        {call formRow form=$form row="format"}
+        {call formRow form=$form row="text"}
+        {call formRow form=$form row="io"}
+        {call formRow form=$form row="locales-all"}
+        
         {call formRows form=$form}
     
         <div class="form-group">
