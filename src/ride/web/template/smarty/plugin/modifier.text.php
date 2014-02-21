@@ -1,6 +1,6 @@
 <?php
 
-use pallo\library\cms\content\TextParser;
+use ride\library\cms\content\TextParser;
 
 if (!function_exists('smarty_modifier_text')) {
     function smarty_modifier_text($string) {
@@ -11,7 +11,7 @@ if (!function_exists('smarty_modifier_text')) {
 
             $dependencyInjector = $system->getDependencyInjector();
 
-            $smartyEngine = $dependencyInjector->get('pallo\\library\\template\\engine\\Engine', 'smarty');
+            $smartyEngine = $dependencyInjector->get('ride\\library\\template\\engine\\Engine', 'smarty');
             $smartyEngine = $smartyEngine->getSmarty();
 
             $app = $smartyEngine->getTemplateVars('app');
@@ -21,7 +21,7 @@ if (!function_exists('smarty_modifier_text')) {
                 $locale = $app['locale'];
             }
 
-            $nodeModel = $dependencyInjector->get('pallo\\library\\cms\\node\\NodeModel');
+            $nodeModel = $dependencyInjector->get('ride\\library\\cms\\node\\NodeModel');
 
             $textParser = new TextParser($nodeModel, $app['cms']['node'], $locale, $app['url']['script']);
         }
