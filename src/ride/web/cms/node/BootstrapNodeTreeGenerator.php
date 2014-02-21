@@ -1,15 +1,15 @@
 <?php
 
-namespace pallo\web\cms\node;
+namespace ride\web\cms\node;
 
-use pallo\library\cms\node\Node;
-use pallo\library\cms\node\NodeModel;
-use pallo\library\cms\node\SiteNode;
-use pallo\library\i18n\translator\Translator;
-use pallo\library\security\SecurityManager;
-use pallo\library\String;
+use ride\library\cms\node\Node;
+use ride\library\cms\node\NodeModel;
+use ride\library\cms\node\SiteNode;
+use ride\library\i18n\translator\Translator;
+use ride\library\security\SecurityManager;
+use ride\library\String;
 
-use pallo\web\WebApplication;
+use ride\web\WebApplication;
 
 class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
 

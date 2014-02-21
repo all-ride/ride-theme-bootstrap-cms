@@ -1,13 +1,13 @@
 {
     "dependencies": [
         {
-            "interfaces": ["pallo\\library\\template\\theme\\Theme", "pallo\\library\\cms\\theme\\Theme"],
-            "class": "pallo\\web\\cms\\theme\\BootstrapTheme",
+            "interfaces": ["ride\\library\\template\\theme\\Theme", "ride\\library\\cms\\theme\\Theme"],
+            "class": "ride\\web\\cms\\theme\\BootstrapTheme",
             "id": "bootstrap"
         },    
         {
-            "interfaces": "pallo\\web\\cms\\node\\NodeTreeGenerator",
-            "class": "pallo\\web\\cms\\node\\BootstrapNodeTreeGenerator",
+            "interfaces": "ride\\web\\cms\\node\\NodeTreeGenerator",
+            "class": "ride\\web\\cms\\node\\BootstrapNodeTreeGenerator",
             "id": "bootstrap",
             "calls": [
                 {
@@ -17,7 +17,7 @@
                             "name": "translator",
                             "type": "call",
                             "properties": {
-                                "interface": "pallo\\library\\i18n\\I18n",
+                                "interface": "ride\\library\\i18n\\I18n",
                                 "method": "getTranslator"
                             }
                         },
@@ -25,7 +25,7 @@
                             "name": "actions",
                             "type": "call",
                             "properties": {
-                                "interface": "pallo\\web\\cms\\controller\\backend\\action\\node\\NodeActionManager",
+                                "interface": "ride\\web\\cms\\controller\\backend\\action\\node\\NodeActionManager",
                                 "method": "getNodeActions"
                             }
                         }

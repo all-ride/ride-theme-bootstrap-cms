@@ -1,9 +1,9 @@
 <?php
 
-namespace pallo\web\cms\theme;
+namespace ride\web\cms\theme;
 
-use pallo\library\cms\theme\Theme;
-use pallo\library\template\theme\BootstrapTheme as BootstrapTemplateTheme;
+use ride\library\cms\theme\Theme;
+use ride\library\template\theme\BootstrapTheme as BootstrapTemplateTheme;
 
 /**
  * Interface for a template theme
