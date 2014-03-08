@@ -1,0 +1,69 @@
+{% extends 'cms/backend/index' %}
+{% import "base/taskbar" as functions %}
+
+{%  block head_title %}{{ translate("title.node.advanced") }} - {{ site.getName(locale) }} - {{ parent() }}{% endblock %}
+
+{% block taskbar_panels %}
+    {{ parent() }}
+    {{ url("cms.site.advanced", {"locale": "%locale%", "site": site.getId(), "node": node.getId()}, url) }}
+    {{ functions.taskbarPanelLocales(url, locale, locales) }}
+{% endblock taskbar_panels %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        <h1>{{ node.getName(locale) }} <small>{{ translate("title.node.advanced") }}</small></h1>
+    </div>
+{% endblock content_title %}
+
+{% block content_body %}
+    {{ parent() }}
+    <p>{{ translate("label.node.action.advanced.intro") }}</p>
+    {% import "base/form.prototype" as formPrototype %}
+
+    <form id="{{ form.getId() }}" action="{{ app.url.request }}" method="POST" role="form">
+        <fieldset>
+            <div class="form-group">
+                {{ formPrototype.formWidget(form, 'properties', null, 'Text') }}
+            </div>
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
+                {% if referer %}
+                    <a href="{$referer}" class="btn">{{ translate("button.cancel") }}</a>
+                {% endif %}
+            </div>
+        </fieldset>
+    </form>
+
+    <p>
+        <a href="#" class="btn-properties-show">{{ translate("button.properties.show") }}</a>
+        <a href="#" class="btn-properties-hide">{{ translate("button.properties.hide") }}</a>
+    </p>
+    <div class="full-configuration">
+        {{ nodeProperties|raw }}
+    </div>
+{% endblock content_body %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        $(function() {
+            $('.full-configuration').hide();
+            $('.btn-properties-show').click(function(e) {
+                e.preventDefault();
+
+                $('.btn-properties-show').hide();
+                $('.full-configuration').show();
+                $('.btn-properties-hide').show();
+            });
+            $('.btn-properties-hide').click(function(e) {
+                e.preventDefault();
+
+                $('.btn-properties-hide').hide();
+                $('.full-configuration').hide();
+                $('.btn-properties-show').show();
+            }).hide();
+        });
+    </script>
+{% endblock scripts %}

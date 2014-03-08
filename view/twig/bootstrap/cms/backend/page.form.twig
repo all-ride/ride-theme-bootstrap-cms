@@ -1,0 +1,45 @@
+{% extends 'cms/backend/index' %}
+{% import "base/taskbar" as functions %}
+
+{%  block head_title %}{% if node.getId() %}{{ translate("title.page.edit") }}{% else %}{{ translate("title.page.add") }}{% endif %} - {{ parent() }}{% endblock %}
+
+{% block taskbar_panels %}
+    {{ parent() }}
+    {% if node.getId() %}
+        {{ url("cms.site.error", {"locale": "%locale%", "site": site.getId(), "node": node.getId()}, url) }}
+    {% else %}
+        {{ url("cms.page.add", {"locale": "%locale%", "site": site.getId()}, url) }}
+    {% endif %}
+    {{ functions.taskbarPanelLocales(url, locale, locales) }}
+{% endblock taskbar_panels %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        {% if node.getId() %}
+            <h1>{{ site.getName(locale) }} <small>{{ translate("title.page.edit") }}</small></h1>
+        {% else %}
+            <h1>{{ translate("title.page.add") }}</h1>
+        {% endif %}
+    </div>
+{% endblock content_title %}
+
+{% block content_body %}
+    {{ parent() }}
+    {% import "base/form.prototype" as formPrototype %}
+
+    <form id="{{ form.getId() }}" class="form-horizontal" action="{{ app.url.request }}" method="POST" role="form">
+        <fieldset>
+            {{ formPrototype.formRows(null, form) }}
+
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
+                    {% if referer %}
+                        <a href="{$referer}" class="btn">{{ translate("button.cancel") }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+    </form>
+{% endblock content_body %}

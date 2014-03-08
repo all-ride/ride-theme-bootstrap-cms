@@ -1,0 +1,17 @@
+{% extends 'cms/backend/index' %}
+{% import "base/taskbar" as functions %}
+
+{%  block head_title %}{{ site.getName(locale) }} - {{ parent() }}{% endblock %}
+
+{% block taskbar_panels %}
+    {{ parent() }}
+    {{ url("cms.site.detail.locale", {"locale": "%locale%", "site": site.getId()}, url) }}
+    {{ functions.taskbarPanelLocales(url, locale, locales) }}
+{% endblock taskbar_panels %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        <h1>{{ site.getName(locale) }}</h1>
+    </div>
+{% endblock content_title %}
