@@ -1,0 +1,56 @@
+<div class="widget page-widget{% if inheritedWidgets[widgetId] is defined %} inherited{% endif %} clearfix" id="page-widget-{{ widgetId }}">
+    <div class="widget-actions">
+        <div class="icon dropdown">
+            <a href="#" class="dropdown-toggle">
+                {# {image src=$widget.getIcon() default="img/widget.png"} #}
+            </a>
+            <ul class="dropdown-menu">
+            {% set actionsAvailable = false %}
+            {% for actionName, action in actions %}
+                {% if action.isAvailableForWidget(node, widget) %}
+                    {# {url var="actionUrl" id=$ parameters=[]} #}
+                    {% set actionUrl = url(action.getRoute(), {"site": site.getId(), "node": node.getId(), "locale": locale, "region": region, "widget": widgetId}) %}
+                    {# {% if isGranted(actionUrl) %} #}
+                        {% set actionsAvailable = true %}
+                        <li>
+                            <a href="{{ actionUrl }}">
+                                {{ translate("label.widget.action." ~ actionName) }}
+                            </a>
+                        </li>
+                    {# {% endif %} #}
+                {% endif %}
+            {% endfor %}
+
+            {% set actionUrl = url("cms.node.layout.widget.delete", {"site": site.getId(), "node": node.getId(), "locale": locale, "region": region, "widget": widgetId}) %}
+            {# {% if isGranted(actionUrl) %} #}
+                {% if actionsAvailable %}
+                    <li class="divider"></li>
+                {% endif %}
+                    <li>
+                        <a class="delete" href="{{ actionUrl }}">
+                            {{ translate("button.delete") }}
+                        </a>
+                    </li>
+                </ul>
+            {# {% endif %} #}
+        </div>
+
+        <div class="handle">
+            {# {image class="handle" src="img/cms/handle.png"} #}
+        </div>
+    </div>
+    <div class="widget-info clearfix">
+    {% set name = widget.getName() %}
+    {% if widget.getPropertiesCallback() %}
+        <a class="name" href="{{ url("cms.widget.properties", {"site": site.getId(), "node": node.getId(), "locale": locale, "region": region, "widget": widgetId}) }}">
+            {{ translate("widget." ~ name) }}
+        </a>
+    {% else %}
+        <span class="name">{{ translate("widget." ~ name) }}</span>
+    {% endif %}
+
+        <div class="preview">
+            {{ widget.getPropertiesPreview()|raw }}
+        </div>
+    </div>
+</div>

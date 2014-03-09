@@ -1,4 +1,6 @@
-{assign var="prefix" value="`$prefix``$number`"}
+{{ prefix }} - {{ number }} - {{ depth }}
+
+{# {assign var="prefix" value="`$prefix``$number`"}
 
 <ul class="{$prefix}">
 {foreach $items as $node}
@@ -12,4 +14,4 @@
     </li>
     {/if}
 {/foreach}
-</ul>
+</ul> #}

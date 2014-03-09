@@ -1,7 +1,6 @@
 {% extends 'cms/backend/index' %}
 {% import "base/taskbar" as functions %}
 
-
 {%  block head_title %}{% if node.getId() is defined %}{{ translate("title.site.edit") }}{% else %}{{translate("title.site.add") }}{% endif %} - {{ parent() }}{% endblock %}
 
 {% block taskbar_panels %}
@@ -44,5 +43,4 @@
             </div>
         </fieldset>
     </form>
-    {{ dump() }}
 {% endblock content_body %}

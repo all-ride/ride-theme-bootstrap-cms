@@ -1,0 +1,48 @@
+{% extends "base/index" %}
+
+{%  block head_title %}{{ app.cms.context.title.node }} - {{ app.cms.context.title.site }}{% endblock %}
+
+{% block container %}
+    <div class="container">
+        <div class="row">
+        {% for widget in regions['header'] %}
+            {{ widget }}
+        {% endfor %}
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+            {% for widget in regions['menu'] %}
+                {{ widget }}
+            {% endfor %}
+            </div>
+            <div class="col-md-9">
+                {% if app.messages is defined %}
+                    {% set _messageTypes = {"error": "danger", "warning": "warning", "success": "success", "information": "info"} %}
+                    {% for _messageType, _messageClass in _messageTypes %}
+                        {% set _messages = app.messages.getByType(_messageType) %}
+                        {% if _messages is defined %}
+                            <div class="alert alert-{$_messageClass}">
+                            {% if _messages|length == 1 %}
+                                {% set _message = _messages|array_pop %}
+                                <p>{{ _message.getMessage() }}</p>
+                            {% else %}
+                                <ul>
+                                {% for _message in _messages %}
+                                    <li>{{ _message.getMessage() }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endif %}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                {% block layout}{% endblock layout %}
+            </div>
+        </div>
+        <div class="row">
+        {% for widget in regions['footer'] %}
+            {{ widget }}
+        {% endfor %}
+        </div>
+    </div>
+{% endblock container %}

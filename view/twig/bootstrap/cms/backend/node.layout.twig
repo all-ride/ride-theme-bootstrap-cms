@@ -1,0 +1,71 @@
+{% extends 'cms/backend/index' %}
+{% import "base/taskbar" as functions %}
+
+{%  block head_title %}{{translate("title.node.layout") }} - {{ node.getName(locale) }} - {{ parent() }}{% endblock %}
+
+{% block taskbar_panels %}
+    {{ parent() }}
+    {{ url("cms.node.layout.region", {"locale": "%locale%", "site": site.getId, "node": node.getId(), "region": region}, "url") }}
+
+    {{ functions.taskbarPanelLocales(url, locale, locales) }}
+{% endblock %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        <h1>{{ node.getName(locale) }} <small>{{ translate("title.node.layout") }}</small></h1>
+    </div>
+{% endblock content_title %}
+
+
+
+{% block content_body %}
+    {{ parent() }}
+    {% import "base/form.prototype" as formPrototype %}
+
+    {% if form.getRow('region').getWidget().getOptions()|length > 1 %}
+    <form id="{{ form.getId() }}" action="{{ url("cms.node.layout", {"locale": locale, "site": site.getId(), "node": node.getId()}) }}" method="POST" class="form-inline" role="form">
+        <p>{{ translate("label.region.select") }} {{ formPrototype.formWidget(form, 'region') }}</p>
+    </form>
+    {% endif %}
+
+    <div class="row">
+        <div id="region" class="col-md-6 clearfix">
+            <h3>{{ translate("title.widgets.content") }}</h3>
+            <p>{{ translate("label.widgets.content.description") }}</p>
+
+            <div class="droppable">
+                {% for widgetId, widget in regionWidgets %}
+                    {% include "cms/backend/widget.content" %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div id="widgets" class="col-md-6 clearfix">
+            <h3>{{ translate("title.widgets.available") }}</h3>
+            <p>{{ translate("label.widgets.available.description") }}</p>
+
+            {% for name, widget in availableWidgets %}
+            <div class="widget" data-widget="{{ name }}">
+                {# {{ image("handle", widget.getIcon(), "img/widget.png", null) }} #}
+                {{ translate("widget." ~ name) }}
+            </div>
+           {% endfor %}
+        </div>
+    </div>
+{% endblock content_body %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ app.url.base }}/js/jquery-ui.js"></script>
+    <script src="{{ app.url.base }}/js/cms/layout.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('select[name=region]').change(function() {
+                $('#form-region-select').submit();
+            });
+
+            joppaInitializeLayout('{{ baseAction }}', '{{ translate("label.confirm.widget.delete") }}');
+        });
+    </script>
+{% endblock scripts %}

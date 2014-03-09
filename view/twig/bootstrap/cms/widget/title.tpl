@@ -1,1 +1,0 @@
-<h2>{$app.cms.context.title.node}</h2>

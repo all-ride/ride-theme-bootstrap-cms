@@ -1,0 +1,7 @@
+{% extends "cms/frontend/index" %}
+
+{% block layout %}
+    {% for widget in regions['column1'] %}
+        {{ widget }}
+    {% endfor %}
+{% endblock %}
