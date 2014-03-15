@@ -5,7 +5,7 @@
 
 {% block taskbar_panels %}
     {{ parent() }}
-    {{ url("cms.site.advanced", {"locale": "%locale%", "site": site.getId(), "node": node.getId()}, url) }}
+    {% set url = url("cms.site.advanced", {"locale": "%locale%", "site": site.getId(), "node": node.getId()}) %}
     {{ functions.taskbarPanelLocales(url, locale, locales) }}
 {% endblock taskbar_panels %}
 

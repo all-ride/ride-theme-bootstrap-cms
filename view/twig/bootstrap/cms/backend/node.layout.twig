@@ -5,7 +5,7 @@
 
 {% block taskbar_panels %}
     {{ parent() }}
-    {{ url("cms.node.layout.region", {"locale": "%locale%", "site": site.getId, "node": node.getId(), "region": region}, "url") }}
+    {% set url = url("cms.node.layout.region", {"locale": "%locale%", "site": site.getId, "node": node.getId(), "region": region}) %}
 
     {{ functions.taskbarPanelLocales(url, locale, locales) }}
 {% endblock %}
@@ -47,7 +47,7 @@
 
             {% for name, widget in availableWidgets %}
             <div class="widget" data-widget="{{ name }}">
-                {# {{ image("handle", widget.getIcon(), "img/widget.png", null) }} #}
+                <img src="{{ image(widget.getIcon(), "img/widget.png") }}" class="handle">
                 {{ translate("widget." ~ name) }}
             </div>
            {% endfor %}

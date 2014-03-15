@@ -2,6 +2,6 @@
 
 {% block layout %}
     {% for widget in regions['column1'] %}
-        {{ widget }}
+        {{ widget|raw }}
     {% endfor %}
 {% endblock %}

@@ -12,20 +12,19 @@
 
 {% block sidebar %}
     {{ parent() }}
-    {# {{ url var="actionUrl" id="cms.site.add" parameters=["locale" => $locale] }} #}
     {% set actionUrl = url("cms.site.add", {"locale": locale}) %}
-    {# {isGranted url=$actionUrl} #}
-    <div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        {{ translate("button.create") }} <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
-        <li><a href="{{ actionUrl }}">{{ translate("label.node.type.site") }}</a></li>
-    </ul>
-    </div>
-    {# {/isGranted} #}
-{% endblock sidebar %}
 
+    {% if isGranted({url: actionUrl}) %}
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            {{ translate("button.create") }} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{{ actionUrl }}">{{ translate("label.node.type.site") }}</a></li>
+        </ul>
+        </div>
+    {% endif %}
+{% endblock sidebar %}
 
 {% block content_body %}
     {{ parent() }}

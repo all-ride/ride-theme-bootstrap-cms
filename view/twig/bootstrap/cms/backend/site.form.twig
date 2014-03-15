@@ -6,9 +6,9 @@
 {% block taskbar_panels %}
     {{ parent() }}
     {% if node.getId() %}
-        {{ url("cms.site.edit", {"locale": "%locale%", "site": node.getId()}, "url") }}
+        {% set url = url("cms.site.edit", {"locale": "%locale%", "site": node.getId()}) %}
     {% else %}
-        {{ url("cms.site.add", {"locale": "%locale%"}, "url") }}
+        {% set url = url("cms.site.add", {"locale": "%locale%"}) %}
     {% endif %}
     {{ functions.taskbarPanelLocales(url, locale, locales) }}
 {% endblock %}
@@ -29,18 +29,5 @@
     {{ parent() }}
     {% import "base/form.prototype" as formPrototype %}
 
-    <form id="{{ form.getId() }}" class="form-horizontal" action="{{ app.url.request }}" method="POST" role="form">
-        <fieldset>
-            {{ formPrototype.formRows(null, form) }}
-
-            <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
-                    {% if referer %}
-                        <a href="{{ referer }}" class="btn">{{ translate("button.cancel") }}</a>
-                    {% endif %}
-                </div>
-            </div>
-        </fieldset>
-    </form>
+    {{ formPrototype.form(form, app.url.request, referer) }}
 {% endblock content_body %}

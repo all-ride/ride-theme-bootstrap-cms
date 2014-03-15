@@ -1,14 +1,3 @@
 {% import "base/form.prototype" as formPrototype %}
 
-<form id="{{ form.getId() }}" class="form-horizontal" action="{{ app.url.request }}" method="POST" role="form">
-    <fieldset>
-        {{ formPrototype.formRows(null, form) }}
-
-        <div class="form-group">
-            <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
-                <input type="submit" name="cancel" class="btn btn-link" value="{{ translate("button.cancel") }}" />
-            </div>
-        </div>
-    </fieldset>
-</form>
+{{ formPrototype.form(form, app.url.request, referer) }}

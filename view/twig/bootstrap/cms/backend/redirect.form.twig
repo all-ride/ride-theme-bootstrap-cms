@@ -1,0 +1,72 @@
+{% extends 'cms/backend/index' %}
+{% import "base/taskbar" as functions %}
+
+{%  block head_title %}{% if node.getId() %}{{ translate("title.redirect.edit") }}{% else %}{{ translate("title.redirect.add") }}{% endif %} - {{ parent() }}{% endblock %}
+
+{% block taskbar_panels %}
+    {{ parent() }}
+    {% if node.getId() %}
+        {% set url = url("cms.redirect.edit", {"locale": "%locale%", "site": site.getId, "node": node.getId()}) %}
+    {% else %}
+        {% set url = url("cms.redirect.add", {"locale": "%locale%", "site": site.getId}) %}
+    {% endif %}
+
+    {{ functions.taskbarPanelLocales(url, locale, locales) }}
+{% endblock %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        {% if node.getId() %}
+            <h1>{{ node.getName(locale) }} <small>{{ translate("title.redirect.edit") }}</small></h1>
+        {% else %}
+            <h1>{{ translate("title.redirect.add") }}</h1>
+        {% endif %}
+    </div>
+{% endblock content_title %}
+
+{% block content_body %}
+    {{ parent() }}
+    {% import "base/form.prototype" as formPrototype %}
+
+    <form id="{{ form.getId() }}" class="form-horizontal" action="{{ app.url.request }}" method="POST" role="form">
+        <fieldset>
+            {{ formPrototype.formRow(form, "name") }}
+            {{ formPrototype.formRow(form, "route") }}
+
+            <div class="form-group row-redirect-type clearfix">
+                <label class="col-md-2 control-label">{{ translate("label.redirect.to") }}</label>
+                <div class="col-md-10">
+                    <div class="">
+                        <label>
+                            {{ formPrototype.formWidget(form, "redirect-type", "node") }}
+                            {{ translate("label.node") }}
+                        </label>
+
+                        {{ formPrototype.formWidget(form, "redirect-node") }}
+                    </div>
+
+                    <div class="">
+                        <label>
+                            {{ formPrototype.formWidget(form, "redirect-type", "url") }}
+                            {{ translate("label.url") }}
+                        </label>
+
+                        {{ formPrototype.formWidget(form, "redirect-url") }}
+                    </div>
+                </div>
+            </div>
+
+            {{ formPrototype.formRows(null, form) }}
+
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
+                {% if referer %}
+                    <a href="{{ referer }}" class="btn">{{ translate("button.cancel") }}</a>
+                {% endif %}
+                </div>
+            </div>
+        </fieldset>
+    </form>
+{% endblock %}

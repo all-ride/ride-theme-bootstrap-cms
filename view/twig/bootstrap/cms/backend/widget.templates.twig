@@ -1,11 +1,11 @@
 {% extends 'cms/backend/index' %}
 {% import "base/taskbar" as functions %}
 
-{%  block head_title %}{{translate("title.node.templates") }} - {{ node.getName(locale) }} - {{ parent() }}{% endblock %}
+{%  block head_title %}{{translate("title.widget.templates", {widget: widgetName}) }} - {{ node.getName(locale) }} - {{ parent() }}{% endblock %}
 
 {% block taskbar_panels %}
     {{ parent() }}
-    {% set url = url("cms.node.templates", {"locale": "%locale%", "site": site.getId, "node": node.getId()}) %}
+    {% set url = url("cms.widget.templates", {"locale": "%locale%", "site": site.getId, "node": node.getId(), "region": region, "widget": widgetId}) %}
 
     {{ functions.taskbarPanelLocales(url, locale, locales) }}
 {% endblock %}
@@ -13,7 +13,7 @@
 {% block content_title %}
     {{ parent() }}
     <div class="page-header">
-        <h1>{{ node.getName(locale) }} <small>{{ translate("title.node.templates") }}</small></h1>
+        <h1>{{ node.getName(locale) }} <small>{{translate("title.widget.templates", {widget: widgetName}) }}</small></h1>
     </div>
 {% endblock %}
 
@@ -53,4 +53,3 @@
     </form>
 
 {% endblock content_body %}
-

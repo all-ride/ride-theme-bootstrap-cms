@@ -5,7 +5,7 @@
 
 {% block taskbar_panels %}
     {{ parent() }}
-    {{ url("cms.site.error", {"locale": "%locale%", "site": site.getId(), "node": site.getId()}, url) }}
+    {% set url = url("cms.site.error", {"locale": "%locale%", "site": site.getId(), "node": site.getId()}) %}
     {{ functions.taskbarPanelLocales(url, locale, locales) }}
 {% endblock taskbar_panels %}
 
@@ -21,19 +21,6 @@
     {% import "base/form.prototype" as formPrototype %}
 
     <p>{{ translate("label.node.action.error.intro") }}</p>
-    <form id="{{ form.getId() }}" action="{{ app.url.request }}" method="POST" role="form">
-        <fieldset>
-            {{ formPrototype.formRows(null, form) }}
-            {# {call formRows form=$form} #}
+    {{ formPrototype.form(form, app.url.request, referer) }}
 
-            <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
-                    {% if referer %}
-                        <a href="{$referer}" class="btn">{{ translate("button.cancel") }}</a>
-                    {% endif %}
-                </div>
-            </div>
-        </fieldset>
-    </form>
 {% endblock content_body %}

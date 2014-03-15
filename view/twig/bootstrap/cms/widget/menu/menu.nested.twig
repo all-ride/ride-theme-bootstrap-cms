@@ -1,17 +1,18 @@
-{{ prefix }} - {{ number }} - {{ depth }}
 
-{# {assign var="prefix" value="`$prefix``$number`"}
+{% set prefix = prefix ~ number %}
 
-<ul class="{$prefix}">
-{foreach $items as $node}
-	{if !$node->hideInMenu() && $node->isPublished() && $nodeTypes[$node->getType()]->getFrontendCallback() && $node->isAvailableInLocale($app.locale)}
-    <li class="{if $node@first}first {/if}{cycle values="even,odd" name=$prefix}{if $app.cms.node->hasParent($node->getId())} active-trail{elseif $app.cms.node->getId() == $node->getId()} active{/if}{if $node@last} last{/if}">
-        <a href="{$app.url.script}{$node->getRoute($app.locale)}">{$node->getName($app.locale)}</a>
-        {if $node->getChildren() && $depth > 1}
-            {include file="cms/widget/menu/menu.nested" items=$node->getChildren() prefix="`$prefix`sub" depth=$depth-1}
-            {assign var="number" value=$number+1}
-        {/if}
-    </li>
-    {/if}
-{/foreach}
-</ul> #}
+
+<ul class="{{ prefix }}">
+    {% for node in items %}
+    	{% if not node.hideInMenu() and node.isPublished() and nodeTypes[node.getType()].getFrontendCallback() and node.isAvailableInLocale(app.locale) %}
+        <li class="{% if loop.first %}first {% endif %}{{ cycle('even', 'odd') }}{% if app.cms.ode.hasParent(node.getId()) %} active-trail{% elseif app.cms.node.getId() == node.getId() %} active{% endif %}{% if loop.last %} last{% endif %}">
+            <a href="{{ app.url.script }}{{ node.getRoute(app.locale) }}">{{ node.getName(app.locale) }}</a>
+            {% if node.getChildren() and depth > 1 %}
+                {include file="cms/widget/menu/menu.nested" items=node.getChildren() prefix="`prefix`sub" depth=depth-1}
+                {% include "cms/widget/menu/menu.nested" with {prefix: prefix ~ "sub", depth: depth - 1} %}
+                {% set number = number + 1 %}
+            {% endif %}
+        </li>
+        {% endif %}
+    {% endfor %}
+</ul>
