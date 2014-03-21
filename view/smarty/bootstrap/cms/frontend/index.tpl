@@ -5,15 +5,19 @@
 {block name="container"}
 <div class="container">
     <div class="row">
-    {foreach $regions['header'] as $widget}
-        {$widget}
-    {/foreach}
+    {if isset($regions.header)}
+        {foreach $regions.header as $widget}
+            {$widget}
+        {/foreach}
+    {/if}
     </div>
     <div class="row">
         <div class="col-md-3">
-        {foreach $regions['menu'] as $widget}
-            {$widget}
-        {/foreach}
+        {if isset($regions.menu)}
+            {foreach $regions.menu as $widget}
+                {$widget}
+            {/foreach}
+        {/if}
         </div>
         <div class="col-md-9">
             {if isset($app.messages)}
@@ -31,19 +35,21 @@
                                 <li>{$_message->getMessage()}</li>
                             {/foreach}
                             </ul>
-                        {/if} 
+                        {/if}
                         </div>
                     {/if}
                 {/foreach}
             {/if}
-                    
+
             {block name="layout"}{/block}
         </div>
     </div>
     <div class="row">
-    {foreach $regions['footer'] as $widget}
-        {$widget}
-    {/foreach}
+    {if isset($regions.footer)}
+        {foreach $regions['footer'] as $widget}
+            {$widget}
+        {/foreach}
+    {/if}
     </div>
 </div>
 {/block}
