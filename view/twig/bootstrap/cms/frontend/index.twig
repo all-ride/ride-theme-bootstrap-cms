@@ -5,15 +5,19 @@
 {% block container %}
     <div class="container">
         <div class="row">
-        {% for widget in regions['header'] %}
-            {{ widget | raw }}
-        {% endfor %}
+        {% if regions['header'] is defined %}
+            {% for widget in regions['header'] %}
+                {{ widget | raw }}
+            {% endfor %}
+        {% endif %}
         </div>
         <div class="row">
             <div class="col-md-3">
-            {% for widget in regions['menu'] %}
-                {{ widget | raw }}
-            {% endfor %}
+            {% if regions['menu'] is defined %}
+                {% for widget in regions['menu'] %}
+                    {{ widget | raw }}
+                {% endfor %}
+            {% endif %}
             </div>
             <div class="col-md-9">
                 {% if app.messages is defined %}
@@ -40,9 +44,11 @@
             </div>
         </div>
         <div class="row">
-        {% for widget in regions['footer'] %}
-            {{ widget | raw }}
-        {% endfor %}
+        {% if regions['footer'] is defined %}
+            {% for widget in regions['footer'] %}
+                {{ widget | raw }}
+            {% endfor %}
+        {% endif %}
         </div>
     </div>
 {% endblock container %}
