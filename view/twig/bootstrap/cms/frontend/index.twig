@@ -6,13 +6,13 @@
     <div class="container">
         <div class="row">
         {% for widget in regions['header'] %}
-            {{ widget }}
+            {{ widget | raw }}
         {% endfor %}
         </div>
         <div class="row">
             <div class="col-md-3">
             {% for widget in regions['menu'] %}
-                {{ widget }}
+                {{ widget | raw }}
             {% endfor %}
             </div>
             <div class="col-md-9">
@@ -23,7 +23,7 @@
                         {% if _messages is defined %}
                             <div class="alert alert-{$_messageClass}">
                             {% if _messages|length == 1 %}
-                                {% set _message = _messages|array_pop %}
+                                {% set _message = _messages|last %}
                                 <p>{{ _message.getMessage() }}</p>
                             {% else %}
                                 <ul>
@@ -41,7 +41,7 @@
         </div>
         <div class="row">
         {% for widget in regions['footer'] %}
-            {{ widget }}
+            {{ widget | raw }}
         {% endfor %}
         </div>
     </div>

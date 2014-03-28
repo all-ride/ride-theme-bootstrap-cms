@@ -1,4 +1,7 @@
-{% if title %}
-	<h3>{{ title }}</h3>
-{% endif %}
-{% include "cms/widget/menu/menu.nested" with {prefix: "menu", number: 1, depth: depth} %}
+<nav class="nav">
+    {% if title %}
+	   <h1 class="heading--3">{{ title }}</h1>
+    {% endif %}
+
+    {% include "cms/widget/menu/menu.nested" with {prefix: "menu", number: 1, depth: depth} %}
+</nav>
