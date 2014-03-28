@@ -1,0 +1,103 @@
+{% import "base/form.prototype" as formPrototype %}
+
+<form id="{{ form.getId() }}" class="form-horizontal" action="{{ app.url.request }}" method="POST" role="form">
+    <fieldset>
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabQuery" data-toggle="tab">{{ translate("title.query") }}</a></li>
+                <li><a href="#tabParameters" data-toggle="tab">{{ translate("title.parameters.url") }}</a></li>
+                <li><a href="#tabView" data-toggle="tab">{{ translate("title.view") }}</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="tabQuery" class="tab-pane active">
+                    {{ formPrototype.formRow(form, 'model') }}
+                    {{ formPrototype.formRow(form, 'fields') }}
+                    {{ formPrototype.formRow(form, 'recursive-depth') }}
+                    {{ formPrototype.formRow(form, 'include-unlocalized') }}
+
+                    <h4>{{ translate("title.condition") }}</h4>
+                    {{ formPrototype.formRow(form, 'condition') }}
+                    {{ formPrototype.formRow(form, 'filters') }}
+
+                    <h4>{{ translate("title.order") }}</h4>
+                    <div class="form-group clearfix">
+                        <label class="col-md-2 control-label">{{ translate("label.order.field") }}</label>
+                        <div class="col-md-10">
+                            {{ formPrototype.formRow(form, 'order-field') }}
+                            {{ formPrototype.formRow(form, 'order-direction') }}
+                            <button class="btn btn-default btn-order-add" id="form-content-properties-order-add">{{ translate("button.add") }}</button>
+                            <span class="help-block">{{ translate("label.order.field.description") }}</span>
+                        </div>
+                    </div>
+
+                    {{ formPrototype.formRow(form, 'order') }}
+
+                    <h4>{{ translate("title.pagination") }}</h4>
+                    {{ formPrototype.formRow(form, 'pagination-enable') }}
+                    {{ formPrototype.formRow(form, 'pagination-rows', null, "pagination-attribute") }}
+                    {{ formPrototype.formRow(form, 'pagination-offset', null, "pagination-attribute") }}
+                </div>
+
+                <div id="tabParameters" class="tab-pane">
+                    <p>{{ translate("label.parameters.description") }}</p>
+                    <div class="control-group">
+                        <label class="col-md-2 control-label">{{ translate("label.parameters") }}</label>
+                        <div class="col-md-10">
+                            <div class="clearfix">
+                                <label class="radio">
+                                    {call formWidget form=$form row="parameters-type" part="none"}
+                                    {{ translate("label.parameters.none") }}
+                                </label>
+                            </div>
+                            <div class="clearfix">
+                                <label class="radio">
+                                    {call formWidget form=$form row="parameters-type" part="numeric"}
+                                    {{ translate("label.parameters.numeric") }}
+                                </label>
+                                <span class="help-block">{{ translate("label.parameters.numeric.description") }}</span>
+                                {call formRow form=$form row="parameters-number" class="parameters-enable parameters-numeric"}
+                            </div>
+                            <div class="clearfix">
+                                <label class="radio">
+                                    {call formWidget form=$form row="parameters-type" part="named"}
+                                    {{ translate("label.parameters.named") }}
+                                </label>
+                                <span class="help-block">{{ translate("label.parameters.named.description") }}</span>
+                                {call formRow form=$form row="parameters-name" class="parameters-enable parameters-named"}
+                            </div>
+                        </div>
+                    </div>
+                    {{ formPrototype.formRow(form, 'parameters-none', null, "parameters-enable") }}
+                </div>
+
+                <div id="tabView" class="tab-pane">
+                    {{ formPrototype.formRow(form, 'view') }}
+                    {{ formPrototype.formRow(form, 'title') }}
+                    {{ formPrototype.formRow(form, 'empty-result-message') }}
+
+                    <h4 class="pagination-attribute">{{ translate("title.pagination") }}</h4>
+
+                    {{ formPrototype.formRow(form, 'pagination-show', null, "pagination-attribute") }}
+                    {{ formPrototype.formRow(form, 'pagination-ajax', null, "pagination-attribute pagination-ajax") }}
+                    {{ formPrototype.formRow(form, 'more-show', null, "pagination-attribute") }}
+                    {{ formPrototype.formRow(form, 'more-label', null, "pagination-attribute more-attribute") }}
+                    {{ formPrototype.formRow(form, 'more-node', null, "pagination-attribute more-attribute") }}
+
+                    <h4>{{ translate("title.formats.data") }}</h4>
+                    {{ formPrototype.formRow(form, 'format-title') }}
+                    {{ formPrototype.formRow(form, 'format-teaser') }}
+                    {{ formPrototype.formRow(form, 'format-image') }}
+                    {{ formPrototype.formRow(form, 'format-date') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
+                <input type="submit" name="cancel" class="btn btn-link" value="{{ translate("button.cancel") }}" />
+            </div>
+        </div>
+    </fieldset>
+</form>

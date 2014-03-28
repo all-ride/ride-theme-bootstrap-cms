@@ -1,0 +1,24 @@
+{% extends 'base/index.sidebar' %}
+
+{% block styles %}
+    {{ parent() }}
+    <link href="{{ app.url.base }}/css/cms/cms.css" rel="stylesheet" media="screen">
+{% endblock styles %}
+
+{% block sidebar %}
+    {% if nodeCreateActions is defined %}
+    <div class="btn-group">
+      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+        {{ translate("button.create") }} <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        {% for nodeTypeName, nodeActionUrl in nodeCreateActions %}
+            <li><a href="{{ nodeActionUrl }}">{{ translate("label.node.type." ~ nodeTypeName) }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+    {% if nodeTree is defined %}
+        {{ nodeTree|raw }}
+    {% endif %}
+{% endblock sidebar %}

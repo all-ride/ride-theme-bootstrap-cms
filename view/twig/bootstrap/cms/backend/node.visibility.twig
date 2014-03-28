@@ -1,0 +1,27 @@
+{% extends 'cms/backend/index' %}
+{% import "base/taskbar" as functions %}
+
+{%  block head_title %}{{translate("title.node.visibility") }} - {{ node.getName(locale) }} - {{ parent() }}{% endblock %}
+
+{% block taskbar_panels %}
+    {{ parent() }}
+    {% set url = url("cms.node.visibility", {"locale": "%locale%", "site": site.getId, "node": node.getId()}) %}
+
+    {{ functions.taskbarPanelLocales(url, locale, locales) }}
+{% endblock %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        <h1>{{ node.getName(locale) }} <small>{{ translate("title.node.visibility") }}</small></h1>
+    </div>
+{% endblock %}
+
+{% block content_body %}
+    {{ parent() }}
+    {% import "base/form.prototype" as formPrototype %}
+
+    <p>{{ translate("label.node.action.visibility.intro") }}</p>
+
+    {{ formPrototype.form(form, app.url.request, referer) }}
+{% endblock content_body %}

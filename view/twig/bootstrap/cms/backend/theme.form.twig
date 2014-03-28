@@ -1,0 +1,49 @@
+{% extends 'cms/backend/index' %}
+
+{% block head_title %}{% if theme %}{{ translate("title.theme.edit") }} - {{ theme.getDisplayName }}{% else %}{{ translate("title.theme.add") }}{% endif %} - {{ parent() }}{% endblock %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        {% if theme %}
+            <h1>{{ theme.getDisplayName }} <small>{{ translate("title.theme.edit") }}</small></h1>
+        {% else %}
+            <h1>{{ translate("title.theme.add") }}</h1>
+        {% endif %}
+    </div>
+{% endblock content_title %}
+
+{% block content_body %}
+    {{ parent() }}
+    {% import "base/form.prototype" as formPrototype %}
+
+    <form id="{{ form.getId() }}" class="form-horizontal" action="{{ app.url.request }}" method="POST" role="form">
+        <fieldset>
+            {{ formPrototype.formRows(null, form) }}
+
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
+                    {% if referer %}
+                        <a href="{{ referer }}" class="btn">{{ translate("button.cancel") }}</a>
+                    {% endif %}
+                    {% if urlDelete %}
+                        <a href="{{ urlDelete }}" class="btn">{{ translate("button.theme.delete") }}</a>
+                    {% endif %}
+                </div>
+            </div>
+        </fieldset>
+    </form>
+{% endblock content_body %}
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ app.url.base }}/js/form.js"></script>
+{% endblock scripts %}
+
+
+
+
+
+
+

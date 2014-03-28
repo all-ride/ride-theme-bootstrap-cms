@@ -1,0 +1,46 @@
+{% import "base/form.prototype" as formPrototype %}
+
+
+<form id="{{ form.getId() }}" class="form-horizontal" action="{{ app.url.request }}" method="POST" role="form">
+    <fieldset>
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tabQuery" data-toggle="tab">{{ translate("title.query") }}</a></li>
+                <li><a href="#tabParameters" data-toggle="tab">{{ translate("title.parameters.url") }}</a></li>
+                <li><a href="#tabView" data-toggle="tab">{{ translate("title.view") }}</a></li>
+            </ul>
+
+            <div class="tab-content">
+                <div id="tabQuery" class="tab-pane active">
+                    {{ formPrototype.formRow(form, 'model') }}
+                    {{ formPrototype.formRow(form, 'fields') }}
+                    {{ formPrototype.formRow(form, 'field-id') }}
+                    {{ formPrototype.formRow(form, 'recursive-depth') }}
+                    {{ formPrototype.formRow(form, 'include-unlocalized') }}
+                </div>
+
+                <div id="tabParameters" class="tab-pane">
+                    {{ formPrototype.formRow(form, 'parameters-none') }}
+                </div>
+
+                <div id="tabView" class="tab-pane">
+                    {{ formPrototype.formRow(form, 'view') }}
+                    {{ formPrototype.formRow(form, 'title') }}
+
+                    <h4>{{ translate("title.formats.data") }}</h4>
+                    {{ formPrototype.formRow(form, 'format-title') }}
+                    {{ formPrototype.formRow(form, 'format-teaser') }}
+                    {{ formPrototype.formRow(form, 'format-image') }}
+                    {{ formPrototype.formRow(form, 'format-date') }}
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
+                <input type="submit" name="cancel" class="btn btn-link" value="{{ translate("button.cancel") }}" />
+            </div>
+        </div>
+    </fieldset>
+</form>

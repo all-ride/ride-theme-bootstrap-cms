@@ -1,0 +1,20 @@
+{% extends 'cms/backend/index' %}
+
+{% block head_title %}{{ translate("title.themes") }} - {{ parent() }}{% endblock %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        <h1>{{ translate("title.themes") }}</h1>
+    </div>
+{% endblock content_title %}
+
+{% block content_body %}
+    {{ parent() }}
+    <p><a href="{url id="cms.theme.add"}" class="btn btn-default">{{ translate("button.theme.add") }}</a></p>
+       <ul>
+       {% for theme in themes %}
+           <li><a href="{url id="cms.theme.edit" parameters=["theme" => $theme->getName()]}">{$theme->getDisplayName()}</a></li>
+       {/foreach}
+       </ul>
+{% endblock content_body %}

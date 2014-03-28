@@ -1,0 +1,22 @@
+{% extends 'cms/backend/index' %}
+{% import "base/taskbar" as functions %}
+
+{%  block head_title %}{{translate("title.widget.properties", {widget: widgetName}) }} - {{ node.getName(locale) }} - {{ parent() }}{% endblock %}
+
+{% block taskbar_panels %}
+    {{ parent() }}
+    {% set url = url("cms.widget.properties", {"locale": "%locale%", "site": site.getId, "node": node.getId(), "region": region, "widget": widgetId}) %}
+
+    {{ functions.taskbarPanelLocales(url, locale, locales) }}
+{% endblock %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        <h1>{{ node.getName(locale) }} <small>{{ translate("title.widget.properties", {widget: widgetName}) }}</small></h1>
+    </div>
+{% endblock content_title %}
+
+{% block content_body %}
+    {% include propertiesTemplate %}
+{% endblock content_body %}
