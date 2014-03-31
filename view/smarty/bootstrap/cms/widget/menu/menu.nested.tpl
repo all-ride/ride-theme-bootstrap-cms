@@ -1,6 +1,6 @@
 {assign var="prefix" value="`$prefix``$number`"}
 
-<ul class="{$prefix}">
+<ul class="{$prefix} {$class}">
 {foreach $items as $node}
 	{if !$node->hideInMenu() && $node->isPublished() && $nodeTypes[$node->getType()]->getFrontendCallback() && $node->isAvailableInLocale($app.locale)}
     <li class="{if $node@first}first {/if}{cycle values="even,odd" name=$prefix}{if $app.cms.node->hasParent($node->getId())} active-trail{elseif $app.cms.node->getId() == $node->getId()} active{/if}{if $node@last} last{/if}">

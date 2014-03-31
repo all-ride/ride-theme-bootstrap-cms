@@ -24,23 +24,27 @@
             <li{if $content@first} class="active"{/if}><a href="#{$file|replace:".":"-"}" data-toggle="tab">{$file}</a></li>
         {/foreach}
         </ul>
-        
+
         <div class="tab-content">
         {foreach $templates as $file => $content}
             <div id="{$file|replace:".":"-"}" class="tab-pane clearfix{if $content@first} active{/if}">
                 <br />
                 {call formWidget form=$form row="content" part=$file}
                 <br />
-                
+
                 {call formRow form=$form row="path" part=$file}
             </div>
         {/foreach}
         </div>
-        
+
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
-                <a class="btn" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
+                {if $referer}
+                    <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
+				{else}
+                    <a class="btn" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
+                {/if}
             </div>
         </div>
     </fieldset>
