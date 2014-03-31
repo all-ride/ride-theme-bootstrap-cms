@@ -1,0 +1,27 @@
+{% extends 'cms/backend/index' %}
+{% import "base/taskbar" as functions %}
+
+{%  block head_title %}{% if node.getType() == 'site' %}{{translate("title.site." ~ type) }}{% else %}{{translate("title.node." ~ type) }}{% endif %} - {{ node.getName(locale) }} - {{ parent() }}{% endblock %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        <h1>{{ node.getName(locale) }} <small>{% if node.getType() == 'site' %}{{translate("title.site." ~ type) }}{% else %}{{translate("title.node." ~ type) }}{% endif %}</small></h1>
+    </div>
+{% endblock %}
+
+{% block content_body %}
+    {{ parent() }}
+    {% import "base/form.prototype" as formPrototype %}
+
+    <form action="{$app.url.request}" method="POST" role="form">
+        <div class="form-group">
+            <p>{{translate("label.confirm.node." ~ type, {node: node.getName(locale)}) }}</p>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" class="btn btn-default" value="{{ translate("button." ~ type) }}" />
+            <a class="btn" href="{$referer}">{{ translate("button.cancel") }}</a>
+        </div>
+    </form>
+{% endblock content_body %}

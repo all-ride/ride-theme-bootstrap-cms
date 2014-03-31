@@ -24,12 +24,12 @@
 	margin: 0;
 }
 
-.placeholder {          
+.placeholder {
     display: block;
     border: 1px dotted #666;
-    background-color: #DDD; 
+    background-color: #DDD;
     height: 15px;
-} 
+}
 
 #node-tree .node {
     padding-top: 2px;
@@ -73,7 +73,7 @@
 #node-tree .closed ul.children {
 	display: none;
 }
-	
+
 #node-tree li.node ul.children li.node {
     margin-left: 19px;
 }
@@ -108,6 +108,9 @@
 }
 .page .icon {
   background: url(../../img/cms/page.png) no-repeat;
+}
+.page-hidden .icon {
+  background: url(../../img/cms/page.hidden.png) no-repeat;
 }
 .page-default .icon {
   background: url(../../img/cms/page.default.png) no-repeat;

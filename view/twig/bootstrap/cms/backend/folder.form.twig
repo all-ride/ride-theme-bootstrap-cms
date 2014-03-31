@@ -1,0 +1,33 @@
+{% extends 'cms/backend/index' %}
+{% import "base/taskbar" as functions %}
+
+{%  block head_title %}{% if node.getId() %}{{ translate("title.folder.edit") }}{% else %}{{ translate("title.folder.add") }}{% endif %} - {{ parent() }}{% endblock %}
+
+{% block taskbar_panels %}
+    {{ parent() }}
+    {% if node.getId() %}
+        {% set url = url("cms.folder.edit", {"locale": "%locale%", "site": site.getId, "node": node.getId()}) %}
+    {% else %}
+        {% set url = url("cms.folder.add", {"locale": "%locale%", "site": site.getId}) %}
+    {% endif %}
+
+    {{ functions.taskbarPanelLocales(url, locale, locales) }}
+{% endblock %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        {% if node.getId() %}
+            <h1>{{ node.getName(locale) }} <small>{{ translate("title.folder.edit") }}</small></h1>
+        {% else %}
+            <h1>{{ translate("title.folder.add") }}</h1>
+        {% endif %}
+    </div>
+{% endblock content_title %}
+
+{% block content_body %}
+    {{ parent() }}
+    {% import "base/form.prototype" as formPrototype %}
+
+    {{ formPrototype.form(form, app.url.request, referer) }}
+{% endblock content_body %}

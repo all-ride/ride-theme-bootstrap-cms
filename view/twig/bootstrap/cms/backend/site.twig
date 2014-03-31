@@ -1,0 +1,35 @@
+{% extends 'base/index.sidebar' %}
+
+{% block head_title %}{{ translate("title.sites") }} - {{ parent() }}{% endblock %}
+
+{% block content_title %}
+    {{ parent() }}
+    <div class="page-header">
+        <h1>{{ translate("title.sites") }}</h1>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+    {% set actionUrl = url("cms.site.add", {"locale": locale}) %}
+
+    {% if isGranted({url: actionUrl}) %}
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            {{ translate("button.create") }} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{{ actionUrl }}">{{ translate("label.node.type.site") }}</a></li>
+        </ul>
+        </div>
+    {% endif %}
+{% endblock sidebar %}
+
+{% block content_body %}
+    {{ parent() }}
+    <ul>
+        {% for site in sites %}
+            <li><a href="{{ url("cms.site.detail", {"site": site.getId()}) }}">{{ site.getName(locale) }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock content_body %}

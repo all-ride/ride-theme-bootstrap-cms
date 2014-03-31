@@ -1,0 +1,33 @@
+<div class="contentOverviewBlock" id="widget-{{ widgetId }}">
+    {% if title %}
+        <h3>{{ title }}</h3>
+    {% endif %}
+
+    {% if result %}
+        {% for content in result %}
+            <div class="content clearfix {( cycle("odd,even") }}">
+                {% if content.image %}
+                    <div class="image">
+                        {% if content.url %}
+                            <a href="{{ content.url }}">{{ image(content.image, {width: 125, height: 125, thumbnail: "resize"}) }}</a>
+                        {% else %}
+                            {{ image(content.image, {width: 125, height: 125, thumbnail: "resize"}) }}
+                        {% endif %}
+                    </div>
+                {% endif %}
+                <h3>{% if content.url %}<a href="{{ content.url }}">{{ content.title }}</a>{% else %}{{ content.title }}{% endif %}</h3>
+                <div class="teaser">{{ content.teaser }}</div>
+            </div>
+        {% endfor %}
+
+        {% if pagination %}
+            {{ pagination href=pagination.getHref() pages=pagination.getPages() page=pagination.getPage() }}
+        {% endif %}
+
+        {% if moreUrl %}
+            <a href="{{ moreUrl }}" class="more">{{ moreLabel }}</a>
+        {% endif %}
+    {% else %}
+        <p>{{ emptyResultMessage|text }}</p>
+    {% endif %}
+</div>

@@ -1,0 +1,19 @@
+{% import "base/form.prototype" as formPrototype %}
+
+<form id="{{ form.getId() }}" class="form-horizontal" action="{{ app.url.request }}" method="POST" role="form">
+    <fieldset>
+        {{ formPrototype.formRow(form, 'format') }}
+        {{ formPrototype.formRow(form, 'text') }}
+        {{ formPrototype.formRow(form, 'io') }}
+        {{ formPrototype.formRow(form, 'locales-all') }}
+
+        {{ formPrototype.formRows(null, form) }}
+
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-lg-10">
+                <input type="submit" name="action" class="btn btn-default" value="{{ translate("button.save") }}" />
+                <a class="btn" href="{{ url("cms.node.layout", {"locale": locale, "site": site.getId(), "node": node.getId(), "region": region}) }}">{{ translate("button.cancel") }}</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
