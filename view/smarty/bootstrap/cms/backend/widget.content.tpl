@@ -12,7 +12,7 @@
                     {isGranted url=$actionUrl}
                         {$actionsAvailable = true}
                         <li>
-                            <a href="{$actionUrl}">
+                            <a href="{$actionUrl}?referer={$app.url.request|urlencode}">
                                 {translate key="label.widget.action.`$actionName`"}
                             </a>
                         </li>
@@ -26,14 +26,14 @@
                     <li class="divider"></li>
                 {/if}
                     <li>
-                        <a class="delete" href="{$actionUrl}">
+                        <a class="delete" href="{$actionUrl}?referer={$app.url.request|urlencode}">
                             {translate key="button.delete"}
                         </a>
                     </li>
                 </ul>
             {/isGranted}
         </div>
-        
+
         <div class="handle">
             {image class="handle" src="img/cms/handle.png"}
         </div>

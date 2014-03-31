@@ -1,0 +1,6 @@
+<ul class="locales">
+    {% for code, data in locales %}
+        {% set locale = data.locale %}
+        <li{% if code == app.locale %} class="active"{% endif %}><a href="{{ data.url }}">{{ locale.getName() }}</a></li>
+    {% endfor %}
+</ul>

@@ -1,0 +1,26 @@
+<div class="contentOverviewList" id="widget-{{ widgetId }}">
+    {% if title %}
+        <h3>{{ title }}</h3>
+    {% endif %}
+
+
+    {% if result %}
+        <ul>
+            {% for content in result %}
+                <div class="content clearfix {( cycle("odd,even") }}">
+                    <li>{% if content.url %}<a href="{{ content.url }}">{{ content.title }}</a>{% else %}{{ content.title }}{% endif %}</li>
+                </div>
+            {% endfor %}
+        </ul>
+
+        {% if pagination %}
+            {{ pagination href=pagination.getHref() pages=pagination.getPages() page=pagination.getPage() }}
+        {% endif %}
+
+        {% if moreUrl %}
+            <a href="{{ moreUrl }}" class="more">{{ moreLabel }}</a>
+        {% endif %}
+    {% else %}
+        <p>{{ emptyResultMessage|text }}</p>
+    {% endif %}
+</div>

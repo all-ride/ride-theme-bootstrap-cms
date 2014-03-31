@@ -1,0 +1,13 @@
+<div class="contentDetail" id="widget-{{ widgetId }}">
+    <div class="content clearfix">
+        {% if content.image %}
+        <div class="image">
+            {{ image(content.image, {width: 125, height: 125, thumbnail, "resize"}) }}
+        </div>
+        {% endif %}
+        {% if not properties.getTitle %}
+            <h3>{{ content.title }}</h3>
+        {% endif %}
+        <div class="teaser">{{ content.teaser }}</div>
+    </div>
+</div>
