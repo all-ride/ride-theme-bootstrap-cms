@@ -1,4 +1,4 @@
-<div class="contentDetail" id="widget-{$widgetId}">
+<div class="widget widget-content-detail {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
     <div class="content clearfix">
         {if $content->image}
         <div class="image">
@@ -6,7 +6,7 @@
         </div>
         {/if}
         {if !$properties->getTitle()}
-            <h3>{$content->title}</h3>
+            <h3 class="{$app.cms.properties->getWidgetProperty('style.title')}">{$content->title}</h3>
         {/if}
         <div class="teaser">{$content->teaser}</div>
     </div>

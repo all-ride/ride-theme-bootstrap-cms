@@ -1,1 +1,3 @@
-<div class="text {$app.cms.properties->getWidgetProperty('style.text')}">{$text|text}</div>
+<div class="widget widget-text {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
+    {$text|text}
+</div>
