@@ -1,6 +1,6 @@
-<div class="contentOverviewBlock" id="widget-{$widgetId}">
+<div class="widget widget-content-overview {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
 {if $title}
-    <h3>{$title}</h3>
+    <h3 class="{$app.cms.properties->getWidgetProperty('style.title')}">{$title}</h3>
 {/if}
 
 {if $result}

@@ -8,18 +8,18 @@
             <li><a href="#tabParameters" data-toggle="tab">{translate key="title.parameters.url"}</a></li>
             <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
         </ul>
-    
+
         <div class="tab-content">
             <div id="tabQuery" class="tab-pane active">
                 {call formRow form=$form row="model"}
                 {call formRow form=$form row="fields"}
                 {call formRow form=$form row="recursive-depth"}
                 {call formRow form=$form row="include-unlocalized"}
-                
+
                 <h4>{translate key="title.condition"}</h4>
                 {call formRow form=$form row="condition"}
                 {call formRow form=$form row="filters"}
-                
+
                 <h4>{translate key="title.order"}</h4>
                 <div class="form-group clearfix">
                     <label class="col-md-2 control-label">{translate key="label.order.field"}</label>
@@ -30,18 +30,18 @@
                         <span class="help-block">{translate key="label.order.field.description"}</span>
                     </div>
                 </div>
-    
+
                 {call formRow form=$form row="order"}
-    
+
                 <h4>{translate key="title.pagination"}</h4>
-            
+
                 {call formRow form=$form row="pagination-enable"}
-                
+
                 {call formRow form=$form row="pagination-rows" class="pagination-attribute"}
-                
+
                 {call formRow form=$form row="pagination-offset" class="pagination-attribute"}
-            </div>       
-            
+            </div>
+
             <div id="tabParameters" class="tab-pane">
                 <p>{translate key="label.parameters.description"}</p>
                 <div class="control-group">
@@ -71,24 +71,24 @@
                         </div>
                     </div>
                 </div>
-                {call formRow form=$form row="parameters-none" class="parameters-enable"}
-            </div> 
-                
-            <div id="tabView" class="tab-pane">           
+                {call formRow form=$form row="parameters-none"}
+            </div>
+
+            <div id="tabView" class="tab-pane">
                 {call formRow form=$form row="view"}
                 {call formRow form=$form row="title"}
                 {call formRow form=$form row="empty-result-message"}
-                
+
                 <h4 class="pagination-attribute">{translate key="title.pagination"}</h4>
-    
+
                 {call formRow form=$form row="pagination-show" class="pagination-attribute"}
                 {call formRow form=$form row="pagination-ajax" class="pagination-attribute pagination-ajax"}
                 {call formRow form=$form row="more-show" class="pagination-attribute"}
                 {call formRow form=$form row="more-label" class="pagination-attribute more-attribute"}
                 {call formRow form=$form row="more-node" class="pagination-attribute more-attribute"}
-    
+
                 <h4>{translate key="title.formats.data"}</h4>
-                
+
                 {call formRow form=$form row="format-title"}
                 {call formRow form=$form row="format-teaser"}
                 {call formRow form=$form row="format-image"}
@@ -96,7 +96,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
             <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
