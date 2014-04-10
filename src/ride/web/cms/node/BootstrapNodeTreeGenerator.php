@@ -9,6 +9,7 @@ use ride\library\i18n\translator\Translator;
 use ride\library\security\SecurityManager;
 use ride\library\String;
 
+use ride\web\cms\controller\backend\TreeController;
 use ride\web\WebApplication;
 
 class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
@@ -20,6 +21,21 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
         $this->securityManager = $securityManager;
         $this->translator = $translator;
         $this->actions = $actions;
+
+        $this->setToggledNodes();
+    }
+
+    protected function setToggledNodes() {
+        $session = $this->web->getRequest()->getSession();
+        $user = $this->securityManager->getUser();
+
+        if ($user) {
+            $nodes = $user->getPreference(TreeController::SESSION_TOGGLED_NODES, array());
+        } else {
+            $nodes = array();
+        }
+
+        $this->toggledNodes = $session->get(TreeController::SESSION_TOGGLED_NODES, $nodes);
     }
 
     /**
@@ -93,10 +109,10 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
             }
         }
 
-//         // set the previous collapse state
-//         if (AjaxTreeController::isNodeCollapsed($this->zibo, $id)) {
-//             $nodeClass .= ' closed';
-//         }
+        // set the previous collapse state
+        if (isset($this->toggledNodes[$id])) {
+            $nodeClass .= ' closed';
+        }
 
         $html = '<li class="' . $nodeClass . '" id="node-' . $id . '">';
 

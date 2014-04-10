@@ -15,9 +15,18 @@
             <li><a href="{$nodeActionUrl}">{translate key="label.node.type.`$nodeTypeName`"}</a></li>
         {/foreach}
       </ul>
-    </div>            
+    </div>
     {/if}
 {if isset($nodeTree)}
     {$nodeTree}
 {/if}
+{/block}
+
+{block name="scripts" append}
+    <script src="{$app.url.base}/js/cms/tree.js"></script>
+    <script type="text/javascript">
+      $(function() {
+            joppaInitializeNodeTree('{url id="cms.tree.toggle" parameters=["node" => "%node%"]}');
+        });
+    </script>
 {/block}
