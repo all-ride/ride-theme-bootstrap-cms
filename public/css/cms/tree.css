@@ -112,6 +112,7 @@
 .page-hidden .icon {
   background: url(../../img/cms/page.hidden.png) no-repeat;
 }
+.redirect-default .icon,
 .page-default .icon {
   background: url(../../img/cms/page.default.png) no-repeat;
 }
