@@ -16,14 +16,16 @@ if (!function_exists('smarty_modifier_text')) {
 
             $app = $smartyEngine->getTemplateVars('app');
 
-            $locale = 'en';
             if (isset($app['locale'])) {
                 $locale = $app['locale'];
+            } else {
+                $locale = 'en';
             }
 
-            $nodeModel = $dependencyInjector->get('ride\\library\\cms\\node\\NodeModel');
-
-            $textParser = new TextParser($nodeModel, $app['cms']['node'], $locale, $app['url']['script']);
+            $textParser = $dependencyInjector->get('ride\\library\\cms\\content\\text\\TextParser', 'chain');
+            $textParser->setNode($app['cms']['node']);
+            $textParser->setLocale($locale);
+            $textParser->setBaseUrl($app['url']['base']);
         }
 
         return $textParser->parseText($string);
