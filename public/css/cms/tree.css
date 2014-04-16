@@ -122,3 +122,9 @@
 .redirect .icon {
   background: url(../../img/cms/redirect.png) no-repeat;
 }
+.entry .icon {
+  background: url(../../img/cms/entry.png) no-repeat;
+}
+.entry-hidden .icon {
+  background: url(../../img/cms/entry.hidden.png) no-repeat;
+}
