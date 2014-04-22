@@ -2,11 +2,6 @@
 
 <form id="{{ form.getId() }}" class="form-horizontal" action="{{ app.url.request }}" method="POST" role="form">
     <fieldset>
-        {{ formPrototype.formRow(form, 'format') }}
-        {{ formPrototype.formRow(form, 'text') }}
-        {{ formPrototype.formRow(form, 'io') }}
-        {{ formPrototype.formRow(form, 'locales-all') }}
-
         {{ formPrototype.formRows(null, form) }}
 
         <div class="form-group">
