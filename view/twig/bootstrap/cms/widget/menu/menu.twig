@@ -1,7 +1,9 @@
-<nav class="nav">
-    {% if title %}
-	   <h1 class="heading--3">{{ title }}</h1>
-    {% endif %}
+<div class="widget widget-menu {{ app.cms.properties.getWidgetProperty('style.container') }}" id="widget-{{ app.cms.widget }}">
+    <nav class="nav">
+        {% if title %}
+    	   <h1 class="heading--3 {{ app.cms.properties.getWidgetProperty('style.title') }}">{{ title }}</h1>
+        {% endif %}
 
-    {% include "cms/widget/menu/menu.nested" with {prefix: "menu", number: 1, depth: depth} %}
-</nav>
+        {% include "cms/widget/menu/menu.nested" with {prefix: "menu", number: 1, depth: depth, class: app.cms.properties.getWidgetProperty('style.menu')} %}
+    </nav>
+</div>
