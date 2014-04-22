@@ -1,0 +1,19 @@
+{% extends "cms/frontend/index" %}
+
+{% block layout %}
+    <div class="row">
+        {% for widget in regions['column1'] %}
+            {{ widget|raw }}
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for widget in regions['column2'] %}
+            {{ widget|raw }}
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for widget in regions['column3'] %}
+            {{ widget|raw }}
+        {% endfor %}
+    </div>
+{% endblock %}
