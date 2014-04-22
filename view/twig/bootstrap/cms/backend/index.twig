@@ -22,3 +22,14 @@
         {{ nodeTree|raw }}
     {% endif %}
 {% endblock sidebar %}
+
+
+{% block scripts %}
+    {{ parent() }}
+    <script src="{{ app.url.base }}/js/cms/tree.js"></script>
+    <script type="text/javascript">
+      $(function() {
+            joppaInitializeNodeTree('{{ url("cms.tree.toggle", null, {node: "%node%"}) }}');
+        });
+    </script>
+{% endblock &}
