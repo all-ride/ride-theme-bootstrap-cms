@@ -1,4 +1,4 @@
-<div class="widget widget-content-overview {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
+<div class="widget widget-content-overview widget-content-overview-list {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
 {if $title}
     <h3 class="{$app.cms.properties->getWidgetProperty('style.title')}">{$title}</h3>
 {/if}
@@ -15,7 +15,7 @@
     {/if}
 
     {if $moreUrl}
-    <a href="{$moreUrl}" class="more">{$moreLabel}</a>
+    <p><a href="{$moreUrl}" class="more">{$moreLabel}</a></p>
     {/if}
 {else}
     <p>{$emptyResultMessage|text}</p>
