@@ -6,7 +6,7 @@ form .row-layout .radio {
 	width: 100px;
 	height: 90px;
 }
-	
+
 form .row-layout .radio input {
     position: relative;
 	top: 55px;
@@ -27,4 +27,9 @@ form .row-layout .help-block {
 #form-region-select-region {
 	display: inline;
 	width: auto;
+}
+
+#form-text .row-existing,
+#form-text .row-text {
+	margin-bottom: 12px;
 }
