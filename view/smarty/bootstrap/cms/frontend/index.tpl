@@ -2,6 +2,10 @@
 
 {block name="head_title"}{$app.cms.context.title.node} - {$app.cms.context.title.site}{/block}
 
+{block name="styles" append}
+    <link href="{$app.url.base}/css/cms/front.css" rel="stylesheet" media="screen">
+{/block}
+
 {block name="container"}
 <div class="container">
     <div class="row">
