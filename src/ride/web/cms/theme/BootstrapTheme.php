@@ -21,14 +21,6 @@ class BootstrapTheme extends BootstrapTemplateTheme implements Theme {
     );
 
     /**
-     * Gets the display name of this theme
-     * @return string
-     */
-    public function getDisplayName() {
-        return ucfirst($this->getName());
-    }
-
-    /**
      * Checks if a region exists in this layout
      * @return boolean
      */
