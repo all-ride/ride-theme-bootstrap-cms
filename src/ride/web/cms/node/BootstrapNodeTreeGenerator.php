@@ -7,7 +7,7 @@ use ride\library\cms\node\NodeModel;
 use ride\library\cms\node\SiteNode;
 use ride\library\i18n\translator\Translator;
 use ride\library\security\SecurityManager;
-use ride\library\String;
+use ride\library\StringHelper;
 
 use ride\web\cms\controller\backend\TreeController;
 use ride\web\WebApplication;
@@ -141,8 +141,7 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
         $html .= '<div class="handle ' . $nodeClass . '"><span class="icon"></span></div>';
         $html .= '<div class="dropdown">';
 
-        $truncatedName = new String($name);
-        $truncatedName = $truncatedName->truncate($truncateSize, '...', true, true);
+        $truncatedName = StringHelper::truncate($name, $truncateSize, '...', true, true);
 
         $html .= $this->getAnchorHtml($this->web->getUrl('cms.node.default', $urlVars) . $this->referer, $truncatedName, false, 'name', null, $name);
         //         $html .= $this->getAnchorHtml('#', ' ', false, 'action-menu-node', 'node-actions-' . $id);
