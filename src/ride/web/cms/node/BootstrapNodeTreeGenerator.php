@@ -67,8 +67,9 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
             $nodes = array();
         }
 
+        $request = $this->web->getRequest();
         if ($request->hasSession()) {
-            $this->toggledNodes = $this->web->getRequest()->getSession()->get(TreeController::SESSION_TOGGLED_NODES, $nodes);
+            $this->toggledNodes = $request->getSession()->get(TreeController::SESSION_TOGGLED_NODES, $nodes);
         } else {
             $this->toggleNodes = $nodes;
         }
