@@ -26,8 +26,22 @@
 
     <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
         <fieldset>
+            {call formRow form=$form row="name"}
+
+            <div class="form-group">
+                <div class="col-lg-offset-2 col-lg-10">
+                    <a href="#" class="btn-alternative-names">{translate key="button.names.alternative"}</a>
+                </div>
+            </div>
+
+            <div class="alternative-names">
+                {call formRow form=$form row="name-title"}
+                {call formRow form=$form row="name-menu"}
+                {call formRow form=$form row="name-breadcrumb"}
+            </div>
+
             {call formRows form=$form}
-        
+
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
@@ -37,5 +51,18 @@
                 </div>
             </div>
         </fieldset>
-    </form>    
+    </form>
+{/block}
+
+{block name="scripts" append}
+    <script>
+        $(function() {
+            $('.btn-alternative-names').click(function() {
+                $('.alternative-names').toggle();
+
+                return false;
+            });
+        });
+        $('.alternative-names').hide();
+    </script>
 {/block}
