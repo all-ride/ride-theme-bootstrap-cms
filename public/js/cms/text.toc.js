@@ -1,5 +1,5 @@
 $(function() {
-    $('.widget-text-index').each(function() {
+    $('.widget-text-toc').each(function() {
         var divIndex = $(this);
         console.log(divIndex);
         var index = $('<ul></ul>');
