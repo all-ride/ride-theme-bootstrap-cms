@@ -6,7 +6,7 @@
         </div>
         {/if}
         {if !$properties->getTitle()}
-            <h3 class="{$app.cms.properties->getWidgetProperty('style.title')}">{$content->title}</h3>
+            <h2 class="{$app.cms.properties->getWidgetProperty('style.title')}">{$content->title}</h2>
         {/if}
         <div class="teaser">{$content->teaser}</div>
     </div>

@@ -8,7 +8,7 @@
 
 {block name="container"}
 <div class="container">
-    <div class="row">
+    <div class="row region region-header">
     {if isset($regions.header)}
         {foreach $regions.header as $widget}
             {$widget}
@@ -16,14 +16,14 @@
     {/if}
     </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 region region-menu">
         {if isset($regions.menu)}
             {foreach $regions.menu as $widget}
                 {$widget}
             {/foreach}
         {/if}
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 region region-layout">
             {if isset($app.messages)}
                 {$_messageTypes = ["error" => "danger", "warning" => "warning", "success" => "success", "information" => "info"]}
                 {foreach $_messageTypes as $_messageType => $_messageClass}
@@ -48,7 +48,7 @@
             {block name="layout"}{/block}
         </div>
     </div>
-    <div class="row">
+    <div class="row region region-footer">
     {if isset($regions.footer)}
         {foreach $regions['footer'] as $widget}
             {$widget}
