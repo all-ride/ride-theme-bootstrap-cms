@@ -25,7 +25,9 @@ function joppaInitializeNodeTree(nodeToggleAction) {
         isTree: true,
         change: function(){
             var order = $tree.nestedSortable('serialize');
-            console.log(order);
+            $.post(url, {
+                data: order
+            });
         }
     });
     // $('#node-tree').nestedSortable({
