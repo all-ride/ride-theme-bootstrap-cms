@@ -23,6 +23,8 @@
 {/block}
 
 {block name="scripts" append}
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="{$app.url.base}/js/cms/lib/jquery.mjs.nestedSortable.js"></script>
     <script src="{$app.url.base}/js/cms/tree.js"></script>
     <script type="text/javascript">
       $(function() {
