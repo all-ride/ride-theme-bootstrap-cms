@@ -21,21 +21,6 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
         $this->securityManager = $securityManager;
         $this->translator = $translator;
         $this->actions = $actions;
-
-        $this->setToggledNodes();
-    }
-
-    protected function setToggledNodes() {
-        $session = $this->web->getRequest()->getSession();
-        $user = $this->securityManager->getUser();
-
-        if ($user) {
-            $nodes = $user->getPreference(TreeController::SESSION_TOGGLED_NODES, array());
-        } else {
-            $nodes = array();
-        }
-
-        $this->toggledNodes = $session->get(TreeController::SESSION_TOGGLED_NODES, $nodes);
     }
 
     /**
@@ -54,6 +39,8 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
             }
         }
 
+        $this->readToggledNodes();
+
         $this->node = $node;
         $this->locale = $locale;
         $this->referer = '?referer=' . urlencode($this->web->getRequest()->getUrl());
@@ -66,6 +53,26 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
         $html .= '</ul>';
 
         return $html;
+    }
+
+    /**
+     * Reads the toggled nodes from the user and/or session
+     * @return null
+     */
+    protected function readToggledNodes() {
+        $user = $this->securityManager->getUser();
+        if ($user) {
+            $nodes = $user->getPreference(TreeController::SESSION_TOGGLED_NODES, array());
+        } else {
+            $nodes = array();
+        }
+
+        $request = $this->web->getRequest();
+        if ($request->hasSession()) {
+            $this->toggledNodes = $request->getSession()->get(TreeController::SESSION_TOGGLED_NODES, $nodes);
+        } else {
+            $this->toggleNodes = $nodes;
+        }
     }
 
     /**
