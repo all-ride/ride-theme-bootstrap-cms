@@ -23,10 +23,14 @@
 {/block}
 
 {block name="scripts" append}
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="{$app.url.base}/js/cms/lib/jquery.mjs.nestedSortable.js"></script>
     <script src="{$app.url.base}/js/cms/tree.js"></script>
+    {if isset($site)}
     <script type="text/javascript">
       $(function() {
-            joppaInitializeNodeTree('{url id="cms.tree.toggle" parameters=["node" => "%node%"]}');
+            joppaInitializeNodeTree('{url id="cms.tree.toggle" parameters=["node" => "%node%"]}', '{url id="cms.tree.order"}');
         });
     </script>
+    {/if}
 {/block}
