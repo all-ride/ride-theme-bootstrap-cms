@@ -1,4 +1,4 @@
-function joppaInitializeNodeTree(nodeToggleAction) {
+function joppaInitializeNodeTree(nodeToggleAction, nodeOrderAction) {
     var $tree = $('#node-tree');
     // implement the expand/collapse function of the node tree
     $tree.find(".node a.toggle").each(function(i) {
@@ -22,10 +22,11 @@ function joppaInitializeNodeTree(nodeToggleAction) {
         helper: 'clone',
         opacity: .6,
         placeholder: 'placeholder',
+        protectRoot: true,
         isTree: true,
-        change: function(){
+        update: function(){
             var order = $tree.nestedSortable('serialize');
-            $.post(url, {
+            $.post(nodeOrderAction, {
                 data: order
             });
         }
