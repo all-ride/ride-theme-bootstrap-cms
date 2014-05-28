@@ -2,6 +2,15 @@
 
 {block name="head_title"}{$app.cms.context.title.node} - {$app.cms.context.title.site}{/block}
 
+{block name="head" append}
+    {$meta = $app.cms.node->getMeta($app.locale)}
+    {if $meta}
+        {foreach $meta as $metaName => $metaValue}
+    <meta property="{$metaName}" content="{$metaValue}" />
+        {/foreach}
+    {/if}
+{/block}
+
 {block name="styles" append}
     <link href="{$app.url.base}/css/cms/front.css" rel="stylesheet" media="screen">
 {/block}
