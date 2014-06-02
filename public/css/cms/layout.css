@@ -80,11 +80,13 @@
     width: 175px;
     margin-left: 0;
     cursor: move;
-    padding: 7px 7px 7px 5px;
+    padding: 7px 7px 7px 30px;
     margin: 0 4px 4px 0;
     float: left;
+    position: relative;
 }
 
 #widgets .widget img {
-	margin-right: 7px;
+	position: absolute;
+  left: 4px;
 }
