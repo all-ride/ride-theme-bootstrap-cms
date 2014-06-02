@@ -30,11 +30,11 @@
 
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <a href="#" class="btn-alternative-names">{translate key="button.names.alternative"}</a>
+                    <a href="#" class="btn-alternate-names">{translate key="button.names.alternate"}</a>
                 </div>
             </div>
 
-            <div class="alternative-names">
+            <div class="alternate-names">
                 {call formRow form=$form row="name-title"}
                 {call formRow form=$form row="name-menu"}
                 {call formRow form=$form row="name-breadcrumb"}
@@ -57,12 +57,12 @@
 {block name="scripts" append}
     <script>
         $(function() {
-            $('.btn-alternative-names').click(function() {
-                $('.alternative-names').toggle();
+            $('.btn-alternate-names').click(function() {
+                $('.alternate-names').toggle();
 
                 return false;
             });
         });
-        $('.alternative-names').hide();
+        $('.alternate-names').hide();
     </script>
 {/block}
