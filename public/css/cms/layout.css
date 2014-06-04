@@ -11,7 +11,7 @@
 
 #region .droppable .widget {
 	padding: 0;
-    margin: 0px 0px 4px 0px;
+    margin: 0 0 4px 0;
 }
 
 .widget {
@@ -29,7 +29,7 @@
 #region .droppable .widget-actions .icon,
 #region .droppable .widget-actions .handle {
 	text-align: center;
-	padding: 3px 0 3px 0px;
+	padding: 3px 0 3px 0;
 }
 
 #region .droppable .widget-actions .icon li {
@@ -43,7 +43,7 @@
 }
 
 #region .droppable .widget-info {
-	padding: 5px 0px 5px 9px;
+	padding: 5px 0 5px 9px;
 	width: 85%;
 	float: left;
 }
@@ -80,11 +80,13 @@
     width: 175px;
     margin-left: 0;
     cursor: move;
-    padding: 7px 7px 7px 5px;
+    padding: 7px 7px 7px 30px;
     margin: 0 4px 4px 0;
     float: left;
+    position: relative;
 }
 
 #widgets .widget img {
-	margin-right: 7px;
+	position: absolute;
+  left: 4px;
 }
