@@ -4,15 +4,13 @@
   list-style: none;
 }
 #node-tree li {
-  padding: 5px 0;
+  padding: 4px 0;
 }
 #node-tree ul {
   list-style: none;
   padding: 0;
   margin-left: 10px;
 }
-
-
 
 
 #node-tree .toggle,
@@ -42,10 +40,10 @@
   border: 1px solid rgba(0, 55, 80, 0.3);
   text-decoration: none;
 }
-.node .toggle {
+.node a.toggle {
   background: url(../../img/cms/toggle.minus.png) no-repeat;
 }
-.node .closed .toggle {
+.node .closed a.toggle {
   background: url(../../img/cms/toggle.plus.png) no-repeat;
 }
 
@@ -115,4 +113,10 @@ li.selected li .name {
 
 #node-tree li.node div.menu {
     display: inline;
+}
+
+
+/* Dropdown menu */
+#node-tree .dropdown-menu li {
+  padding: 0;
 }
