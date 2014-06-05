@@ -6,6 +6,7 @@ $('#btn-text-reuse').click(function() {
     $('.row-body').addClass('hide');
     $('.row-image-src').addClass('hide');
     $('.row-image-align').addClass('hide');
+    $('.row-locales-all').addClass('hide');
     $('.row-existing').removeClass('hide').data('id', $('.row-existing select').val());
 
     $('#btn-cancel').click(function() {
@@ -15,6 +16,7 @@ $('#btn-text-reuse').click(function() {
         $('.row-body').removeClass('hide');
         $('.row-image-src').removeClass('hide');
         $('.row-image-align').removeClass('hide');
+        $('.row-locales-all').removeClass('hide');
 
         $('#btn-cancel').unbind();
         $('#btn-submit').unbind();
@@ -28,6 +30,7 @@ $('#btn-text-reuse').click(function() {
         $('.row-body').removeClass('hide');
         $('.row-image-src').removeClass('hide');
         $('.row-image-align').removeClass('hide');
+        $('.row-locales-all').removeClass('hide');
 
         var oldTextId = $('.row-existing').data('id');
         var textId = $('.row-existing select').val();
