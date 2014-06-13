@@ -9,7 +9,7 @@ $(function() {
           var $toggleElements = $elements.slice(3).hide(),
               defaultLinkText = translations.more + ' »',
               altLinkText = '« ' + translations.less,
-              $link = $('<button style="margin-left: 40px" class="btn btn-default btn-xs">' + defaultLinkText + '</a>');
+              $link = $('<a href="#" style="margin-left: 40px" class="btn btn-default btn-xs">' + defaultLinkText + '</a>');
 
           $link
             .appendTo($cel)
