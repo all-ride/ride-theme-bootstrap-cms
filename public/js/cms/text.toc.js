@@ -2,8 +2,9 @@ $(function() {
     $('.widget-text-toc').each(function() {
         var divIndex = $(this);
         var index = $('<ul></ul>');
+        var subindex = null;
 
-        $('.widget h2.toc', divIndex.parents('.region')).each(function() {
+        $('.widget h2.toc, .widget h3.toc', divIndex.parents('.region')).each(function() {
             var title = $(this);
             var label = title.data('label-menu');
 
@@ -13,8 +14,29 @@ $(function() {
 
             var anchor = label.toLowerCase().replace(/ /g, '-');
             title.prepend($('<a name="' + anchor + '"></a>'));
-            index.append($('<li><a href="#' + anchor + '">' + label + '</a></li>'));
+
+            console.log(title.context.localName);
+
+            if (title.context.localName == 'h3') {
+                if (subindex === null) {
+                    subindex = $('<ul></ul>');
+                }
+
+                subindex.append($('<li><a href="#' + anchor + '">' + label + '</a></li>'));
+            } else {
+                if (subindex) {
+                    $('li', index).last().append(subindex);
+
+                    subindex = null;
+                }
+
+                index.append($('<li><a href="#' + anchor + '">' + label + '</a></li>'));
+            }
         });
+
+        if (subindex) {
+            $('li', index).last().append(subindex);
+        }
 
         divIndex.append(index);
     });

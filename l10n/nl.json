@@ -3,7 +3,9 @@
     "button.text.existing": "Gebruik een bestaande tekst",
     "label.text.existing.select": "Selecteer een bestaande tekst om deze te gebruiken in deze tekst blok.",
     "label.query.search": "Zoekterm",
+    "title.cta": "Call To Action",
     "title.entry.add": "Maak een nieuwe entry",
     "title.entry.delete": "Entry verwijderen",
-    "title.entry.edit": "Entry bewerken"
+    "title.entry.edit": "Entry bewerken",
+    "title.text": "Tekst",
 }
