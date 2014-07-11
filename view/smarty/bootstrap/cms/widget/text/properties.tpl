@@ -1,6 +1,6 @@
 {include file="base/form.prototype"}
 
-<form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
+<form id="{$form->getId()}" class="form-horizontal" action="{$action}" method="POST" role="form" enctype="multipart/form-data">
     <fieldset>
         {if $form->hasRow("existing")}
         <div class="row-existing clearfix hide" data-url-text="{url id="api.orm.detail" parameters=["model" => "Text", "id" => "%id%"]}">
@@ -9,15 +9,44 @@
             {call formWidget form=$form row="existing-new"}
         </div>
         {/if}
-        <input type="hidden" name="image-src" value="" id="form-text-image-src-hidden" />
 
-        {call formRows form=$form}
+        <div class="tab">
+            <div class="tabbable">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tabText" data-toggle="tab">{translate key="title.text"}</a></li>
+                    <li><a href="#tabCta" data-toggle="tab">{translate key="title.cta"}</a></li>
+                </ul>
+            </div>
 
-        {if $form->hasRow("existing")}
-        <p class="text-right">
-            <a href="#" id="btn-text-reuse">{translate key="button.text.existing"}</a>
-        </p>
-        {/if}
+            <div class="tab-content">
+                <div id="tabText" class="tab-pane active">
+                    {call formRow form=$form row="body"}
+
+                    {if $form->hasRow("existing")}
+                    <p class="text-right">
+                        <a href="#" id="btn-text-reuse">{translate key="button.text.existing"}</a>
+                    </p>
+                    {/if}
+
+                    {call formRow form=$form row="title-use"}
+                    {call formRow form=$form row="title"}
+                    {call formRow form=$form row="subtitle"}
+                    {call formRow form=$form row="image-use"}
+                    {call formRow form=$form row="image-src"}
+                    {call formRow form=$form row="image-align"}
+
+                    {if $form->hasRow("locales-all")}
+                        {call formRow form=$form row="locales-all"}
+                    {/if}
+                </div>
+
+                <div id="tabCta" class="tab-pane">
+                    {call formRow form=$form row="cta"}
+                </div>
+            </div>
+
+            {call formRows form=$form}
+        </div>
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">

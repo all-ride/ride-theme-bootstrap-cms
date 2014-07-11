@@ -5,7 +5,9 @@
     "label.show.more": "show more",
     "label.text.existing.select": "Select a existing text to use it in this text block.",
     "label.query.search": "Search query",
+    "title.cta": "Call To Action",
     "title.entry.add": "Create A New Entry",
     "title.entry.delete": "Delete Entry",
-    "title.entry.edit": "Edit Entry"
+    "title.entry.edit": "Edit Entry",
+    "title.text": "Text"
 }
