@@ -35,6 +35,13 @@
 {/block}
 
 {block name="scripts" append}
+    <script type="text/javascript">
+        var translations = {
+            more: '{translate key="label.show.more"}',
+            less: '{translate key="label.show.less"}'
+        };
+    </script>
     <script src="{$app.url.base}/js/form.js"></script>
     <script src="{$app.url.base}/js/table.js"></script>
+    <script src="{$app.url.base}/js/text.admin.js"></script>
 {/block}
