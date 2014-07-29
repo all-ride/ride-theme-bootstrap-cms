@@ -40,7 +40,7 @@
 
             {foreach $availableWidgets as $name => $widget}
             <div class="widget" data-widget="{$name}">
-                {image class="handle" src=$widget->getIcon() default="img/widget.png"}
+                <img src="{image src=$widget->getIcon() default="img/widget.png"}" class="handle" />
                 {translate key="widget.`$name`"}
             </div>
            {/foreach}

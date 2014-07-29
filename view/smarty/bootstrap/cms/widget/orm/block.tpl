@@ -9,9 +9,11 @@
         {if $content->image}
         <div class="image">
             {if $content->url}
-            <a href="{$content->url}">{image src=$content->image width=125 height=125 thumbnail="resize"}</a>
+            <a href="{$content->url}">
+                <img src="{image src=$content->image width=125 height=125 transformation="resize"}" />
+            </a>
             {else}
-            {image src=$content->image width=125 height=125 thumbnail="resize"}
+            <img src="{image src=$content->image width=125 height=125 transformation="resize"}" />
             {/if}
         </div>
         {/if}

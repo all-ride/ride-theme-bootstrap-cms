@@ -2,7 +2,7 @@
     <div class="content clearfix">
         {if $content->image}
         <div class="image">
-            {image src=$content->image width=125 height=125 thumbnail="resize"}
+            <img src="{image src=$content->image width=125 height=125 transformation="resize"}" />
         </div>
         {/if}
         {if !$properties->getTitle()}
