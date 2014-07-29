@@ -2,7 +2,7 @@
     <div class="widget-actions">
         <div class="icon dropdown">
             <a href="#" class="dropdown-toggle">
-                {image src=$widget->getIcon() default="img/widget.png"}
+                <img src="{image src=$widget->getIcon() default="img/widget.png"}" />
             </a>
             <ul class="dropdown-menu">
             {$actionsAvailable = false}
@@ -35,7 +35,7 @@
         </div>
 
         <div class="handle">
-            {image class="handle" src="img/cms/handle.png"}
+            <img src="{image src="img/cms/handle.png"}" class="handle" />
         </div>
     </div>
     <div class="widget-info clearfix">
