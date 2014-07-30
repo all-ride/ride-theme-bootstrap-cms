@@ -1,6 +1,9 @@
 {
+    "button.comment": "Comment",
     "button.names.alternate": "Alternate names",
     "button.text.existing": "Use a existing text",
+    "label.comments.authenticated": "You need to be logged in to post comments.",
+    "label.comments.none": "There are no comments.",
     "label.show.less": "show less",
     "label.show.more": "show more",
     "label.text.existing.select": "Select a existing text to use it in this text block.",
