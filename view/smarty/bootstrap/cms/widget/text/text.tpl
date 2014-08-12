@@ -9,7 +9,7 @@
     {if $html}
     <div class="col-md-6">
         {if $imageAlignment == 'left'}
-            <img src="{image src=$image}" />
+            <img src="{image src=$image}" class="img-responsive" />
         {else}
             {$html|text}
             {foreach $callToActions as $callToAction}
@@ -24,11 +24,11 @@
                 <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()}</a>
             {/foreach}
         {else}
-            <img src="{image src=$image}" />
+            <img src="{image src=$image}" class="img-responsive" />
         {/if}
     </div>
     {else}
-        <img src="{image src=$image}" />
+        <img src="{image src=$image}" class="img-responsive" />
     {/if}
 {else}
     {$html|text}
