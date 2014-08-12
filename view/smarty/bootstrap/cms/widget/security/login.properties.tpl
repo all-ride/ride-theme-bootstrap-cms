@@ -1,18 +1,18 @@
 {include file="base/form.prototype"}
 
 <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form" enctype="multipart/form-data">
-    <p>{translate key="label.login.redirect"}</p>
+    <p>{translate key="label.login.authenticated"}</p>
     <fieldset>
         <div class"form-group row radio">
             <label>
-                {call formWidget form=$form row="redirect" part="referer"}
+                {call formWidget form=$form row="authenticated" part="referer"}
                 {translate key="label.login.redirect.referer"}
             </label>
         </div>
 
         <div class"form-group row radio">
             <label>
-                {call formWidget form=$form row="redirect" part="node"}
+                {call formWidget form=$form row="authenticated" part="node"}
                 {translate key="label.login.redirect.node"}
             </label>
         </div>
@@ -26,8 +26,15 @@
 
         <div class"form-group row radio">
             <label>
-                {call formWidget form=$form row="redirect" part="none"}
-                {translate key="label.login.redirect.none"}
+                {call formWidget form=$form row="authenticated" part="render"}
+                {translate key="label.login.render"}
+            </label>
+        </div>
+
+        <div class"form-group row radio">
+            <label>
+                {call formWidget form=$form row="authenticated" part="nothing"}
+                {translate key="label.login.nothing"}
             </label>
         </div>
 
