@@ -1,9 +1,13 @@
 {
     "button.comment": "Comment",
     "button.names.alternate": "Alternate names",
+    "button.search.results.more": "Show %total% more result(s)",
     "button.text.existing": "Use a existing text",
     "label.comments.authenticated": "You need to be logged in to post comments.",
     "label.comments.none": "There are no comments.",
+    "label.search.query.none": "Your search for <em>'%query%'</em> yielded no results.",
+    "label.search.query.result": "Your search for <em>'%query%'</em> yielded 1 result.",
+    "label.search.query.results": "Your search for <em>'%query%'</em> yielded %total% results.",
     "label.show.less": "show less",
     "label.show.more": "show more",
     "label.text.existing.select": "Select a existing text to use it in this text block.",
