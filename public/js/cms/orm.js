@@ -41,12 +41,11 @@ function joppaContentInitializeOverviewProperties(fieldsAction, orderFieldsActio
 		joppaContentUpdateFields(fieldsAction);
 		joppaContentUpdateOrderFields(orderFieldsAction);
 		joppaContentUpdateFilterFields(filterFieldsAction);
+
 		$("#form-content-properties-condition-expression").val('');
 		$("#form-content-properties-order-expression").val('');
 		$('.row-filters .collection-control').remove();
 	});
-	joppaContentUpdateFields(fieldsAction);
-	joppaContentUpdateOrderFields(orderFieldsAction);
 
 	$("#form-content-properties-recursive-depth").change(function() {
 		joppaContentUpdateOrderFields(orderFieldsAction);
@@ -212,7 +211,7 @@ function joppaContentUpdateOrderFields(action) {
 function joppaContentUpdateFilterFields(action) {
 	var model = $("#form-content-properties-model").val();
 
-	$.getJSON(action.replace('%25model%25', model), function(data) {
+	$.getJSON(action.replace('%25model%25', model).replace('%25recursiveDepth%25', 1), function(data) {
 		filterFields = data.fields;
 	});
 }
