@@ -1,6 +1,10 @@
 <div class="widget widget-search-form widget-search-form-content {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
-{if !$result}
-    <p>{translate key="label.search.results.none" query=$query}</p>
+{if $result.total == 0}
+    {if $query}
+        <p>{translate key="label.search.results.none" query=$query}</p>
+    {else}
+        <p>{translate key="label.search.query.provide"}</p>
+    {/if}
 {else}
     {if $result.total == 1}
         <p>{translate key="label.search.query.result" query=$query}</p>
