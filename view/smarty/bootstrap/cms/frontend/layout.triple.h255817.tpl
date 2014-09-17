@@ -1,18 +1,18 @@
 {extends file="cms/frontend/index"}
 
 {block name="layout"}
-    <div class="row">
-        <div class="col-md-3 region">
+    <div class="grid">
+        <div class="grid--bp-med__3 region">
     {foreach $regions['column1'] as $widget}
         {$widget}
     {/foreach}
         </div>
-        <div class="col-md-7 region">
+        <div class="grid--bp-med__7 region">
     {foreach $regions['column2'] as $widget}
         {$widget}
     {/foreach}
         </div>
-        <div class="col-md-2 region">
+        <div class="grid--bp-med__2 region">
     {foreach $regions['column3'] as $widget}
         {$widget}
     {/foreach}

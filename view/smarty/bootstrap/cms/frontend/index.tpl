@@ -24,15 +24,15 @@
         {/foreach}
     {/if}
     </div>
-    <div class="row">
-        <div class="col-md-3 region region-menu">
+    <div class="grid">
+        <div class="grid--bp-med__3 region region-menu">
         {if isset($regions.menu)}
             {foreach $regions.menu as $widget}
                 {$widget}
             {/foreach}
         {/if}
         </div>
-        <div class="col-md-9 region region-layout">
+        <div class="grid--bp-med__9 region region-layout">
             {if isset($app.messages)}
                 {$_messageTypes = ["error" => "danger", "warning" => "warning", "success" => "success", "information" => "info"]}
                 {foreach $_messageTypes as $_messageType => $_messageClass}

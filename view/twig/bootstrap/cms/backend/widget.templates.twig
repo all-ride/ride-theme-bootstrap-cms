@@ -22,7 +22,7 @@
     {% import "base/form.prototype" as formPrototype %}
 
     <form class="form-horizontal" action="{{ app.url.request }}" method="POST" role="form">
-        <fieldset>
+        <div class="form__group">
         <div class="tabbable">
             <ul class="nav nav-tabs">
             {% for file, content in templates %}
@@ -41,15 +41,15 @@
                 {% endfor %}
             </div>
 
-            <div class="form-group">
+            <div class="form__group">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
+                    <input type="submit" class="btn btn--default" value="{{ translate("button.save") }}" />
                     {% if referer %}
                         <a href="{{ referer }}" class="btn">{{ translate("button.cancel") }}</a>
                     {% endif %}
                 </div>
             </div>
-        </fieldset>
+        </div>
     </form>
 
 {% endblock content_body %}

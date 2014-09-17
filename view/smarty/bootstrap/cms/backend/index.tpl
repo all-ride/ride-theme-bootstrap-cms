@@ -6,11 +6,10 @@
 
 {block name="sidebar"}
     {if isset($nodeCreateActions)}
-    <div class="btn-group">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-        {translate key="button.create"} <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu">
+
+    <div class="btn--group dropdown">
+      <button type="button" class="btn btn--default" data-toggle="dropdown">{translate key="button.create"} <i class="icon icon--angle-down"></i></button>
+      <ul class="dropdown__menu" role="menu">
         {foreach $nodeCreateActions as $nodeTypeName => $nodeActionUrl}
             <li><a href="{$nodeActionUrl}">{translate key="label.node.type.`$nodeTypeName`"}</a></li>
         {/foreach}

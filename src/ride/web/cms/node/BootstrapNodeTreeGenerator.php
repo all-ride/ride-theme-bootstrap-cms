@@ -153,7 +153,7 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
         $html .= $this->getAnchorHtml($this->web->getUrl('cms.node.default', $urlVars) . $this->referer, $truncatedName, false, 'name', null, $name);
         //         $html .= $this->getAnchorHtml('#', ' ', false, 'action-menu-node', 'node-actions-' . $id);
         $html .= $this->getAnchorHtml('#', '&nbsp;', false, 'dropdown-toggle', 'node-actions-' . $id);
-        $html .= '<ul class="dropdown-menu" id="node-actions-' . $id . '-menu" role="menu">';
+        $html .= '<ul class="dropdown__menu" id="node-actions-' . $id . '-menu" role="menu">';
 
         foreach ($this->actions as $actionName => $action) {
             if (!$action->isAvailableForNode($node)) {
@@ -188,7 +188,7 @@ class BootstrapNodeTreeGenerator implements NodeTreeGenerator {
         }
 
         if ($actions) {
-            $html .= '<li class="divider"></li>';
+            $html .= '<li class="dropdown__divider"></li>';
             foreach ($actions as $action) {
                 $html .= '<li>' . $action . '</li>';
             }

@@ -12,13 +12,13 @@
     {include file="base/form.prototype"}
 
     <form action="{$app.url.request}" method="POST" role="form">
-        <div class="form-group">
+        <div class="form__group">
             <p>{translate key="label.confirm.node.`$type`" node=$node->getName($locale)}</p>
         </div>
-        
-        <div class="form-group">
-            <input type="submit" class="btn btn-default" value="{translate key="button.`$type`"}" />
+
+        <div class="form__group">
+            <input type="submit" class="btn btn--default" value="{translate key="button.`$type`"}" />
             <a class="btn" href="{$referer}">{translate key="button.cancel"}</a>
         </div>
-    </form>    
+    </form>
 {/block}

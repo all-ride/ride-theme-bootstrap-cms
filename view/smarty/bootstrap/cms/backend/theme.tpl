@@ -9,7 +9,7 @@
 {/block}
 
 {block name="content_body" append}
-    <p><a href="{url id="cms.theme.add"}" class="btn btn-default">{translate key="button.theme.add"}</a></p>
+    <p><a href="{url id="cms.theme.add"}" class="btn btn--default">{translate key="button.theme.add"}</a></p>
     <ul>
     {foreach $themes as $theme}
         <li><a href="{url id="cms.theme.edit" parameters=["theme" => $theme->getName()]}">{$theme->getDisplayName()}</a></li>

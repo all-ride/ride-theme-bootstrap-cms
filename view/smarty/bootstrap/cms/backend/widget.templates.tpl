@@ -17,7 +17,7 @@
     {include file="base/form.prototype"}
 
 <form class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
-    <fieldset>
+    <div class="form__group">
     <div class="tabbable">
         <ul class="nav nav-tabs">
         {foreach $templates as $file => $content}
@@ -37,9 +37,9 @@
         {/foreach}
         </div>
 
-        <div class="form-group">
+        <div class="form__group">
             <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
+                <input type="submit" class="btn btn--default" value="{translate key="button.save"}" />
                 {if $referer}
                     <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
 				{else}
@@ -47,7 +47,7 @@
                 {/if}
             </div>
         </div>
-    </fieldset>
+    </div>
 </form>
 
 {/block}

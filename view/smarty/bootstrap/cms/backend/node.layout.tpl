@@ -22,8 +22,8 @@
     </form>
     {/if}
 
-    <div class="row">
-        <div id="region" class="col-md-6 clearfix">
+    <div class="grid">
+        <div id="region" class="grid--bp-med__6 clearfix">
             <h3>{translate key="title.widgets.content"}</h3>
             <p>{translate key="label.widgets.content.description"}</p>
 
@@ -34,7 +34,7 @@
             </div>
         </div>
 
-        <div id="widgets" class="col-md-6 clearfix">
+        <div id="widgets" class="grid--bp-med__6 clearfix">
             <h3>{translate key="title.widgets.available"}</h3>
             <p>{translate key="label.widgets.available.description"}</p>
 

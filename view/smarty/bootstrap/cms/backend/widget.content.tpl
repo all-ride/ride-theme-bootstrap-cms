@@ -4,7 +4,7 @@
             <a href="#" class="dropdown-toggle">
                 <img src="{image src=$widget->getIcon() default="img/widget.png"}" />
             </a>
-            <ul class="dropdown-menu">
+            <ul class="dropdown__menu">
             {$actionsAvailable = false}
             {foreach $actions as $actionName => $action}
                 {if $action->isAvailableForWidget($node, $widget)}
@@ -23,7 +23,7 @@
             {url var="actionUrl" id="cms.node.layout.widget.delete" parameters=["site" => $site->getId(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "widget" => $widgetId]}
             {isGranted url=$actionUrl}
                 {if $actionsAvailable}
-                    <li class="divider"></li>
+                    <li class="dropdown__divider"></li>
                 {/if}
                     <li>
                         <a class="delete" href="{$actionUrl}?referer={$app.url.request|urlencode}">

@@ -4,22 +4,22 @@
 
 {% block container %}
     <div class="container">
-        <div class="row">
+        <div class="grid">
         {% if regions['header'] is defined %}
             {% for widget in regions['header'] %}
                 {{ widget | raw }}
             {% endfor %}
         {% endif %}
         </div>
-        <div class="row">
-            <div class="col-md-3">
+        <div class="grid">
+            <div class="grid--bp-med__3">
             {% if regions['menu'] is defined %}
                 {% for widget in regions['menu'] %}
                     {{ widget | raw }}
                 {% endfor %}
             {% endif %}
             </div>
-            <div class="col-md-9">
+            <div class="grid--bp-med__9">
                 {% if app.messages is defined %}
                     {% set _messageTypes = {"error": "danger", "warning": "warning", "success": "success", "information": "info"} %}
                     {% for _messageType, _messageClass in _messageTypes %}
@@ -43,7 +43,7 @@
                 {% block layout %}{% endblock layout %}
             </div>
         </div>
-        <div class="row">
+        <div class="grid">
         {% if regions['footer'] is defined %}
             {% for widget in regions['footer'] %}
                 {{ widget | raw }}

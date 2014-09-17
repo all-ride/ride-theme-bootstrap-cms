@@ -12,13 +12,13 @@
     {include file="base/form.prototype"}
 
     <form action="{$app.url.request}" method="POST" role="form">
-        <div class="form-group">
+        <div class="form__group">
             <p>{translate key="label.confirm.theme.delete" theme=$theme->getDisplayName()}</p>
         </div>
-        
-        <div class="form-group">
-            <input type="submit" class="btn btn-default" value="{translate key="button.delete"}" />
+
+        <div class="form__group">
+            <input type="submit" class="btn btn--default" value="{translate key="button.delete"}" />
             <a class="btn" href="{$referer}">{translate key="button.cancel"}</a>
         </div>
-    </form>    
+    </form>
 {/block}

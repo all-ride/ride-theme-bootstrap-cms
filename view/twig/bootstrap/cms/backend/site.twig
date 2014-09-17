@@ -14,11 +14,11 @@
     {% set actionUrl = url("cms.site.add", {"locale": locale}) %}
 
     {% if isGranted({url: actionUrl}) %}
-        <div class="btn-group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-            {{ translate("button.create") }} <span class="caret"></span>
+        <div class="btn--group">
+          <button type="button" class="btn btn--default dropdown-toggle" data-toggle="dropdown">
+            {{ translate("button.create") }} <i class="icon icon--angle-down"></i>
           </button>
-          <ul class="dropdown-menu" role="menu">
+          <ul class="dropdown__menu" role="menu">
             <li><a href="{{ actionUrl }}">{{ translate("label.node.type.site") }}</a></li>
         </ul>
         </div>

@@ -25,43 +25,37 @@
     {include file="base/form.prototype"}
 
     <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
-        <fieldset>
+        <div class="form__group">
             {call formRow form=$form row="name"}
             {call formRow form=$form row="route"}
 
-            <div class="form-group row-redirect-type clearfix">
-                <label class="col-md-2 control-label">{translate key="label.redirect.to"}</label>
-                <div class="col-md-10">
-                    <div class="">
-                        <label>
-                            {call formWidget form=$form row="redirect-type" part="node"}
-                            {translate key="label.node"}
-                        </label>
-                        
+            <div class="form__group">
+                <h3>{translate key="label.redirect.to"}</h3>
+                <div class="form__item">
+                    <label class="form__label">
+                        {call formWidget form=$form row="redirect-type" part="node"}
+                        {translate key="label.node"}
+                    </label>
+                    <div>
                         {call formWidget form=$form row="redirect-node"}
                     </div>
+                </div>
 
-                    <div class="">
-                        <label>
-                            {call formWidget form=$form row="redirect-type" part="url"}
-                            {translate key="label.url"}
-                        </label>
-                        
+                <div class="form__item">
+                    <label class="form__label">
+                        {call formWidget form=$form row="redirect-type" part="url"}
+                        {translate key="label.url"}
+                    </label>
+                    <div>
                         {call formWidget form=$form row="redirect-url"}
                     </div>
                 </div>
+
             </div>
-                                
+
             {call formRows form=$form}
-        
-            <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" class="btn btn-default" value="{translate key="button.submit"}" />
-                    {if $referer}
-                        <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
-                    {/if}
-                </div>
-            </div>
-        </fieldset>
-    </form>    
+
+            {call formActions referer=$referer}
+        </div>
+    </form>
 {/block}

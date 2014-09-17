@@ -63,8 +63,8 @@
     {$half = count($result) / 2}
     {$hasDivided = false}
 
-    <div class="row">
-        <div class="col-md-6">
+    <div class="grid">
+        <div class="grid--bp-med__6">
     {$numeric = []}
     {$other = []}
     {$rendered = 0}
@@ -91,7 +91,7 @@
             {/if}
             {if !$hasDivided && $rendered > $half}
         </div>
-        <div class="col-md-6">
+        <div class="grid--bp-med__6">
                 {$hasDivided = true}
             {/if}
 

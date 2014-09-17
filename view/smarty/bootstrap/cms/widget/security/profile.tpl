@@ -1,7 +1,7 @@
 {include file="base/form.prototype"}
 
 <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" enctype="multipart/form-data" role="form">
-    <fieldset>
+    <div class="form__group">
         <div class="tabbable">
         <ul class="nav nav-tabs">
         {foreach $hooks as $hookName => $hook}
@@ -26,5 +26,5 @@
             </div>
         {/if}
         </div>
-    </fieldset>
+    </div>
 </form>

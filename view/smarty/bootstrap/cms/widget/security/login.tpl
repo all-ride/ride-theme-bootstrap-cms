@@ -1,7 +1,7 @@
 {include file="base/form.prototype"}
 
 <form id="{$form->getId()}" class="form-horizontal" action="{$action}{if $referer}?referer={$referer|urlencode}{/if}" method="POST" role="form">
-    <fieldset>
+    <div class="form__group">
         {$errors = $form->getValidationErrors('username')}
         <div class="form-group{if $errors} has-error{/if}">
             <div class="col-lg-12">
@@ -16,15 +16,15 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form__group">
             <div class="col-lg-12">
-                <input type="submit" class="btn btn-default" value="{translate key="button.login"}" />
+                <input type="submit" class="btn btn--default" value="{translate key="button.login"}" />
                 {if $referer}
                     <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
                 {/if}
             </div>
         </div>
-    </fieldset>
+    </div>
 </form>
 
 {if $urls}

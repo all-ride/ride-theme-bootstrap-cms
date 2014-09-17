@@ -7,11 +7,11 @@
 
 {% block sidebar %}
     {% if nodeCreateActions is defined %}
-      <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-          {{ translate("button.create") }} <span class="caret"></span>
+      <div class="btn--group">
+        <button type="button" class="btn btn--default dropdown-toggle" data-toggle="dropdown">
+          {{ translate("button.create") }} <i class="icon icon--angle-down"></i>
         </button>
-        <ul class="dropdown-menu" role="menu">
+        <ul class="dropdown__menu" role="menu">
           {% for nodeTypeName, nodeActionUrl in nodeCreateActions %}
               <li><a href="{{ nodeActionUrl }}">{{ translate("label.node.type." ~ nodeTypeName) }}</a></li>
           {% endfor %}

@@ -3,7 +3,7 @@
         <input type="hidden" name="cx" value="{$clientId}" />
         <input type="hidden" name="ie" value="UTF-8" />
 
-        <div class="form-group">
+        <div class="form__group">
             <label class="sr-only" for="form-search-query">{translate key="label.query.search"}</label>
             <input type="search" id="form-search-query" name="q" class="form-control" />
         </div>

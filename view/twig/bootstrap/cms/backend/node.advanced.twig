@@ -22,18 +22,18 @@
     {% import "base/form.prototype" as formPrototype %}
 
     <form id="{{ form.getId() }}" action="{{ app.url.request }}" method="POST" role="form">
-        <fieldset>
-            <div class="form-group">
+        <div class="form__group">
+            <div class="form__group">
                 {{ formPrototype.formWidget(form, 'properties', null, 'Text') }}
             </div>
 
-            <div class="form-group">
-                <input type="submit" class="btn btn-default" value="{{ translate("button.save") }}" />
+            <div class="form__group">
+                <input type="submit" class="btn btn--default" value="{{ translate("button.save") }}" />
                 {% if referer %}
                     <a href="{$referer}" class="btn">{{ translate("button.cancel") }}</a>
                 {% endif %}
             </div>
-        </fieldset>
+        </div>
     </form>
 
     <p>

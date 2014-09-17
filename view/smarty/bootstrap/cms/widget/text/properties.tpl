@@ -1,7 +1,7 @@
 {include file="base/form.prototype"}
 
 <form id="{$form->getId()}" class="form-horizontal" action="{$action}" method="POST" role="form" enctype="multipart/form-data">
-    <fieldset>
+    <div class="form__group">
         {if $form->hasRow("existing")}
         <div class="row-existing clearfix hide" data-url-text="{url id="api.orm.detail" parameters=["model" => "Text", "id" => "%id%"]}">
             <p>{translate key="label.text.existing.select"}</p>
@@ -48,11 +48,11 @@
             {call formRows form=$form}
         </div>
 
-        <div class="form-group">
+        <div class="form__group">
             <div class="col-lg-offset-2 col-lg-10">
-                <input id="btn-submit" type="submit" name="action" class="btn btn-default" value="{translate key="button.save"}" />
+                <input id="btn-submit" type="submit" name="action" class="btn btn--default" value="{translate key="button.save"}" />
                 <a id="btn-cancel" class="btn" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
             </div>
         </div>
-    </fieldset>
+    </div>
 </form>

@@ -11,7 +11,7 @@
 
 {% block content_body %}
     {{ parent() }}
-    <p><a href="{url id="cms.theme.add"}" class="btn btn-default">{{ translate("button.theme.add") }}</a></p>
+    <p><a href="{url id="cms.theme.add"}" class="btn btn--default">{{ translate("button.theme.add") }}</a></p>
        <ul>
        {% for theme in themes %}
            <li><a href="{url id="cms.theme.edit" parameters=["theme" => $theme->getName()]}">{$theme->getDisplayName()}</a></li>

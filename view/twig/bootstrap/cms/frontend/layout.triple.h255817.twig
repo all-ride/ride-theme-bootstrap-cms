@@ -1,18 +1,18 @@
 {% extends "cms/frontend/index" %}
 
 {% block layout %}
-    <div class="row">
-        <div class="col-md-3">
+    <div class="grid">
+        <div class="grid--bp-med__3">
             {% for widget in regions['column1'] %}
                 {{ widget|raw }}
             {% endfor %}
         </div>
-        <div class="col-md-7">
+        <div class="grid--bp-med__7">
             {% for widget in regions['column2'] %}
                 {{ widget|raw }}
             {% endfor %}
         </div>
-        <div class="col-md-2">
+        <div class="grid--bp-med__2">
             {% for widget in regions['column3'] %}
                 {{ widget|raw }}
             {% endfor %}

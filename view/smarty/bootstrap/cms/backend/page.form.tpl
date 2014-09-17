@@ -25,10 +25,10 @@
     {include file="base/form.prototype"}
 
     <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
-        <fieldset>
+        <div class="form__group">
             {call formRow form=$form row="name"}
 
-            <div class="form-group">
+            <div class="form__group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <a href="#" class="btn-alternate-names">{translate key="button.names.alternate"}</a>
                 </div>
@@ -42,15 +42,8 @@
 
             {call formRows form=$form}
 
-            <div class="form-group">
-                <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
-                    {if $referer}
-                        <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
-                    {/if}
-                </div>
-            </div>
-        </fieldset>
+            {call formActions referer=$referer}
+        </div>
     </form>
 {/block}
 
