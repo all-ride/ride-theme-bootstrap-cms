@@ -12,8 +12,6 @@
         <div class="tab-content">
             <div id="tabQuery" class="tab-pane active">
                 {call formRow form=$form row="model"}
-                {call formRow form=$form row="fields"}
-                {call formRow form=$form row="recursive-depth"}
                 {call formRow form=$form row="include-unlocalized"}
 
                 <h4>{translate key="title.condition"}</h4>
@@ -75,7 +73,8 @@
             </div>
 
             <div id="tabView" class="tab-pane">
-                {call formRow form=$form row="view"}
+                {call formRow form=$form row="template"}
+                {call formRow form=$form row="view-processor"}
                 {call formRow form=$form row="title"}
                 {call formRow form=$form row="empty-result-message"}
 
