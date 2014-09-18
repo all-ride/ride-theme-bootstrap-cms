@@ -15,6 +15,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tabText" data-toggle="tab">{translate key="title.text"}</a></li>
                     <li><a href="#tabCta" data-toggle="tab">{translate key="title.cta"}</a></li>
+                    <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
                 </ul>
             </div>
 
@@ -42,6 +43,10 @@
 
                 <div id="tabCta" class="tab-pane">
                     {call formRow form=$form row="cta"}
+                </div>
+
+                <div id="tabView" class="tab-pane">
+                    {call formRow form=$form row="template"}
                 </div>
             </div>
 
