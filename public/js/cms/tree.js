@@ -15,7 +15,7 @@ function joppaInitializeNodeTree(nodeToggleAction, nodeOrderAction) {
     });
 
     // implement the sortable tree
-    $tree.nestedSortable({
+    var nestedSortableConfig = {
         listType: 'ul',
         items: 'li',
         handle: '.handle',
@@ -26,27 +26,15 @@ function joppaInitializeNodeTree(nodeToggleAction, nodeOrderAction) {
         isTree: true,
         update: function(){
             var order = $tree.nestedSortable('serialize');
-            $.post(nodeOrderAction, {
-                data: order
+            $tree
+              .nestedSortable('destroy')
+              .addClass('disabled');
+            $.post(nodeOrderAction, {data: order}, function(data) {
+              $tree
+                .nestedSortable(nestedSortableConfig)
+                .removeClass('disabled');
             });
         }
-    });
-    // $('#node-tree').nestedSortable({
-    //     forcePlaceholderSize: true,
-    //     handle: '.handle',
-    //     helper: 'clone',
-    //     items: 'li',
-    //     opacity: .6,
-    //     placeholder: 'placeholder',
-    //     revert: 250,
-    //     tabSize: 25,
-    //     tolerance: 'pointer',
-    //     // toleranceElement: '> .dropdown',
-    //     isTree: true,
-    //     expandOnHover: 700,
-    //     startCollapsed: false,
-    //     change: function(){
-    //         console.log('Relocated item');
-    //     }
-    // });
+    };
+    $tree.nestedSortable(nestedSortableConfig);
 }
