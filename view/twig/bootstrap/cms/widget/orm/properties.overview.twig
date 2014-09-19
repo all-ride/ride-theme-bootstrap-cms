@@ -9,8 +9,8 @@
                 <li><a href="#tabView" data-toggle="tab">{{ translate("title.view") }}</a></li>
             </ul>
 
-            <div class="tab-content">
-                <div id="tabQuery" class="tab-pane active">
+            <div class="tabs__content">
+                <div id="tabQuery" class="tabs__pane active">
                     {{ formPrototype.formRow(form, 'model') }}
                     {{ formPrototype.formRow(form, 'fields') }}
                     {{ formPrototype.formRow(form, 'recursive-depth') }}
@@ -39,39 +39,58 @@
                     {{ formPrototype.formRow(form, 'pagination-offset', null, "pagination-attribute") }}
                 </div>
 
-                <div id="tabParameters" class="tab-pane">
+                <div id="tabParameters" class="tabs__pane">
                     <p>{{ translate("label.parameters.description") }}</p>
                     <div class="control-group">
-                        <label class="grid--bp-med__2 control-label">{{ translate("label.parameters") }}</label>
+                        <label class="grid--bp-med__2 form__label">{{ translate("label.parameters") }}</label>
                         <div class="grid--bp-med__10">
+                            <div class="form__item form__item--checkboxes form__item--checkboxes">
+                                <div class="form__checkbox-item">
+                                    <label for class="form__label form__label--checkbox">
+                                        {call formWidget form=$form row="parameters-type" part="none"}
+                                        {{ translate("label.parameters.none") }}
+                                    </label>
+                                </div>
+                                <div class="form__checkbox-item">
+                                    <label for class="form__label form__label--checkbox">
+                                        {call formWidget form=$form row="parameters-type" part="numeric"}
+                                        {{ translate("label.parameters.numeric") }}
+                                    </label>
+                                    <div class="help-block">{{ translate("label.parameters.numeric.description") }}</div>
+                                    {call formRow form=$form row="parameters-number" class="parameters-enable parameters-numeric"}
+                                </div>
+                                <div class="form__checkbox-item">
+                                    <label for class="form__label form__label--checkbox">
+                                        {call formWidget form=$form row="parameters-type" part="named"}
+                                        {{ translate("label.parameters.named") }}
+                                    </label>
+                                    <div class="help-block">{{ translate("label.parameters.named.description") }}</div>
+                                    {call formRow form=$form row="parameters-name" class="parameters-enable parameters-named"}
+                                </div>
+                            </div>
                             <div class="clearfix">
                                 <label class="radio">
-                                    {call formWidget form=$form row="parameters-type" part="none"}
-                                    {{ translate("label.parameters.none") }}
+
                                 </label>
                             </div>
                             <div class="clearfix">
                                 <label class="radio">
-                                    {call formWidget form=$form row="parameters-type" part="numeric"}
-                                    {{ translate("label.parameters.numeric") }}
+                                    {
                                 </label>
-                                <span class="help-block">{{ translate("label.parameters.numeric.description") }}</span>
-                                {call formRow form=$form row="parameters-number" class="parameters-enable parameters-numeric"}
+
                             </div>
                             <div class="clearfix">
                                 <label class="radio">
-                                    {call formWidget form=$form row="parameters-type" part="named"}
-                                    {{ translate("label.parameters.named") }}
+
                                 </label>
-                                <span class="help-block">{{ translate("label.parameters.named.description") }}</span>
-                                {call formRow form=$form row="parameters-name" class="parameters-enable parameters-named"}
+
                             </div>
                         </div>
                     </div>
                     {{ formPrototype.formRow(form, 'parameters-none') }}
                 </div>
 
-                <div id="tabView" class="tab-pane">
+                <div id="tabView" class="tabs__pane">
                     {{ formPrototype.formRow(form, 'view') }}
                     {{ formPrototype.formRow(form, 'title') }}
                     {{ formPrototype.formRow(form, 'empty-result-message') }}

@@ -21,12 +21,12 @@
         <div class="form__group">
             {call formRows form=$form}
 
-            <div class="form__group">
+            <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" class="btn btn--default" value="{translate key="button.comment"}" />
+                    <input type="submit" class="btn btn-default" value="{translate key="button.comment"}" />
                 </div>
             </div>
-        </div>
+        </fieldset>
     </form>
 {else}
     <p>{translate key="label.comments.authenticated"}</p>

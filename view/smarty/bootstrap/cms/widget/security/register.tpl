@@ -5,11 +5,11 @@
         <div class="form__group">
             {call formRows form=$form}
 
-            <div class="form__group">
+            <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
-                    <input type="submit" class="btn btn--default" value="{translate key="button.register"}" />
+                    <input type="submit" class="btn btn-default" value="{translate key="button.register"}" />
                 </div>
             </div>
-        </div>
+        </fieldset>
     </form>
 </div>

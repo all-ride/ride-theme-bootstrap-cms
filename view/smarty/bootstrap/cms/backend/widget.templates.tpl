@@ -25,9 +25,9 @@
         {/foreach}
         </ul>
 
-        <div class="tab-content">
+        <div class="tabs__content">
         {foreach $templates as $file => $content}
-            <div id="{$file|replace:".":"-"}" class="tab-pane clearfix{if $content@first} active{/if}">
+            <div id="{$file|replace:".":"-"}" class="tabs__pane clearfix{if $content@first} active{/if}">
                 <br />
                 {call formWidget form=$form row="content" part=$file}
                 <br />

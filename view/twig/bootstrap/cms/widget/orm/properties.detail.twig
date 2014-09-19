@@ -10,8 +10,8 @@
                 <li><a href="#tabView" data-toggle="tab">{{ translate("title.view") }}</a></li>
             </ul>
 
-            <div class="tab-content">
-                <div id="tabQuery" class="tab-pane active">
+            <div class="tabs__content">
+                <div id="tabQuery" class="tabs__pane active">
                     {{ formPrototype.formRow(form, 'model') }}
                     {{ formPrototype.formRow(form, 'fields') }}
                     {{ formPrototype.formRow(form, 'field-id') }}
@@ -19,11 +19,11 @@
                     {{ formPrototype.formRow(form, 'include-unlocalized') }}
                 </div>
 
-                <div id="tabParameters" class="tab-pane">
+                <div id="tabParameters" class="tabs__pane">
                     {{ formPrototype.formRow(form, 'parameters-none') }}
                 </div>
 
-                <div id="tabView" class="tab-pane">
+                <div id="tabView" class="tabs__pane">
                     {{ formPrototype.formRow(form, 'view') }}
                     {{ formPrototype.formRow(form, 'title') }}
 

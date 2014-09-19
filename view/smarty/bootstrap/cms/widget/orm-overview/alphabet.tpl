@@ -63,7 +63,7 @@
     {$half = count($result) / 2}
     {$hasDivided = false}
 
-    <div class="grid">
+    <div class="row">
         <div class="grid--bp-med__6">
     {$numeric = []}
     {$other = []}

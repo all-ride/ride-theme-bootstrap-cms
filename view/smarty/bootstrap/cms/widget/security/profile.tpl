@@ -12,19 +12,19 @@
         {/if}
         </ul>
 
-        <div class="tab-content">
+        <div class="tabs__content">
         {foreach $hooks as $hookName => $hook}
-            <div id="hook-{$hookName}" class="tab-pane{if $activeHook == $hookName} active{/if}">
+            <div id="hook-{$hookName}" class="tabs__pane{if $activeHook == $hookName} active{/if}">
                 {$hookViews.$hookName}
             </div>
         {/foreach}
         {if $form->hasRow('submit-unregister')}
-            <div id="hook-unregister" class="tab-pane{if $activeHook == 'unregister'} active{/if}">
+            <div id="hook-unregister" class="tabs__pane{if $activeHook == 'unregister'} active{/if}">
                 <p>{translate key="label.unregister"}</p>
 
                 {call formRow form=$form row="submit-unregister"}
             </div>
         {/if}
         </div>
-    </div>
+    </fieldset>
 </form>

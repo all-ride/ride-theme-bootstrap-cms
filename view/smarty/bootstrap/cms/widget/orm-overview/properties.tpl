@@ -3,17 +3,15 @@
 <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
 <div class="form__group">
     <div class="tabbable">
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#tabQuery" data-toggle="tab">{translate key="title.query"}</a></li>
-            <li><a href="#tabParameters" data-toggle="tab">{translate key="title.parameters.url"}</a></li>
-            <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
+        <ul class="tabs">
+            <li class="tabs__tab active"><a href="#tabQuery" data-toggle="tab">{translate key="title.query"}</a></li>
+            <li class="tabs__tab"><a href="#tabParameters" data-toggle="tab">{translate key="title.parameters.url"}</a></li>
+            <li class="tabs__tab"><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
         </ul>
 
-        <div class="tab-content">
-            <div id="tabQuery" class="tab-pane active">
+        <div class="tabs__content">
+            <div id="tabQuery" class="tabs__pane active">
                 {call formRow form=$form row="model"}
-                {call formRow form=$form row="fields"}
-                {call formRow form=$form row="recursive-depth"}
                 {call formRow form=$form row="include-unlocalized"}
 
                 <h4>{translate key="title.condition"}</h4>
@@ -21,12 +19,12 @@
                 {call formRow form=$form row="filters"}
 
                 <h4>{translate key="title.order"}</h4>
-                <div class="form-group clearfix">
+                <div class="form-group grid clearfix">
                     <label class="grid--bp-med__2 control-label">{translate key="label.order.field"}</label>
                     <div class="grid--bp-med__10">
                         {call formWidget form=$form row="order-field"}
                         {call formWidget form=$form row="order-direction"}
-                        <button class="btn btn--default btn-order-add" id="form-content-properties-order-add">{translate key="button.add"}</button>
+                        <button class="btn btn-default btn-order-add" id="form-content-properties-order-add">{translate key="button.add"}</button>
                         <span class="help-block">{translate key="label.order.field.description"}</span>
                     </div>
                 </div>
@@ -42,40 +40,43 @@
                 {call formRow form=$form row="pagination-offset" class="pagination-attribute"}
             </div>
 
-            <div id="tabParameters" class="tab-pane">
+            <div id="tabParameters" class="tabs__pane">
                 <p>{translate key="label.parameters.description"}</p>
-                <div class="control-group">
+                <div class="control-group grid">
                     <label class="grid--bp-med__2 control-label">{translate key="label.parameters"}</label>
                     <div class="grid--bp-med__10">
-                        <div class="clearfix">
-                            <label class="radio">
-                                {call formWidget form=$form row="parameters-type" part="none"}
-                                {translate key="label.parameters.none"}
-                            </label>
-                        </div>
-                        <div class="clearfix">
-                            <label class="radio">
-                                {call formWidget form=$form row="parameters-type" part="numeric"}
-                                {translate key="label.parameters.numeric"}
-                            </label>
-                            <span class="help-block">{translate key="label.parameters.numeric.description"}</span>
-                            {call formRow form=$form row="parameters-number" class="parameters-enable parameters-numeric"}
-                        </div>
-                        <div class="clearfix">
-                            <label class="radio">
-                                {call formWidget form=$form row="parameters-type" part="named"}
-                                {translate key="label.parameters.named"}
-                            </label>
-                            <span class="help-block">{translate key="label.parameters.named.description"}</span>
-                            {call formRow form=$form row="parameters-name" class="parameters-enable parameters-named"}
+                        <div class="form__item form__item--radios form__item--radios">
+                            <div class="form__radio-item">
+                                <label class="form__label form__label--radio">
+                                    {call formWidget form=$form row="parameters-type" part="none"}
+                                    {translate key="label.parameters.none"}
+                                </label>
+                            </div>
+                            <div class="form__radio-item">
+                                <label class="form__label form__label--radio">
+                                    {call formWidget form=$form row="parameters-type" part="numeric"}
+                                    {translate key="label.parameters.numeric"}
+                                </label>
+                                <div class="help-block">{translate key="label.parameters.numeric.description"}</div>
+                                {call formRow form=$form row="parameters-number" class="parameters-enable parameters-numeric"}
+                            </div>
+                            <div class="form__radio-item">
+                                <label class="form__label form__label--radio">
+                                    {call formWidget form=$form row="parameters-type" part="named"}
+                                    {translate key="label.parameters.named"}
+                                </label>
+                                <div class="help-block">{translate key="label.parameters.named.description"}</div>
+                                {call formRow form=$form row="parameters-name" class="parameters-enable parameters-named"}
+                            </div>
                         </div>
                     </div>
                 </div>
                 {call formRow form=$form row="parameters-none"}
             </div>
 
-            <div id="tabView" class="tab-pane">
-                {call formRow form=$form row="view"}
+            <div id="tabView" class="tabs__pane">
+                {call formRow form=$form row="template"}
+                {call formRow form=$form row="view-processor"}
                 {call formRow form=$form row="title"}
                 {call formRow form=$form row="empty-result-message"}
 
@@ -97,11 +98,11 @@
         </div>
     </div>
 
-    <div class="form__group">
+    <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <input type="submit" class="btn btn--default" value="{translate key="button.save"}" />
+            <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
             <input type="submit" name="cancel" class="btn btn-link" value="{translate key="button.cancel"}" />
         </div>
     </div>
-</div>
+</fieldset>
 </form>

@@ -30,9 +30,9 @@
             {% endfor %}
             </ul>
 
-            <div class="tab-content">
+            <div class="tabs__content">
                 {% for file, content in templates %}
-                    <div id="{{ file|replace({".":"-"}) }}" class="tab-pane clearfix{% if loop.first %} active{% endif %}">
+                    <div id="{{ file|replace({".":"-"}) }}" class="tabs__pane clearfix{% if loop.first %} active{% endif %}">
                         <br />
                         {{ formPrototype.formWidget(form, 'content', file) }}
                         <br />

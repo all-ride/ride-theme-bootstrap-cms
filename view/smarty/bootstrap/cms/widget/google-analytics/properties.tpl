@@ -5,16 +5,14 @@
         <div class="tab">
             <div class="tabbable">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tabWidget" data-toggle="tab">{translate key="widget.contact"}</a></li>
+                    <li class="active"><a href="#tabWidget" data-toggle="tab">{translate key="widget.google.analytics"}</a></li>
                     <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
                 </ul>
             </div>
 
             <div class="tabs__content">
                 <div id="tabWidget" class="tabs__pane active">
-                    {call formRow form=$form row="recipient"}
-                    {call formRow form=$form row="subject"}
-                    {call formRow form=$form row="finishNode"}
+                    {call formRow form=$form row="code"}
                 </div>
 
                 <div id="tabView" class="tabs__pane">

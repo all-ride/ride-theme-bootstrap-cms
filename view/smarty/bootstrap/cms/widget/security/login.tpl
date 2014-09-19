@@ -16,15 +16,15 @@
             </div>
         </div>
 
-        <div class="form__group">
+        <div class="form-group">
             <div class="col-lg-12">
-                <input type="submit" class="btn btn--default" value="{translate key="button.login"}" />
+                <input type="submit" class="btn btn-default" value="{translate key="button.login"}" />
                 {if $referer}
                     <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
                 {/if}
             </div>
         </div>
-    </div>
+    </fieldset>
 </form>
 
 {if $urls}

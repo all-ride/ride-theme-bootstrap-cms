@@ -1,4 +1,4 @@
-<div class="widget widget-text grid clearfix {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
+<div class="widget widget-text row-fluid clearfix {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
 {if $title}
     <h2 class="toc {$app.cms.properties->getWidgetProperty('style.title')}">{$title}</h2>
 {/if}
@@ -13,7 +13,7 @@
         {else}
             {$html|text}
             {foreach $callToActions as $callToAction}
-                <a href="{$callToAction->getUrl()}" class="btn btn--default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()}</a>
+                <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()}</a>
             {/foreach}
         {/if}
     </div>
@@ -21,7 +21,7 @@
         {if $imageAlignment == 'left'}
             {$html|text}
             {foreach $callToActions as $callToAction}
-                <a href="{$callToAction->getUrl()}" class="btn btn--default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()}</a>
+                <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()}</a>
             {/foreach}
         {else}
             <img src="{image src=$image}" class="img-responsive" />
@@ -33,7 +33,7 @@
 {else}
     {$html|text}
     {foreach $callToActions as $callToAction}
-        <a href="{$callToAction->getUrl()}" class="btn btn--default cta{if $callToAction->getType()} cta-{$callToAction->getType()}{/if}">{$callToAction->getLabel()}</a>
+        <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getType()} cta-{$callToAction->getType()}{/if}">{$callToAction->getLabel()}</a>
     {/foreach}
 {/if}
 </div>

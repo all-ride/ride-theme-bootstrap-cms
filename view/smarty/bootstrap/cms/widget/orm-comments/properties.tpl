@@ -5,20 +5,21 @@
         <div class="tab">
             <div class="tabbable">
                 <ul class="nav nav-tabs">
-                    <li class="active"><a href="#tabWidget" data-toggle="tab">{translate key="widget.contact"}</a></li>
+                    <li class="active"><a href="#tabWidget" data-toggle="tab">{translate key="widget.orm.comments"}</a></li>
                     <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
                 </ul>
             </div>
 
             <div class="tabs__content">
                 <div id="tabWidget" class="tabs__pane active">
-                    {call formRow form=$form row="recipient"}
-                    {call formRow form=$form row="subject"}
-                    {call formRow form=$form row="finishNode"}
+                    {call formRow form=$form row="finish"}
+                    {call formRow form=$form row="anonymous"}
+                    {call formRow form=$form row="approval"}
                 </div>
 
                 <div id="tabView" class="tabs__pane">
                     {call formRow form=$form row="template"}
+                    {call formRow form=$form row="title"}
                 </div>
             </div>
         </div>
@@ -27,8 +28,8 @@
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
-                <input type="submit" name="action" class="btn btn-default" value="{translate key="button.save"}" />
-                <a class="btn" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
+                <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
+                <input type="submit" name="cancel" class="btn btn-link" value="{translate key="button.cancel"}" />
             </div>
         </div>
     </fieldset>

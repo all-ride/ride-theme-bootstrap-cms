@@ -9,21 +9,20 @@
             <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
         </ul>
 
-        <div class="tab-content">
-            <div id="tabQuery" class="tab-pane active">
+        <div class="tabs__content">
+            <div id="tabQuery" class="tabs__pane active">
                 {call formRow form=$form row="model"}
-                {call formRow form=$form row="fields"}
                 {call formRow form=$form row="field-id"}
-                {call formRow form=$form row="recursive-depth"}
                 {call formRow form=$form row="include-unlocalized"}
             </div>
 
-            <div id="tabParameters" class="tab-pane">
+            <div id="tabParameters" class="tabs__pane">
                 {call formRow form=$form row="parameters-none"}
             </div>
 
-            <div id="tabView" class="tab-pane">
-                {call formRow form=$form row="view"}
+            <div id="tabView" class="tabs__pane">
+                {call formRow form=$form row="template"}
+                {call formRow form=$form row="view-processor"}
                 {call formRow form=$form row="title"}
 
                 <h4>{translate key="title.formats.data"}</h4>
@@ -36,11 +35,11 @@
         </div>
     </div>
 
-    <div class="form__group">
+    <div class="form-group">
         <div class="col-lg-offset-2 col-lg-10">
-            <input type="submit" class="btn btn--default" value="{translate key="button.save"}" />
+            <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
             <input type="submit" name="cancel" class="btn btn-link" value="{translate key="button.cancel"}" />
         </div>
     </div>
-</div>
+</fieldset>
 </form>
