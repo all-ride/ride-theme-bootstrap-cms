@@ -1,7 +1,7 @@
 <div class="widget page-widget{if isset($inheritedWidgets[$widgetId])} inherited{/if} clearfix" id="page-widget-{$widgetId}">
     <div class="widget-actions">
         <div class="icon dropdown">
-            <a href="#" class="dropdown-toggle">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <img src="{image src=$widget->getIcon() default="img/widget.png"}" />
             </a>
             <ul class="dropdown-menu">
