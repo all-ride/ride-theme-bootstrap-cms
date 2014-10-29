@@ -4,11 +4,20 @@
 
 {block name="taskbar_panels" append}
     {if $node->getId()}
-        {url id="cms.folder.edit" parameters=["locale" => "%locale%", "site" => $site->getId(), "node" => $node->getId()] var="url"}
+        {url id="cms.folder.edit" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%", "node" => $node->getId()] var="urlPublish"}
+        {url id="cms.folder.edit" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId()] var="urlLocales"}
     {else}
-        {url id="cms.folder.add" parameters=["locale" => "%locale%", "site" => $site->getId()] var="url"}
+        {url id="cms.folder.add" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%"] var="urlPublish"}
+        {url id="cms.folder.add" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $site->getRevision()] var="urlLocales"}
     {/if}
-    {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
+    
+    {if !$site->isAutoPublish()}
+        {include file="cms/backend/taskbar"}
+
+        {call taskbarPanelPublish url=$urlPublish revision=$node->getRevision() revisions=$site->getRevisions()}
+    {/if}
+    
+    {call taskbarPanelLocales url=$urlLocales locale=$locale locales=$locales}
 {/block}
 
 {block name="content_title" append}
@@ -27,7 +36,7 @@
     <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
         <fieldset>
             {call formRows form=$form}
-        
+
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <input type="submit" class="btn btn-default" value="{translate key="button.submit"}" />
@@ -37,5 +46,5 @@
                 </div>
             </div>
         </fieldset>
-    </form>    
+    </form>
 {/block}

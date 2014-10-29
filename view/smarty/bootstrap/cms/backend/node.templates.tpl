@@ -3,7 +3,14 @@
 {block name="head_title" prepend}{translate key="title.node.templates"} - {$node->getName($locale)} - {/block}
 
 {block name="taskbar_panels" append}
-    {url id="cms.node.templates" parameters=["locale" => "%locale%", "site" => $site->getId(), "node" => $node->getId()] var="url"}
+    {if !$site->isAutoPublish()}
+        {include file="cms/backend/taskbar"}
+
+        {url id="cms.node.templates" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%", "node" => $node->getId()] var="url"}
+        {call taskbarPanelPublish url=$url revision=$node->getRevision() revisions=$site->getRevisions()}
+    {/if}
+
+    {url id="cms.node.templates" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId()] var="url"}
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
@@ -24,25 +31,25 @@
             <li{if $content@first} class="active"{/if}><a href="#{$file|replace:".":"-"}" data-toggle="tab">{$file}</a></li>
         {/foreach}
         </ul>
-        
+
         <div class="tab-content">
         {foreach $templates as $file => $content}
             <div id="{$file|replace:".":"-"}" class="tab-pane clearfix{if $content@first} active{/if}">
                 <br />
                 {call formWidget form=$form row="content" part=$file}
                 <br />
-                
+
                 {call formRow form=$form row="path" part=$file}
             </div>
         {/foreach}
         </div>
-        
+
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
                 <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
                 {if $referer}
                     <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
-                {/if}                
+                {/if}
             </div>
         </div>
     </fieldset>

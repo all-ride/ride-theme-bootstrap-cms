@@ -3,7 +3,14 @@
 {block name="head_title" prepend}{translate key="title.node.advanced"} - {$node->getName($locale)} - {/block}
 
 {block name="taskbar_panels" append}
-    {url id="cms.node.advanced" parameters=["locale" => "%locale%", "site" => $site->getId(), "node" => $node->getId()] var="url"}
+    {if !$site->isAutoPublish()}
+        {include file="cms/backend/taskbar"}
+
+        {url id="cms.node.advanced" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%", "node" => $node->getId()] var="url"}
+        {call taskbarPanelPublish url=$url revision=$node->getRevision() revisions=$site->getRevisions()}
+    {/if}
+
+    {url id="cms.node.advanced" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId()] var="url"}
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
@@ -22,16 +29,16 @@
             <div class="form-group">
                 {call formWidget form=$form row="properties"}
             </div>
-        
+
             <div class="form-group">
                 <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
                 {if $referer}
                     <a href="{$referer}" class="btn">{translate key="button.cancel"}</a>
-                {/if}                
+                {/if}
             </div>
         </fieldset>
-    </form>    
-    
+    </form>
+
     <p>
         <a href="#" class="btn-properties-show">{translate key="button.properties.show"}</a>
         <a href="#" class="btn-properties-hide">{translate key="button.properties.hide"}</a>
@@ -47,14 +54,14 @@
             $('.full-configuration').hide();
             $('.btn-properties-show').click(function(e) {
                 e.preventDefault();
-                
+
                 $('.btn-properties-show').hide();
                 $('.full-configuration').show();
                 $('.btn-properties-hide').show();
             });
             $('.btn-properties-hide').click(function(e) {
                 e.preventDefault();
-                
+
                 $('.btn-properties-hide').hide();
                 $('.full-configuration').hide();
                 $('.btn-properties-show').show();
