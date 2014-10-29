@@ -11,14 +11,20 @@
 {block name="content_body" append}
     {include file="base/form.prototype"}
 
+    {if $node->getId() == $node->getRootNodeId() && $type == 'delete'}
+        <div class="alert alert-warning">
+            <p>{translate key="warning.site.delete"}</p>
+        </div>
+    {/if}
+
     <form action="{$app.url.request}" method="POST" role="form">
         <div class="form-group">
             <p>{translate key="label.confirm.node.`$type`" node=$node->getName($locale)}</p>
         </div>
-        
+
         <div class="form-group">
             <input type="submit" class="btn btn-default" value="{translate key="button.`$type`"}" />
             <a class="btn" href="{$referer}">{translate key="button.cancel"}</a>
         </div>
-    </form>    
+    </form>
 {/block}

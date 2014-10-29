@@ -3,12 +3,23 @@
 {block name="head_title" prepend}{if $node->getId()}{translate key="title.site.edit"}{else}{translate key="title.site.add"}{/if} - {/block}
 
 {block name="taskbar_panels" append}
-    {if $node->getId()}
-        {url id="cms.site.edit" parameters=["locale" => "%locale%", "site" => $node->getId()] var="url"}
-    {else}
-        {url id="cms.site.add" parameters=["locale" => "%locale%"] var="url"}
+    {if isset($site) && $site->getId()}
+        {if $node->getId()}
+            {if !$site->isAutoPublish()}
+                {include file="cms/backend/taskbar"}
+                
+                {url id="cms.site.edit" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%"] var="urlPublish"}
+
+                {call taskbarPanelPublish url=$urlPublish revision=$node->getRevision() revisions=$site->getRevisions()}
+            {/if}
+            
+            {url id="cms.site.edit" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $site->getRevision()] var="urlLocales"}
+        {else}
+            {url id="cms.site.add" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%"] var="urlPublish"}
+        {/if}
+
+        {call taskbarPanelLocales url=$urlLocales locale=$locale locales=$locales}
     {/if}
-    {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
 {block name="content_title" append}
@@ -27,7 +38,7 @@
     <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
         <fieldset>
             {call formRows form=$form}
-        
+
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
@@ -37,5 +48,5 @@
                 </div>
             </div>
         </fieldset>
-    </form>    
+    </form>
 {/block}

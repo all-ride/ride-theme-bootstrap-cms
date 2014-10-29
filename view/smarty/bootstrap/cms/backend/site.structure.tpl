@@ -3,7 +3,14 @@
 {block name="head_title" prepend}{translate key="title.site.structure"} - {$site->getName($locale)} - {/block}
 
 {block name="taskbar_panels" append}
-    {url id="cms.site.structure" parameters=["locale" => "%locale%", "site" => $site->getId()] var="url"}
+    {if !$site->isAutoPublish()}
+        {include file="cms/backend/taskbar"}
+    
+        {url id="cms.site.structure" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%"] var="url"}
+        {call taskbarPanelPublish url=$url revision=$site->getRevision() revisions=$site->getRevisions()}
+    {/if}
+
+    {url id="cms.site.structure" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $site->getRevision()] var="url"}
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
@@ -20,7 +27,7 @@
     <form id="{$form->getId()}" action="{$app.url.request}" method="POST" role="form">
         <fieldset>
             {call formRows form=$form}
-        
+
             <div class="form-group">
                 <div class="col-lg-offset-2 col-lg-10">
                     <input type="submit" class="btn btn-default" value="{translate key="button.save"}" />
@@ -30,5 +37,5 @@
                 </div>
             </div>
         </fieldset>
-    </form>    
+    </form>
 {/block}

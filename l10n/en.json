@@ -1,5 +1,6 @@
 {
     "button.comment": "Comment",
+    "button.publish": "Publish",
     "button.names.alternate": "Alternate names",
     "button.search.results.more": "Show %total% more result(s)",
     "button.text.existing": "Use a existing text",
@@ -12,6 +13,7 @@
     "label.show.less": "show less",
     "label.show.more": "show more",
     "label.text.existing.select": "Select a existing text to use it in this text block.",
+    "label.trash.empty": "Your trash is empty.",
     "label.query.search": "Search query",
     "title.cta": "Call To Action",
     "title.entry.add": "Create A New Entry",

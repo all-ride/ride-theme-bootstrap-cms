@@ -4,34 +4,6 @@
             "interfaces": ["ride\\library\\template\\theme\\Theme", "ride\\library\\cms\\theme\\Theme"],
             "class": "ride\\web\\cms\\theme\\BootstrapTheme",
             "id": "bootstrap"
-        },    
-        {
-            "interfaces": "ride\\web\\cms\\node\\NodeTreeGenerator",
-            "class": "ride\\web\\cms\\node\\BootstrapNodeTreeGenerator",
-            "id": "bootstrap",
-            "calls": [
-                {
-                    "method": "__construct",
-                    "arguments": [
-                        {
-                            "name": "translator",
-                            "type": "call",
-                            "properties": {
-                                "interface": "ride\\library\\i18n\\I18n",
-                                "method": "getTranslator"
-                            }
-                        },
-                        {
-                            "name": "actions",
-                            "type": "call",
-                            "properties": {
-                                "interface": "ride\\web\\cms\\controller\\backend\\action\\node\\NodeActionManager",
-                                "method": "getNodeActions"
-                            }
-                        }
-                    ]
-                }
-            ]
         }
     ]
 }

@@ -11,7 +11,7 @@
     ],
     "require": {
         "ride/app-template-smarty": ">=0.2.0",
-        "ride/lib-cms": ">=0.10.4",
+        "ride/lib-cms": ">=0.14.0",
         "ride/lib-common": ">=0.4.0",
         "ride/lib-i18n": ">=0.1.0",
         "ride/lib-template": ">=0.4.0",

@@ -6,7 +6,7 @@ function joppaInitializeNodeTree(nodeToggleAction, nodeOrderAction) {
             var parent = $(this).parent();
             var nodeId = parent.attr('id').replace('node-', '');
 
-            parent.toggleClass('closed');
+            parent.toggleClass('collapsed');
 
             $.post(nodeToggleAction.replace('%25node%25', nodeId));
 
@@ -17,7 +17,7 @@ function joppaInitializeNodeTree(nodeToggleAction, nodeOrderAction) {
     // implement the sortable tree
     var nestedSortableConfig = {
         listType: 'ul',
-        items: 'li',
+        items: '.node',
         handle: '.handle',
         helper: 'clone',
         opacity: .6,
@@ -37,22 +37,4 @@ function joppaInitializeNodeTree(nodeToggleAction, nodeOrderAction) {
         }
     };
     $tree.nestedSortable(nestedSortableConfig);
-    // $('#node-tree').nestedSortable({
-    //     forcePlaceholderSize: true,
-    //     handle: '.handle',
-    //     helper: 'clone',
-    //     items: 'li',
-    //     opacity: .6,
-    //     placeholder: 'placeholder',
-    //     revert: 250,
-    //     tabSize: 25,
-    //     tolerance: 'pointer',
-    //     // toleranceElement: '> .dropdown',
-    //     isTree: true,
-    //     expandOnHover: 700,
-    //     startCollapsed: false,
-    //     change: function(){
-    //         console.log('Relocated item');
-    //     }
-    // });
 }
