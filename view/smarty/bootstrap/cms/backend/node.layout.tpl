@@ -56,7 +56,7 @@
 {/block}
 
 {block name="scripts" append}
-    <script src="{$app.url.base}/js/cms/layout.js"></script>
+    <script src="{$app.url.base}/bootstrap/js/cms/layout.js"></script>
     <script type="text/javascript">
         $(function() {
             $('select[name=region]').change(function() {

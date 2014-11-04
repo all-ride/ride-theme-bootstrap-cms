@@ -43,8 +43,8 @@
             less: '{translate key="label.show.less"}'
         };
     </script>
-    <script src="{$app.url.base}/js/jquery-ui.js"></script>
-    <script src="{$app.url.base}/js/form.js"></script>
-    <script src="{$app.url.base}/js/table.js"></script>
-    <script src="{$app.url.base}/js/text.admin.js"></script>
+    <script src="{$app.url.base}/bootstrap/js/jquery-ui.js"></script>
+    <script src="{$app.url.base}/bootstrap/js/form.js"></script>
+    <script src="{$app.url.base}/bootstrap/js/table.js"></script>
+    <script src="{$app.url.base}/bootstrap/js/text.admin.js"></script>
 {/block}
