@@ -1,7 +1,7 @@
 {extends file="base/index.sidebar"}
 
 {block name="styles" append}
-    <link href="{$app.url.base}/css/cms/cms.css" rel="stylesheet" media="screen">
+    <link href="{$app.url.base}/bootstrap/css/cms/cms.css" rel="stylesheet" media="screen">
 {/block}
 
 {block name="sidebar"}
@@ -77,9 +77,9 @@
 {/block}
 
 {block name="scripts" append}
-    <script src="{$app.url.base}/js/jquery-ui.js"></script>
-    <script src="{$app.url.base}/js/cms/lib/jquery.mjs.nestedSortable.js"></script>
-    <script src="{$app.url.base}/js/cms/tree.js"></script>
+    <script src="{$app.url.base}/bootstrap/js/jquery-ui.js"></script>
+    <script src="{$app.url.base}/bootstrap/js/cms/lib/jquery.mjs.nestedSortable.js"></script>
+    <script src="{$app.url.base}/bootstrap/js/cms/tree.js"></script>
     {if isset($site)}
     <script type="text/javascript">
         $(function() {
