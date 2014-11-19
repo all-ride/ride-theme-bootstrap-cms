@@ -2,8 +2,7 @@
     <div class="widget-actions">
         <div class="icon dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                {$icon = $widget->getIcon()}
-                <img src="{image src="bootstrap/`$icon`" default="bootstrap/img/widget.png"}" />
+                <img src="{image src=$widget->getIcon() default="bootstrap/img/widget.png"}" />
             </a>
             <ul class="dropdown-menu">
             {$actionsAvailable = false}
