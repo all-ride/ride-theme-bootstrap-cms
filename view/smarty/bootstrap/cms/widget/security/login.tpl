@@ -1,3 +1,4 @@
+{* widget: login; action: index; translation: widget.login *}
 {include file="base/form.prototype"}
 
 <form id="{$form->getId()}" class="form-horizontal" action="{$action}{if $referer}?referer={$referer|urlencode}{/if}" method="POST" role="form">

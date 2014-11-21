@@ -1,3 +1,4 @@
+{* widget: orm.detail; action: index; translation: widget.orm.detail *}
 <div class="widget widget-content-detail {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
     <div class="content clearfix">
         {if $content->image}

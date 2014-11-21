@@ -1,3 +1,4 @@
+{* widget: orm.comments; action: index; translation: widget.orm.comments *}
 <div class="widget widget-comments {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
 {if $title}
     <h2 class="toc {$app.cms.properties->getWidgetProperty('style.title')}">{$title}</h2>

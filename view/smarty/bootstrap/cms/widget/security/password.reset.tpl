@@ -1,16 +1,9 @@
+{* widget: password; action: reset; translation: template.password.reset *}
 {include file="base/form.prototype"}
 
 <form id="{$form->getId()}" class="form-horizontal" action="{$app.url.request}" method="POST" role="form">
     <fieldset>
-        {call formRow form=$form row="username"}
-
-        <div class="form-group or">
-            <div class="col-lg-offset-2 col-lg-10">
-                {translate key="label.or"}
-            </div>
-        </div>
-
-        {call formRow form=$form row="email"}
+        {call formRow form=$form row="user"}
 
         <div class="form-group">
             <div class="col-lg-offset-2 col-lg-10">
