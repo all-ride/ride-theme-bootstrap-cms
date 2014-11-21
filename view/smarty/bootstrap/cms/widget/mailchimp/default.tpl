@@ -1,3 +1,4 @@
+{* widget: mailchimp; action: index; translation: widget.mailchimp *}
 <div class="widget widget-mailchimp-subscribe {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
     {if $title}
         <h3 class="{$app.cms.properties->getWidgetProperty('style.title')}">{$title}</h3>
