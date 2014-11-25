@@ -69,27 +69,32 @@
 .node-site .icon {
   background: url(../../img/cms/site.png) no-repeat;
 }
+
+.node-folder .icon {
+  background: url(../../img/cms/folder.png) no-repeat;
+}
+
+    .node-redirect .icon {
+  background: url(../../img/cms/redirect.png) no-repeat;
+}
+
 .node-page .icon {
   background: url(../../img/cms/page.png) no-repeat;
 }
 .node-page-hidden .icon {
   background: url(../../img/cms/page.hidden.png) no-repeat;
 }
-.node-redirect-default .icon,
-.node-page-default .icon {
-  background: url(../../img/cms/page.default.png) no-repeat;
-}
-.node-folder .icon {
-  background: url(../../img/cms/folder.png) no-repeat;
-}
-.node-redirect .icon {
-  background: url(../../img/cms/redirect.png) no-repeat;
-}
+
 .node-entry .icon {
   background: url(../../img/cms/entry.png) no-repeat;
 }
 .node-entry-hidden .icon {
   background: url(../../img/cms/entry.hidden.png) no-repeat;
+}
+
+.node-redirect-default .icon,
+.node-page-default .icon {
+  background: url(../../img/cms/page.default.png) no-repeat;
 }
 
 .unlocalized a.name {
