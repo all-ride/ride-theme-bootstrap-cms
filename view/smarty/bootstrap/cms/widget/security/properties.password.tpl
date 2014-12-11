@@ -28,7 +28,7 @@
         <div class="form-group">
             <div class="col-lg-12">
                 <input id="btn-submit" type="submit" name="action" class="btn btn-default" value="{translate key="button.save"}" />
-                <a id="btn-cancel" class="btn" href="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
+                <a id="btn-cancel" class="btn" href="{url id="cms.node.content.region" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region]}">{translate key="button.cancel"}</a>
             </div>
         </div>
     </fieldset>

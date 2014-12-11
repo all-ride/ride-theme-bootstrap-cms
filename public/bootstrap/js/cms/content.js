@@ -1,32 +1,76 @@
-function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
+function initializeContent(baseUrl) {
     var $document = $(document);
     var $formWidgetAdd = $('.form-widget-add');
     var $modalWidgetAdd = $('.modal-widget-add');
 
-	// create a drop region for new widgets
-	// $('.section .droppable').droppable({
-		// helper: 'clone',
-		// drop: function (event, ui) {
-			// id = ui.draggable.data('widget');
-			// if (id) {
-				// $.post(baseUrl + '/widget/' + id, function(data) {
-				      // var droppable = $('.droppable');
+    var initWidgetOrder = function joppaInitializeWidgetOrder(baseUrl, reset) {
+        var $blocks = $('.section .block');
 
-				      // $('.ui-draggable', droppable).remove();
+        if (reset != undefined && reset) {
+            $blocks.each(function() {
+                try {
+                    $(this).sortable('destroy')
+                } catch (error) {
 
-				      // droppable.append(data);
+                }
+            });
+        }
 
-				      // $('.widget:last-child .dropdown-toggle', droppable).dropdown();
-				      // $(".widget:last-child .dropdown-menu a", droppable).each(function () {
-				    	  // joppaInitializeWidgetContextMenu(this, widgetDeleteMessage);
-				      // });
+        $blocks.sortable({
+	        handle: '.handle',
+            items: '> .widget',
+            // connectWith: $blocks,
+	        update: function (event, ui) {
+                console.log('update');
+                console.log(ui.item.context);
+		        // id = ui.item.context.id;
+		        // id = id.split('-');
+		        // if (id[0] != 'page' && id[1] != 'widget') {
+			        // return;
+		        // }
 
-				      // $('#region .droppable').sortable('destroy');
-				      // joppaInitializeWidgetOrder(baseUrl);
-				// });
-			// }
-		// }
-	// });
+		        // var order = '';
+		        // $('#region .droppable > .widget').each(function(i) {
+			        // order += this.id.replace('page-widget-', '') + ',';
+		        // });
+
+		        // $.post(baseUrl + '/order?widgets=' + escape(order));
+            },
+        });
+    };
+
+    var $widgetAddButton = $('.widget-add-submit');
+    var $widgetAddAndCloseButton = $('.widget-add-submit-close');
+    var widgetAdd = function() {
+        var widget = $('input[name=widget]:checked').val();
+        if (!widget) {
+            alert('no widget selected');
+
+            return;
+        }
+
+        var section = $('input[name=section]').val();
+        var block = $('input[name=block]').val();
+
+        var $block = $('.section[data-section=' + section + '] .block[data-block=' + block + ']', $sections);
+                if ($block.length != 1) {
+            alert('no block found');
+
+            return;
+        }
+
+        $widgetAddButton.attr('disabled', 'disabled');
+        $widgetAddAndCloseButton.attr('disabled', 'disabled');
+
+		$.post(baseUrl + '/sections/' + section + '/block/' + block + '/widget/' + widget, function(html) {
+            $block.append(html);
+
+            initWidgetOrder(baseUrl, true);
+
+            $widgetAddButton.removeAttr('disabled');
+            $widgetAddAndCloseButton.removeAttr('disabled');
+		});
+    };
 
     // setup sortable for the sections
     var $sections = $('.sections');
@@ -51,7 +95,7 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
         $.post(baseUrl + '/sections', function(html) {
             $sections.append(html);
 
-            joppaInitializeWidgetOrder(baseUrl, true);
+            initWidgetOrder(baseUrl, true);
 
             $('.section:last', $sections).scrollTop();
         });
@@ -73,7 +117,7 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
             success: function(result) {
                 $section.remove();
 
-                joppaInitializeWidgetOrder(baseUrl, true);
+                initWidgetOrder(baseUrl, true);
             }
         });
     });
@@ -88,7 +132,7 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
         $.post(baseUrl + '/sections/' + $section.data('section') + '/layout/' +  $this.data('layout'), function(html) {
             $section.replaceWith(html);
 
-            joppaInitializeWidgetOrder(baseUrl, true);
+            initWidgetOrder(baseUrl, true);
         });
     });
 
@@ -119,40 +163,6 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
 
         $modalWidgetAdd.modal('show');
     });
-
-    // implementation of actual widget adding
-    var $widgetAddButton = $('.widget-add-submit');
-    var $widgetAddAndCloseButton = $('.widget-add-submit-close');
-    var widgetAdd = function() {
-        var widget = $('input[name=widget]:checked').val();
-        if (!widget) {
-            alert('no widget selected');
-
-            return;
-        }
-
-        var section = $('input[name=section]').val();
-        var block = $('input[name=block]').val();
-
-        var $block = $('.section[data-section=' + section + '] .block[data-block=' + block + ']', $sections);
-        if ($block.length != 1) {
-            alert('no block found');
-
-            return;
-        }
-
-        $widgetAddButton.attr('disabled', 'disabled');
-        $widgetAddAndCloseButton.attr('disabled', 'disabled');
-
-		$.post(baseUrl + '/sections/' + section + '/block/' + block + '/widget/' + widget, function(html) {
-            $block.append(html);
-
-            joppaInitializeWidgetOrder(baseUrl, true);
-
-            $widgetAddButton.removeAttr('disabled');
-            $widgetAddAndCloseButton.removeAttr('disabled');
-		});
-    };
 
     // widget add button
     $widgetAddButton.on('click', function(e) {
@@ -192,43 +202,5 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
         });
     });
 
-    joppaInitializeWidgetOrder(baseUrl);
-}
-
-var sortableBlocks = {};
-
-function joppaInitializeWidgetOrder(baseUrl, reset) {
-    var $blocks = $('.section .block');
-
-    if (reset != undefined && reset) {
-        $blocks.each(function() {
-            try {
-                $(this).sortable('destroy')
-            } catch (error) {
-
-            }
-        });
-    }
-
-    $blocks.sortable({
-	    handle: '.widget .handle',
-        items: '> .widget',
-        // connectWith: $blocks,
-	    update: function (event, ui) {
-            console.log('update');
-            console.log(ui.item.context);
-		    // id = ui.item.context.id;
-		    // id = id.split('-');
-		    // if (id[0] != 'page' && id[1] != 'widget') {
-			    // return;
-		    // }
-
-		    // var order = '';
-		    // $('#region .droppable > .widget').each(function(i) {
-			    // order += this.id.replace('page-widget-', '') + ',';
-		    // });
-
-		    // $.post(baseUrl + '/order?widgets=' + escape(order));
-        },
-    });
+    initWidgetOrder(baseUrl);
 }

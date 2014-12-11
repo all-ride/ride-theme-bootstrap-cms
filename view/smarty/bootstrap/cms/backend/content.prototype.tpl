@@ -57,7 +57,7 @@
             <img src="{image src=$widget->getIcon() default="bootstrap/img/widget.png"}" />
             {$name = $widget->getName()}
             {if $widget->getPropertiesCallback()}
-                <a class="name" href="{url id="cms.widget.properties" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId]}">
+                <a class="name" href="{url id="cms.node.content.widget.properties" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId]}">
                     {translate key="widget.`$name`"}
                 </a>
             {else}
@@ -82,7 +82,7 @@
                     {/if}
                 {/foreach}
 
-                {url var="actionUrl" id="cms.node.layout.widget.delete" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId]}
+                {url var="actionUrl" id="cms.node.content.widget.delete" parameters=["site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "locale" => $locale, "region" => $region, "section" => $section, "block" => $block, "widget" => $widgetId]}
                 {isGranted url=$actionUrl}
                     {if $actionsAvailable}
                         <li class="divider"></li>

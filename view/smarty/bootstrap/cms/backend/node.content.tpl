@@ -6,11 +6,11 @@
     {if !$site->isAutoPublish()}
         {include file="cms/backend/taskbar"}
 
-        {url id="cms.node.layout.region" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%", "node" => $node->getId(), "region" => $region] var="url"}
+        {url id="cms.node.content.region" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%", "node" => $node->getId(), "region" => $region] var="url"}
         {call taskbarPanelPublish url=$url revision=$node->getRevision() revisions=$site->getRevisions()}
     {/if}
 
-    {url id="cms.node.layout.region" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region] var="url"}
+    {url id="cms.node.content.region" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId(), "region" => $region] var="url"}
     {call taskbarPanelLocales url=$url locale=$locale locales=$locales}
 {/block}
 
@@ -28,13 +28,10 @@
     {include file="base/form.prototype"}
 
     {if count($form->getRow('region')->getWidget()->getOptions()) > 1}
-    <form id="{$form->getId()}" action="{url id="cms.node.layout" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId()]}" method="POST" class="form-inline" role="form">
+    <form id="{$form->getId()}" action="{url id="cms.node.content" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => $node->getRevision(), "node" => $node->getId()]}" method="POST" class="form-inline" role="form">
         <p>{translate key="label.region.select"} {call formWidget form=$form row="region"}</p>
     </form>
     {/if}
-
-    <h3>{translate key="title.widgets.content"}</h3>
-    <p>{translate key="label.widgets.content.description"}</p>
 
     <p><button class="btn btn-default section-add"><i class="glyphicon glyphicon-plus"></i> {translate key="button.section.add"}</button></p>
 
@@ -89,14 +86,14 @@
 {/block}
 
 {block name="scripts" append}
-    <script src="{$app.url.base}/bootstrap/js/cms/layout.js"></script>
+    <script src="{$app.url.base}/bootstrap/js/cms/content.js"></script>
     <script type="text/javascript">
         $(function() {
             $('select[name=region]').change(function() {
                 $('#form-region-select').submit();
             });
 
-            joppaInitializeLayout('{$baseAction}', '{translate key="label.confirm.widget.delete"}');
+            initializeContent('{$baseAction}');
         });
     </script>
 {/block}
