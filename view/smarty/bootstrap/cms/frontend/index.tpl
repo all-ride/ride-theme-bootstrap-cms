@@ -16,22 +16,27 @@
 {/block}
 
 {block name="container"}
-<div class="container">
-    <div class="row region region-header">
-    {if isset($regions.header)}
-        {foreach $regions.header as $widget}
-            {$widget}
-        {/foreach}
-    {/if}
-    </div>
-    <div class="row">
-        <div class="col-md-3 region region-menu">
-        {if isset($regions.menu)}
-            {foreach $regions.menu as $widget}
-                {$widget}
+    {foreach $layouts as $layout}
+        {include file=$layout->getFrontendResource() inline}
+    {/foreach}
+
+    {function name="region" region=null}
+        {if isset($regions.$region)}
+            {foreach $regions.$region as $section => $layout}
+                {$functionName = "layout-`$layout`"|replace:"-":"_"}
+                {call $functionName section=$section widgets=$widgets.$region.$section style=$app.cms.node->getSectionStyle($region, $section)}
             {/foreach}
         {/if}
-        </div>
+    {/function}
+
+<div class="container">
+    <div class="row region region-header">
+        {call region region="header"}
+            </div>
+    <div class="row">
+        <div class="col-md-3 region region-menu">
+            {call region region="menu"}
+                    </div>
         <div class="col-md-9 region region-layout">
             {if isset($app.messages)}
                 {$_messageTypes = ["error" => "danger", "warning" => "warning", "success" => "success", "information" => "info"]}
@@ -54,15 +59,11 @@
                 {/foreach}
             {/if}
 
-            {block name="layout"}{/block}
+            {call region region="content"}
         </div>
     </div>
     <div class="row region region-footer">
-    {if isset($regions.footer)}
-        {foreach $regions['footer'] as $widget}
-            {$widget}
-        {/foreach}
-    {/if}
+        {call region region="footer"}
     </div>
 </div>
 {/block}

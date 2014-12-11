@@ -21,6 +21,10 @@
 {/block}
 
 {block name="content_body" append}
+    {include file="cms/backend/content.prototype"}
+    {foreach $layouts as $layout}
+        {include file=$layout->getBackendResource() inline}
+    {/foreach}
     {include file="base/form.prototype"}
 
     {if count($form->getRow('region')->getWidget()->getOptions()) > 1}
@@ -29,28 +33,57 @@
     </form>
     {/if}
 
-    <div class="row">
-        <div id="region" class="col-md-6 clearfix">
-            <h3>{translate key="title.widgets.content"}</h3>
-            <p>{translate key="label.widgets.content.description"}</p>
+    <h3>{translate key="title.widgets.content"}</h3>
+    <p>{translate key="label.widgets.content.description"}</p>
 
-            <div class="droppable">
-                {foreach $regionWidgets as $widgetId => $widget}
-                    {include file="cms/backend/widget.content"}
-                {/foreach}
+    <p><button class="btn btn-default section-add"><i class="glyphicon glyphicon-plus"></i> {translate key="button.section.add"}</button></p>
+
+    <div class="sections">
+    {foreach $sections as $section => $layout}
+        {call sectionPanel site=$site node=$node section=$section layouts=$layouts layout=$layout widgets=$regionWidgets[$section] inheritedWidgets=$inheritedWidgets[$section] actions=$actions}
+    {/foreach}
+    </div>
+
+    <p><button class="btn btn-default section-add"><i class="glyphicon glyphicon-plus"></i> {translate key="button.section.add"}</button></p>
+
+    <div class="modal modal-widget-add fade" id="modalWidgetAdd" tabindex="-1" role="dialog" aria-labelledby="modalWidgetAddLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">{translate key="button.close"}</span></button>
+                    <h4 class="modal-title" id="modalWidgetAddLabel">{translate key="button.widget.add"}</h4>
+                </div>
+                <div class="modal-body">
+                <form action="#" class="form-widget-add">
+                    <input name="section" type="hidden" />
+                    <input name="block" type="hidden" />
+
+                    <p>{translate key="label.widgets.available.description"}</p>
+
+                    <div class="row">
+                    {foreach $availableWidgets as $name => $widget}
+                    <div class="col-md-6 widget" data-widget="{$name}">
+                        <div class="radio">
+                            <label>
+                                <input name="widget" value="{$name}" type="radio">
+                                <img src="{image src=$widget->getIcon() default="img/widget.png"}" class="handle" />
+                                {translate key="widget.`$name`"}
+                            </label>
+                        </div>
+                    </div>
+                        {if $widget@iteration is div by 2}
+                    </div><div class="row">
+                        {/if}
+                   {/foreach}
+                    </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">{translate key="button.cancel"}</button>
+                    <button type="button" class="btn btn-default widget-add-submit">{translate key="button.add"}</button>
+                    <button type="button" class="btn btn-default widget-add-submit-close">{translate key="button.add.close"}</button>
+                </div>
             </div>
-        </div>
-
-        <div id="widgets" class="col-md-6 clearfix">
-            <h3>{translate key="title.widgets.available"}</h3>
-            <p>{translate key="label.widgets.available.description"}</p>
-
-            {foreach $availableWidgets as $name => $widget}
-            <div class="widget" data-widget="{$name}">
-                <img src="{image src=$widget->getIcon() default="img/widget.png"}" class="handle" />
-                {translate key="widget.`$name`"}
-            </div>
-           {/foreach}
         </div>
     </div>
 {/block}
