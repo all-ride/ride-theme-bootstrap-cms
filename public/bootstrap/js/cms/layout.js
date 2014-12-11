@@ -3,30 +3,30 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
     var $formWidgetAdd = $('.form-widget-add');
     var $modalWidgetAdd = $('.modal-widget-add');
 
-	// create a drop region for new widgets
-	// $('.section .droppable').droppable({
-		// helper: 'clone',
-		// drop: function (event, ui) {
-			// id = ui.draggable.data('widget');
-			// if (id) {
-				// $.post(baseUrl + '/widget/' + id, function(data) {
-				      // var droppable = $('.droppable');
+    // create a drop region for new widgets
+    // $('.section .droppable').droppable({
+        // helper: 'clone',
+        // drop: function (event, ui) {
+            // id = ui.draggable.data('widget');
+            // if (id) {
+                // $.post(baseUrl + '/widget/' + id, function(data) {
+                      // var droppable = $('.droppable');
 
-				      // $('.ui-draggable', droppable).remove();
+                      // $('.ui-draggable', droppable).remove();
 
-				      // droppable.append(data);
+                      // droppable.append(data);
 
-				      // $('.widget:last-child .dropdown-toggle', droppable).dropdown();
-				      // $(".widget:last-child .dropdown-menu a", droppable).each(function () {
-				    	  // joppaInitializeWidgetContextMenu(this, widgetDeleteMessage);
-				      // });
+                      // $('.widget:last-child .dropdown-toggle', droppable).dropdown();
+                      // $(".widget:last-child .dropdown-menu a", droppable).each(function () {
+                          // joppaInitializeWidgetContextMenu(this, widgetDeleteMessage);
+                      // });
 
-				      // $('#region .droppable').sortable('destroy');
-				      // joppaInitializeWidgetOrder(baseUrl);
-				// });
-			// }
-		// }
-	// });
+                      // $('#region .droppable').sortable('destroy');
+                      // joppaInitializeWidgetOrder(baseUrl);
+                // });
+            // }
+        // }
+    // });
 
     // setup sortable for the sections
     var $sections = $('.sections');
@@ -62,7 +62,7 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
         e.preventDefault();
 
         var $this = $(this);
-		if (!confirm($this.data('confirm'))) {
+        if (!confirm($this.data('confirm'))) {
             return;
         }
 
@@ -144,14 +144,14 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
         $widgetAddButton.attr('disabled', 'disabled');
         $widgetAddAndCloseButton.attr('disabled', 'disabled');
 
-		$.post(baseUrl + '/sections/' + section + '/block/' + block + '/widget/' + widget, function(html) {
+        $.post(baseUrl + '/sections/' + section + '/block/' + block + '/widget/' + widget, function(html) {
             $block.append(html);
 
             joppaInitializeWidgetOrder(baseUrl, true);
 
             $widgetAddButton.removeAttr('disabled');
             $widgetAddAndCloseButton.removeAttr('disabled');
-		});
+        });
     };
 
     // widget add button
@@ -175,7 +175,7 @@ function joppaInitializeLayout(baseUrl, widgetDeleteMessage) {
         e.preventDefault();
 
         var $this = $(this);
-		if (!confirm($this.data('confirm'))) {
+        if (!confirm($this.data('confirm'))) {
             return;
         }
 
@@ -203,7 +203,7 @@ function joppaInitializeWidgetOrder(baseUrl, reset) {
     if (reset != undefined && reset) {
         $blocks.each(function() {
             try {
-                $(this).sortable('destroy')
+                $(this).sortable('destroy');
             } catch (error) {
 
             }
@@ -211,24 +211,24 @@ function joppaInitializeWidgetOrder(baseUrl, reset) {
     }
 
     $blocks.sortable({
-	    handle: '.widget .handle',
+        handle: '.handle',
         items: '> .widget',
-        // connectWith: $blocks,
-	    update: function (event, ui) {
+        connectWith: $blocks,
+        update: function (event, ui) {
             console.log('update');
             console.log(ui.item.context);
-		    // id = ui.item.context.id;
-		    // id = id.split('-');
-		    // if (id[0] != 'page' && id[1] != 'widget') {
-			    // return;
-		    // }
+            // id = ui.item.context.id;
+            // id = id.split('-');
+            // if (id[0] != 'page' && id[1] != 'widget') {
+                // return;
+            // }
 
-		    // var order = '';
-		    // $('#region .droppable > .widget').each(function(i) {
-			    // order += this.id.replace('page-widget-', '') + ',';
-		    // });
+            // var order = '';
+            // $('#region .droppable > .widget').each(function(i) {
+                // order += this.id.replace('page-widget-', '') + ',';
+            // });
 
-		    // $.post(baseUrl + '/order?widgets=' + escape(order));
+            // $.post(baseUrl + '/order?widgets=' + escape(order));
         },
     });
 }
