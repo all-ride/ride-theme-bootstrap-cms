@@ -7,6 +7,7 @@
             <p>{translate key="label.text.existing.select"}</p>
             {call formWidget form=$form row="existing"}
             {call formWidget form=$form row="existing-new"}
+            <div class="preview"></div>
         </div>
         {/if}
 

@@ -1,23 +1,3 @@
-function handleTitleUse(isChecked) {
-    if (isChecked) {
-        $('.row-title').removeClass('hide');
-        $('.row-subtitle').removeClass('hide');
-    } else {
-        $('.row-title').addClass('hide');
-        $('.row-subtitle').addClass('hide');
-    }
-}
-
-function handleImageUse(isChecked) {
-    if (isChecked) {
-        $('.row-image-src').removeClass('hide');
-        $('.row-image-align').removeClass('hide');
-    } else {
-        $('.row-image-src').addClass('hide');
-        $('.row-image-align').addClass('hide');
-    }
-}
-
 function handleTextReuse(isChecked) {
     if (isChecked) {
         $('.alert-warning').addClass('hide');
@@ -31,21 +11,29 @@ $('#form-text-existing-new').change(function() {
 
     return false;
 });
-$('.row-title-use input').change(function() {
-    handleTitleUse($(this).is(':checked'));
-
-    return false;
-});
-$('.row-image-use input').change(function() {
-    handleImageUse($(this).is(':checked'));
-
-    return false;
-});
-
 handleTextReuse($('#form-text-existing-new').is(':checked'));
-handleTitleUse($('.row-title-use input').is(':checked'));
-handleImageUse($('.row-image-use input').is(':checked'));
-$('.row-existing').addClass('hide');
+
+$('.row-existing').addClass('hide').on('change', function() {
+    var $this = $(this);
+
+    var url = $this.data('url-text');
+    url = url.replace('%25id%25', $('select', $this).val());
+
+    $.get(url, function(data) {
+        var preview = '';
+        if (data.title) {
+            preview += '<h3>' + data.title + '</h3>';
+        }
+        if (data.subtitle) {
+            preview += '<h4>' + data.subtitle + '</h4>';
+        }
+        if (data.body) {
+            preview += data.body;
+        }
+
+        $('.preview', $this).html(preview);
+    });
+});
 
 $('#btn-text-reuse').click(function() {
     $('.tab').addClass('hide');

@@ -4,6 +4,18 @@
     <link href="{$app.url.base}/bootstrap/css/cms/cms.css" rel="stylesheet" media="screen">
 {/block}
 
+{block name="content_title" append}
+    <ol class="breadcrumb">
+    {foreach $breadcrumbs as $url => $name}
+        {if $name@last}
+            <li class="active">{$name}</li>
+        {else}
+            <li><a href="{$url}">{$name}</a></li>
+        {/if}
+    {/foreach}
+    </ol>
+{/block}
+
 {block name="sidebar"}
     {if isset($nodeCreateActions)}
     <div class="btn-group">
@@ -27,53 +39,9 @@
     </div>
     {/if}
 
-{if isset($siteTreeNode)}
-    {function name="renderTreeNode" treeNode=null}
-        {$node = $treeNode->getNode()}
-        {$nodeId = $node->getId()}
-        {$nodeType = $node->getType()}
-        {$children = $treeNode->getChildren()}
-        {$actions = $treeNode->getActions()}
-
-        <li class="node node-{$nodeType}{if $treeNode->isHidden()} node-{$nodeType}-hidden{/if}{if $treeNode->isHomePage()} node-{$nodeType}-default{/if}{if !$treeNode->isLocalized($locale)} unlocalized{/if}{if $treeNode->isSelected()} selected{/if}{if $treeNode->isCollapsed()} collapsed{/if}" id="node-{$node->getId()}">
-            {if $children}
-            <a href="#" class="toggle"></a>
-            {else}
-            <span class="toggle"></span>
-            {/if}
-
-            <div class="handle"><span class="icon"></span></div>
-            <div class="dropdown">
-                <a href="{$treeNode->getUrl()}" class="name">{$node->getName($locale)|truncate}</a>
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">&nbsp;</a>
-                <ul class="dropdown-menu" role="menu">
-                {$hasDivider = false}
-                {foreach $actions as $actionName => $actionUrl}
-                    {if !$hasDivider && ($actionName == 'edit' || $actionName == 'clone' || $actionName == 'delete')}
-                        {$hasDivider = true}
-
-                        <li class="divider"></li>
-                    {/if}
-
-                    <li><a href="{$actionUrl}" class="action action-{$actionName}">{translate key="label.node.action.`$actionName`"}</a></li>
-                {/foreach}
-                </ul>
-            </div>
-
-            {if $children}
-            <ul class="children">
-                {foreach $children as $child}
-                    {call renderTreeNode treeNode=$child}
-                {/foreach}
-            </ul>
-            {/if}
-        </li>
-    {/function}
-
-    <ul id="node-tree">
-        {call renderTreeNode treeNode=$siteTreeNode}
-    </ul>
-{/if}
+    <div class="site-tree">
+        <div class="loading"></div>
+    </div>
 {/block}
 
 {block name="scripts" append}
@@ -83,7 +51,13 @@
     {if isset($site)}
     <script type="text/javascript">
         $(function() {
-            joppaInitializeNodeTree('{url id="cms.node.collapse" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale, "node" => "%node%"]}', '{url id="cms.site.order" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}');
+            joppaInitializeNodeTree(
+                '{url id="cms.site.tree" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}',
+                '{url id="cms.node.collapse" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale, "node" => "%node%"]}',
+                '{url id="cms.site.order" parameters=["site" => $site->getId(), "revision" => $site->getRevision(), "locale" => $locale]}',
+                {$collapsedNodes},
+                {if isset($node)}'{$node->getId()}'{else}null{/if}
+            );
         });
     </script>
     {/if}
