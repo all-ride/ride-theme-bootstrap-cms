@@ -1,4 +1,4 @@
-{function name="layout_25_50_25" section=null widgets=null}
+{function name="layout_25_58_17" section=null widgets=null}
     <div class="row {$style}">
     {$block = '1'}
         <div class="col-md-3 block" id="block-{$section}-{$block}" data-section="{$section}" data-block="{$block}">
