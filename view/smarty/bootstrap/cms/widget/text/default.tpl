@@ -1,10 +1,10 @@
 {* widget: text; action: index; translation: widget.text *}
 <div class="widget widget-text row-fluid clearfix {$app.cms.properties->getWidgetProperty('style.container')}" id="widget-{$app.cms.widget}">
 {if $title}
-    <h2 class="toc {$app.cms.properties->getWidgetProperty('style.title')}">{$title}</h2>
+    <h2 class="toc {$app.cms.properties->getWidgetProperty('style.title')}">{$title|text}</h2>
 {/if}
 {if $subtitle}
-    <h3 class="toc {$app.cms.properties->getWidgetProperty('style.subtitle')}">{$subtitle}</h3>
+    <h3 class="toc {$app.cms.properties->getWidgetProperty('style.subtitle')}">{$subtitle|text}</h3>
 {/if}
 {if $image}
     {if $html}
@@ -12,7 +12,7 @@
             <img src="{image src=$image}" class="img-responsive" />
             {$html|text}
             {foreach $callToActions as $callToAction}
-                <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()}</a>
+                <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()|text}</a>
             {/foreach}
         {else}
             <div class="col-md-6">
@@ -21,7 +21,7 @@
                 {else}
                     {$html|text}
                     {foreach $callToActions as $callToAction}
-                        <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()}</a>
+                        <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()|text}</a>
                     {/foreach}
                 {/if}
             </div>
@@ -29,7 +29,7 @@
                 {if $imageAlignment == 'left'}
                     {$html|text}
                     {foreach $callToActions as $callToAction}
-                        <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()}</a>
+                        <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()|text}</a>
                     {/foreach}
                 {else}
                     <img src="{image src=$image}" class="img-responsive" />
@@ -39,13 +39,13 @@
     {else}
         <img src="{image src=$image}" class="img-responsive" />
         {foreach $callToActions as $callToAction}
-            <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()}</a>
+            <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getIcon()} cta-{$callToAction->getIcon()}{/if}">{$callToAction->getLabel()|text}</a>
         {/foreach}
     {/if}
 {else}
     {$html|text}
     {foreach $callToActions as $callToAction}
-        <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getType()} cta-{$callToAction->getType()}{/if}">{$callToAction->getLabel()}</a>
+        <a href="{$callToAction->getUrl()}" class="btn btn-default cta{if $callToAction->getType()} cta-{$callToAction->getType()}{/if}">{$callToAction->getLabel()|text}</a>
     {/foreach}
 {/if}
 </div>
