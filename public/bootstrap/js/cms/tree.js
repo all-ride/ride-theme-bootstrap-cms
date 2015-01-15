@@ -1,5 +1,5 @@
 function joppaInitializeNodeTree(nodeTreeAction, nodeToggleAction, nodeOrderAction, collapsedNodes, node) {
-    $('.site-tree').append($overlay).load(nodeTreeAction, function() {
+    $('.site-tree').load(nodeTreeAction, function() {
         var $tree = $('#node-tree');
 
         // select current node
