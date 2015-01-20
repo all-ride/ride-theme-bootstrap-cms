@@ -5,6 +5,7 @@
 {/block}
 
 {block name="content_title" append}
+{if isset($breadcrumbs)}
     <ol class="breadcrumb">
     {foreach $breadcrumbs as $url => $name}
         {if $name@last}
@@ -14,6 +15,7 @@
         {/if}
     {/foreach}
     </ol>
+{/if}
 {/block}
 
 {block name="sidebar"}
