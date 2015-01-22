@@ -4,6 +4,10 @@
     <h2 class="toc {$app.cms.properties->getWidgetProperty('style.title')}">{$title}</h2>
 {/if}
 
+{if $filters}
+    {include file="cms/widget/orm-overview/helper.filters.anchor"}
+{/if}
+
 {if $result}
     {foreach from=$result item="content"}
     <div class="content clearfix {cycle values="odd,even"}">
