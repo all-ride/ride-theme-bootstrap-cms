@@ -19,6 +19,8 @@
     <link href="{$app.url.base}/bootstrap/css/cms/front.css" rel="stylesheet" media="screen">
 {/block}
 
+{block name="body_attributes" append} class="node-{$app.cms.node->getId()}"{/block}
+
 {block name="container"}
     {foreach $layouts as $layout}
         {include file=$layout->getFrontendResource() inline}
