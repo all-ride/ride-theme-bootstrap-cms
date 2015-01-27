@@ -2,31 +2,36 @@ var filterFields;
 
 function initializeNodeEntryForm(entriesAction) {
 	$("#form-model").change(function() {
-		updateEntryOptions(entriesAction);
+		updateEntryOptions(entriesAction, $('#form-model'), $('#form-entry'));
 	});
 }
 
-function updateEntryOptions(action) {
-	var model = $("#form-model").val();
-	var select = $("#form-entry");
+function updateEntryOptions(action, modelInput, entryInput) {
+	var model = modelInput.val();
 
-	select.empty();
-	select.append('<option value="">---</option>');
+	entryInput.empty();
+	entryInput.append('<option value="">---</option>');
 
 	if (model) {
 		$.getJSON(action.replace('%25model%25', model), function(data) {
 			for (var key in data) {
-				select.append('<option value="' + key + '">' + data[key] + '</option>');
+				entryInput.append('<option value="' + key + '">' + data[key] + '</option>');
 			}
 		});
 	}
 
-	select.val('');
+	entryInput.val('');
 }
 
 function joppaContentInitializeDetailProperties(uniqueFieldsAction) {
 	$("#form-content-properties-model").change(function() {
 		joppaContentUpdateIdFields(uniqueFieldsAction);
+	});
+}
+
+function joppaContentInitializeEntryProperties(entriesAction) {
+	$("#form-content-properties-model").change(function() {
+		updateEntryOptions(entriesAction, $('#form-content-properties-model'), $('#form-content-properties-entry'));
 	});
 }
 
