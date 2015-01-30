@@ -7,6 +7,7 @@
             <li class="active"><a href="#tabQuery" data-toggle="tab">{translate key="title.query"}</a></li>
             <li><a href="#tabParameters" data-toggle="tab">{translate key="title.parameters.url"}</a></li>
             <li><a href="#tabMapper" data-toggle="tab">{translate key="title.content.mapper"}</a></li>
+            <li><a href="#tabMeta" data-toggle="tab">{translate key="title.node.meta"}</a></li>
             <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
         </ul>
 
@@ -25,13 +26,17 @@
                 {call formRow form=$form row="primary"}
             </div>
 
+            <div id="tabMeta" class="tab-pane">
+                {call formRow form=$form row="meta-og"}
+                {call formRow form=$form row="format-title-og"}
+                {call formRow form=$form row="format-teaser-og"}
+                {call formRow form=$form row="format-image-og"}
+            </div>
+
             <div id="tabView" class="tab-pane">
                 {call formRow form=$form row="template"}
                 {call formRow form=$form row="view-processor"}
                 {call formRow form=$form row="title"}
-
-                <h4>{translate key="title.formats.data"}</h4>
-
                 {call formRow form=$form row="format-title"}
                 {call formRow form=$form row="format-teaser"}
                 {call formRow form=$form row="format-image"}
