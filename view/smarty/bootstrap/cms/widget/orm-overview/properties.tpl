@@ -6,6 +6,7 @@
         <ul class="nav nav-tabs">
             <li class="active"><a href="#tabQuery" data-toggle="tab">{translate key="title.query"}</a></li>
             <li><a href="#tabParameters" data-toggle="tab">{translate key="title.parameters.url"}</a></li>
+            <li><a href="#tabMapper" data-toggle="tab">{translate key="title.content.mapper"}</a></li>
             <li><a href="#tabView" data-toggle="tab">{translate key="title.view"}</a></li>
         </ul>
 
@@ -70,6 +71,10 @@
                     </div>
                 </div>
                 {call formRow form=$form row="parameters-none"}
+            </div>
+
+            <div id="tabMapper" class="tab-pane">
+                {call formRow form=$form row="content-mapper"}
             </div>
 
             <div id="tabView" class="tab-pane">
