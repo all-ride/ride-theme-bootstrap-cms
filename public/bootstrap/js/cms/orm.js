@@ -35,8 +35,9 @@ function joppaContentInitializeEntryProperties(entriesAction) {
 	});
 }
 
-function joppaContentInitializeOverviewProperties(orderFieldsAction, filterFieldsAction) {
+function joppaContentInitializeOverviewProperties(orderFieldsAction, filterFieldsAction, contentMappersAction) {
 	$("#form-content-properties-model").change(function() {
+		joppaContentUpdateContentMappers(contentMappersAction);
 		joppaContentUpdateOrderFields(orderFieldsAction);
 		joppaContentUpdateFilterFields(filterFieldsAction);
 
@@ -199,11 +200,27 @@ function joppaContentUpdateIdFields(action) {
 
 	$.getJSON(action.replace('%25model%25', model), function(data) {
 		var select = $("#form-content-properties-field-id");
+
 		select.empty();
 		for (var key in data.fields) {
 			if (data.fields.hasOwnProperty(key)) {
 				select.append('<option value="' + key + '">' + data.fields[key] + '</option>');
 			}
+		}
+		select.val('');
+	});
+}
+
+function joppaContentUpdateContentMappers(action) {
+	var model = $("#form-content-properties-model").val();
+
+	$.getJSON(action.replace('%25model%25', model), function(data) {
+		var select = $("#form-content-properties-content-mapper");
+
+		select.empty();
+		select.append('<option value="">---</option>');
+		for (var key in data[model]) {
+			select.append('<option value="' + data[model][key] + '">' + data[model][key] + '</option>');
 		}
 		select.val('');
 	});
