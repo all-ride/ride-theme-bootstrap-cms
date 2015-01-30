@@ -6,7 +6,7 @@
         {call formRows form=$form}
 
         <div class="col-lg-offset-2 col-lg-10">
-            <input type="submit" class="btn" value="{translate key="button.submit"}" />
+            <input type="submit" class="btn btn-default" value="{translate key="button.submit"}" />
         </div>
     </form>
 </div>
