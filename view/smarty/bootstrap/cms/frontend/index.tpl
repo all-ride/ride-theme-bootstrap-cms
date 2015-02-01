@@ -16,7 +16,7 @@
 {/block}
 
 {block name="styles" append}
-    <link href="{$app.url.base}/bootstrap/css/cms/front.css" rel="stylesheet" media="screen">
+    {style src"bootstrap/css/cms/front.css" media="screen"}
 {/block}
 
 {block name="body_attributes" append} class="node-{$app.cms.node->getId()}"{/block}
