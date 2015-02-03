@@ -10,13 +10,13 @@
         {url id="cms.page.add" parameters=["locale" => $locale, "site" => $site->getId(), "revision" => "%revision%"] var="urlPublish"}
         {url id="cms.page.add" parameters=["locale" => "%locale%", "site" => $site->getId(), "revision" => $site->getRevision()] var="urlLocales"}
     {/if}
-    
+
     {if !$site->isAutoPublish()}
         {include file="cms/backend/taskbar"}
 
         {call taskbarPanelPublish url=$urlPublish revision=$node->getRevision() revisions=$site->getRevisions()}
     {/if}
-    
+
     {call taskbarPanelLocales url=$urlLocales locale=$locale locales=$locales}
 {/block}
 
@@ -63,7 +63,7 @@
     </form>
 {/block}
 
-{block name="scripts" append}
+{block name="scripts_inline" append}
     <script>
         $(function() {
             $('.btn-alternate-names').click(function() {

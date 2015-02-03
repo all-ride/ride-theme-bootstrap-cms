@@ -37,14 +37,17 @@
 {/block}
 
 {block name="scripts" append}
+    {script src="bootstrap/js/jquery-ui.js"}
+    {script src="bootstrap/js/form.js"}
+    {script src="bootstrap/js/table.js"}
+    {script src="bootstrap/js/text.admin.js"}
+{/block}
+
+{block name="scripts_inline" append}
     <script type="text/javascript">
         var translations = {
             more: '{translate key="label.show.more"}',
             less: '{translate key="label.show.less"}'
         };
     </script>
-    <script src="{$app.url.base}/bootstrap/js/jquery-ui.js"></script>
-    <script src="{$app.url.base}/bootstrap/js/form.js"></script>
-    <script src="{$app.url.base}/bootstrap/js/table.js"></script>
-    <script src="{$app.url.base}/bootstrap/js/text.admin.js"></script>
 {/block}

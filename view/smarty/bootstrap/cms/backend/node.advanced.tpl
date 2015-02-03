@@ -49,7 +49,7 @@
     </div>
 {/block}
 
-{block name="scripts" append}
+{block name="scripts_inline" append}
     <script type="text/javascript">
         $(function() {
             $('.full-configuration').hide();
