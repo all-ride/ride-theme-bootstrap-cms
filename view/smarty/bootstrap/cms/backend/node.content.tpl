@@ -85,8 +85,11 @@
     </div>
 {/block}
 
-{block name="scripts" append}
-    <script src="{$app.url.base}/bootstrap/js/cms/content.js"></script>
+{block name="scripts_app" append}
+    {script src="bootstrap/js/cms/content.js"}
+{/block}
+
+{block name="scripts_inline" append}
     <script type="text/javascript">
         $(function() {
             $('select[name=region]').change(function() {
