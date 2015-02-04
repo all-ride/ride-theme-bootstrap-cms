@@ -46,7 +46,7 @@
     </div>
 {/block}
 
-{block name="scripts_app" append}
+{block name="scripts" append}
     {script src="bootstrap/js/jquery-ui.js"}
     {script src="bootstrap/js/cms/lib/jquery.mjs.nestedSortable.js"}
     {script src="bootstrap/js/cms/tree.js"}
