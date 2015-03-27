@@ -16,7 +16,7 @@
 {/block}
 
 {block name="styles" append}
-    {style src"bootstrap/css/cms/front.css" media="screen"}
+    {style src="bootstrap/css/cms/front.css" media="screen"}
 {/block}
 
 {block name="body_attributes" append} class="node-{$app.cms.node->getId()}"{/block}
@@ -34,47 +34,39 @@
                     {$functionName = "layout-`$layout`"|replace:"-":"_"}
                     {$style = $app.cms.node->getSectionStyle($region, $section)}
 
-                    {$useContainer = $style|strpos:"no-container" === false}
-                    {if $useContainer}
-                    <div class="container">
+                    <div class="container{if $style|strpos:"no-container" !== false}-fluid{/if}">
                         {call $functionName section=$section widgets=$widgets.$region.$section style=$style}
                     </div>
-                    {else}
-                        {call $functionName section=$section widgets=$widgets.$region.$section style=$style}
-                    {/if}
                 {/if}
             {/foreach}
         </div>
         {/if}
     {/function}
 
-    {call region region="header" class="row region region-header"}
-    <div class="row">
-        {call region region="menu" class="col-md-3 region region-menu"}
-        <div class="col-md-9 region region-layout">
-            {if isset($app.messages)}
-                {$_messageTypes = ["error" => "danger", "warning" => "warning", "success" => "success", "information" => "info"]}
-                {foreach $_messageTypes as $_messageType => $_messageClass}
-                    {$_messages = $app.messages->getByType($_messageType)}
-                    {if $_messages}
-                        <div class="alert alert-{$_messageClass}">
-                        {if $_messages|count == 1}
-                            {$_message = $_messages|array_pop}
-                            <p>{$_message->getMessage()}</p>
-                        {else}
-                            <ul>
-                            {foreach $_messages as $_message}
-                                <li>{$_message->getMessage()}</li>
-                            {/foreach}
-                            </ul>
-                        {/if}
-                        </div>
+    {call region region="header" class="region region-header"}
+    {call region region="menu" class="region region-menu"}
+    <div class="messages">
+        {if isset($app.messages)}
+            {$_messageTypes = ["error" => "danger", "warning" => "warning", "success" => "success", "information" => "info"]}
+            {foreach $_messageTypes as $_messageType => $_messageClass}
+                {$_messages = $app.messages->getByType($_messageType)}
+                {if $_messages}
+                    <div class="alert alert-{$_messageClass}">
+                    {if $_messages|count == 1}
+                        {$_message = $_messages|array_pop}
+                        <p>{$_message->getMessage()}</p>
+                    {else}
+                        <ul>
+                        {foreach $_messages as $_message}
+                            <li>{$_message->getMessage()}</li>
+                        {/foreach}
+                        </ul>
                     {/if}
-                {/foreach}
-            {/if}
-
-            {call region region="content"}
-        </div>
+                    </div>
+                {/if}
+            {/foreach}
+        {/if}
     </div>
+    {call region region="content" class="region region-content"}
     {call region region="footer" class="row region region-footer"}
 {/block}

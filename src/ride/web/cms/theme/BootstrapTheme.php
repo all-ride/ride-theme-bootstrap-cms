@@ -15,6 +15,7 @@ class BootstrapTheme extends BootstrapTemplateTheme implements Theme {
      * @var unknown
      */
     protected $regions = array(
+        'content' => 'content',
         'header' => 'header',
         'menu' => 'menu',
         'footer' => 'footer',
